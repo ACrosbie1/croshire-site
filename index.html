@@ -244,6 +244,69 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
   .pd{height:280px}
   .pd-cap{left:22px;right:22px}
 }
+
+/* PARALLAX */
+.parallax {
+  position: relative;
+  overflow: hidden;
+  height: 480px;
+}
+.parallax-bg {
+  position: absolute;
+  top: -30%;
+  left: 0;
+  right: 0;
+  bottom: -30%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+}
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 55%, rgba(201,168,76,0.12) 100%);
+  z-index: 1;
+}
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 52px;
+}
+.parallax-content h3 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 3.5vw, 42px);
+  font-weight: 700;
+  color: #F8F4EE;
+  margin-bottom: 12px;
+}
+.parallax-content p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #F5D485;
+}
+.parallax-label {
+  position: absolute;
+  bottom: 28px;
+  left: 52px;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: .36em;
+  color: #C9A84C;
+  text-transform: uppercase;
+  z-index: 2;
+}
+@media(max-width:768px) {
+  .parallax-bg { background-attachment: scroll; }
+  .parallax { height: 280px; }
+  .parallax-content { padding: 0 22px; }
+}
+
 </style>
 </head>
 <body>
@@ -297,12 +360,14 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
 </div>
 
 <!-- HERO PHOTO DIVIDER -->
-<div class="pd" style="background-image:url('https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');">
-  <div class="pd-cap">
+<div class="parallax">
+  <div class="parallax-bg" style="background-image:url('https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content">
     <h3>Where Every Deal<br>Gets Off the Ground</h3>
     <p>Professional aircraft brokerage with precision execution from start to closing.</p>
   </div>
-  <div class="pd-lbl">Croshire Aviation — Aircraft Brokerage</div>
+  <div class="parallax-label">Croshire Aviation — Aircraft Brokerage</div>
 </div>
 
 <!-- SERVICES -->
@@ -348,12 +413,14 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
 </div>
 
 <!-- PHOTO DIVIDER 2 -->
-<div class="pd" style="background-image:url('https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');">
-  <div class="pd-cap">
+<div class="parallax">
+  <div class="parallax-bg" style="background-image:url('https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content">
     <h3>Commission Only.<br>Zero Upfront Cost.</h3>
     <p>We earn when your deal closes. Not before.</p>
   </div>
-  <div class="pd-lbl">Croshire Aviation — No upfront fees</div>
+  <div class="parallax-label">Croshire Aviation — No upfront fees</div>
 </div>
 
 <!-- FLEET -->
