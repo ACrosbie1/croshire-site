@@ -4,148 +4,187 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CrosMinX Business Broker</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 html, body {
-  background: #0b0b0b;
-  color: #e8d8a0;
+  background: #ffffff;
+  color: #1a1a1a;
   font-family: 'Raleway', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Fade overlay — only activates on card click */
+/* ======================================================== */
+/*  MOLTEN CAST GOLD — CSS version for section headings     */
+/*  Near-white specular peak → amber → black bronze shadow  */
+/* ======================================================== */
+.gold-3d {
+  background: linear-gradient(
+    180deg,
+    #ffffff   0%,
+    #fff8d0   4%,
+    #ffd84a  12%,
+    #c9950a  26%,
+    #7a5200  40%,
+    #2e1600  50%,
+    #7a5200  60%,
+    #c9950a  72%,
+    #ffe066  82%,
+    #fff0a0  88%,
+    #b87c00  94%,
+    #5a3600 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter:
+    drop-shadow(0px 1px 0px rgba(255,240,140,0.95))
+    drop-shadow(0px 3px 2px rgba(40,20,0,0.80))
+    drop-shadow(0px 6px 14px rgba(0,0,0,0.55));
+}
+
+/* ======================== */
+/*   FADE OVERLAY           */
+/* ======================== */
 #fade-overlay {
   position: fixed; inset: 0;
   background: #0b0b0b;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
+  opacity: 0; pointer-events: none;
+  z-index: 9999; transition: opacity 0.5s ease;
 }
 #fade-overlay.active { opacity: 1; pointer-events: all; }
 
-/* NAV */
+/* ======================== */
+/*   NAV                    */
+/* ======================== */
 nav {
   background: #0b0b0b;
   border-bottom: 1px solid rgba(201,168,76,0.2);
-  padding: 0 2.5rem;
-  height: 64px;
+  padding: 0 2.5rem; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
   position: relative; z-index: 10;
 }
 .nav-brand {
   font-family: 'Cinzel', serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.28em;
-  color: #c9a84c;
-  text-transform: uppercase;
-  line-height: 1.45;
+  font-size: 0.82rem; letter-spacing: 0.28em;
+  color: #c9a84c; text-transform: uppercase; line-height: 1.45;
 }
 .nav-brand span {
-  display: block;
-  font-size: 0.56rem;
-  letter-spacing: 0.38em;
-  color: #5a4a2a;
+  display: block; font-size: 0.56rem;
+  letter-spacing: 0.38em; color: #5a4a2a;
 }
 .nav-phone {
   font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  color: #c9a84c;
-  text-decoration: none;
+  font-size: 0.72rem; letter-spacing: 0.2em;
+  color: #c9a84c; text-decoration: none;
   border: 1px solid rgba(201,168,76,0.35);
-  padding: 0.5rem 1.3rem;
-  transition: background 0.3s;
+  padding: 0.5rem 1.3rem; transition: background 0.3s;
 }
 .nav-phone:hover { background: rgba(201,168,76,0.1); }
 
-/* HERO */
+/* ======================== */
+/*   HERO                   */
+/* ======================== */
 .hero {
-  position: relative;
-  width: 100%;
-  height: 56vh;
-  min-height: 320px;
-  overflow: hidden;
-  background: #0b0b0b;
+  position: relative; width: 100%;
+  height: 56vh; min-height: 340px;
+  overflow: hidden; background: #0b0b0b;
 }
-.hero img {
+.hero img.hero-bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block;
+  object-fit: cover; object-position: center; display: block;
 }
 .hero-grad {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to right,
-      rgba(5,5,5,0.82) 0%,
-      rgba(5,5,5,0.38) 45%,
-      rgba(100,82,8,0.52) 75%,
-      rgba(140,110,8,0.68) 100%
-    ),
-    linear-gradient(to bottom,
-      rgba(5,5,5,0.05) 0%,
-      rgba(5,5,5,0.9) 100%
-    );
+    linear-gradient(to right, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.38) 45%, rgba(100,82,8,0.52) 75%, rgba(140,110,8,0.68) 100%),
+    linear-gradient(to bottom, rgba(5,5,5,0.05) 0%, rgba(5,5,5,0.88) 100%);
 }
 .hero-text {
   position: absolute;
-  bottom: 2.5rem; left: 0; right: 0;
-  text-align: center; padding: 0 2rem;
+  bottom: 2.2rem; left: 0; right: 0;
+  text-align: center; padding: 0 1rem;
+  display: flex; flex-direction: column; align-items: center;
 }
 .hero-eyebrow {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem; letter-spacing: 0.5em;
-  color: #7a6a4a; text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-.hero-title {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: 0.06em; line-height: 1.1;
-  margin-bottom: 0.85rem;
-  background: linear-gradient(180deg,
-    #fff8d0 0%,#ffe566 8%,#c9950a 20%,
-    #8b6200 34%,#1e0d00 50%,
-    #6b4800 62%,#c9950a 72%,
-    #ffe566 82%,#fff8d0 88%,#5a3600 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: url(#goldShine) drop-shadow(0 4px 8px rgba(0,0,0,.8)) drop-shadow(0 2px 3px rgba(201,149,10,.4));
+  color: #7a6a4a; text-transform: uppercase; margin-bottom: 0.6rem;
 }
 .hero-rule {
   width: 70px; height: 1px;
   background: linear-gradient(90deg, transparent, #c9a84c, transparent);
-  margin: 0 auto;
+  margin: 0.6rem auto 0;
 }
 
-/* BODY */
+/* ======================================================== */
+/*  HERO SVG TITLE — feSpecularLighting animated gold       */
+/* ======================================================== */
+.hero-svg-wrap {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  display: block;
+}
+.hero-svg-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* ======================================================== */
+/*  GEMINI PNG SWAP SLOT                                     */
+/*  When PNG is ready: uncomment the img, delete the svg     */
+/* ======================================================== */
+.gemini-title-slot {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  display: none; /* CHANGE TO: display: block; when PNG is ready */
+}
+.gemini-title-slot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* PNG should have transparent or dark background */
+}
+
+/* ======================== */
+/*   GOLD HAIRLINE DIVIDER  */
+/* ======================== */
+.section-divider {
+  height: 3px;
+  background: linear-gradient(to right, transparent, #c9950a, #ffe066, #c9950a, transparent);
+}
+
+/* ======================== */
+/*   WHITE BODY             */
+/* ======================== */
 .wrap {
   max-width: 1280px; margin: 0 auto;
   padding: 3rem 2.5rem 4rem;
-  background: linear-gradient(to right, #0b0b0b 55%, #141000 100%);
+  background: #ffffff;
 }
 .section-eyebrow {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem; letter-spacing: 0.45em;
-  color: #5a4a2a; text-transform: uppercase;
+  color: #b87c00; text-transform: uppercase;
   text-align: center; margin-bottom: 0.5rem;
 }
 .section-heading {
   font-family: 'Cinzel', serif;
-  font-size: clamp(0.88rem, 2vw, 1.1rem); font-weight: 400;
+  font-size: clamp(0.88rem, 2vw, 1.15rem); font-weight: 700;
   letter-spacing: 0.25em; text-transform: uppercase;
-  color: #e8d8a0; text-align: center;
-  margin-bottom: 2.5rem;
+  text-align: center; margin-bottom: 2.5rem;
 }
 
-/* CARDS */
+/* ======================== */
+/*   PRIMARY CARDS          */
+/* ======================== */
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -158,23 +197,21 @@ nav {
 }
 
 .card {
-  position: relative;
-  display: block; text-decoration: none;
+  position: relative; display: block; text-decoration: none;
   overflow: hidden;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,149,10,0.2);
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   cursor: pointer;
-  background: #111;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
 }
 .card:hover {
-  border-color: rgba(201,168,76,0.65);
-  box-shadow: 0 0 40px rgba(0,0,0,0.7);
+  border-color: rgba(201,149,10,0.65);
+  box-shadow: 0 8px 32px rgba(160,110,0,0.14);
+  transform: translateY(-3px);
 }
-
-/* IMG — local file, guaranteed to load */
 .card img {
-  display: block;
-  width: 100%; height: 400px;
+  display: block; width: 100%; height: 400px;
   object-fit: cover; object-position: center;
   transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
 }
@@ -182,47 +219,31 @@ nav {
 
 .card-veil {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(5,5,5,0.92) 0%,
-    rgba(5,5,5,0.48) 35%,
-    rgba(5,5,5,0.08) 65%,
-    transparent 100%
-  );
-  transition: background 0.35s ease;
+  background: linear-gradient(to top, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.48) 35%, rgba(5,5,5,0.08) 65%, transparent 100%);
+  transition: background 0.35s;
 }
 .card:hover .card-veil {
-  background: linear-gradient(
-    to top,
-    rgba(5,5,5,0.96) 0%,
-    rgba(5,5,5,0.55) 38%,
-    rgba(40,28,2,0.15) 70%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.55) 38%, rgba(40,28,2,0.12) 70%, transparent 100%);
 }
-
 .card-shim {
   position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 35%, rgba(201,168,76,0.07) 50%, transparent 65%);
+  background: linear-gradient(110deg, transparent 35%, rgba(201,149,10,0.08) 50%, transparent 65%);
   opacity: 0; transition: opacity 0.4s;
 }
 .card:hover .card-shim { opacity: 1; }
 
 .card-badge {
-  position: absolute; top: 1rem; right: 1rem;
-  z-index: 3; width: 32px; height: 32px;
-  border: 1px solid rgba(201,168,76,0.3);
+  position: absolute; top: 1rem; right: 1rem; z-index: 3;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(201,149,10,0.35);
   display: flex; align-items: center; justify-content: center;
-  background: rgba(5,5,5,0.55);
-  color: #c9a84c; font-size: 1rem;
+  background: rgba(5,5,5,0.55); color: #c9950a; font-size: 1rem;
   transition: all 0.3s;
 }
 .card:hover .card-badge {
-  border-color: #c9a84c;
-  background: rgba(201,168,76,0.18);
+  border-color: #ffd84a; background: rgba(201,149,10,0.2);
   transform: translate(2px,-2px);
 }
-
 .card-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 1.4rem 1.8rem 1.8rem; z-index: 2;
@@ -230,93 +251,189 @@ nav {
 .card-title {
   font-family: 'Cinzel', serif;
   font-size: clamp(1rem, 2.8vw, 1.4rem);
-  font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase;
-  background: linear-gradient(
-    90deg,
-    #f0d080 0%, #c9a84c 28%,
-    #ddc880 52%, rgba(255,255,255,0.68) 76%,
-    rgba(200,178,115,0.42) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  background: linear-gradient(90deg, #fff8d0 0%, #ffd84a 20%, #c9950a 45%, #ffe066 70%, rgba(255,240,160,0.6) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   margin-bottom: 0.5rem;
 }
 .card-rule {
   width: 40px; height: 1px;
-  background: linear-gradient(90deg, #c9a84c, transparent);
-  margin-bottom: 0.5rem;
-  transition: width 0.4s;
+  background: linear-gradient(90deg, #c9950a, transparent);
+  margin-bottom: 0.5rem; transition: width 0.4s;
 }
 .card:hover .card-rule { width: 65px; }
 .card-sub {
   font-size: 0.68rem; letter-spacing: 0.28em;
-  color: #6a5a3a; text-transform: uppercase;
+  color: #a07820; text-transform: uppercase;
 }
 
-/* FOOTER */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,149,10,0.4), transparent);
+  margin: 0 0 3rem 0;
+}
+
+/* ======================== */
+/*  ADDITIONAL CATEGORIES   */
+/* ======================== */
+.more-wrap {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 2.5rem 3.5rem; background: #ffffff;
+}
+@media (max-width: 700px) { .more-wrap { padding: 0 1.2rem 2.5rem; } }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 900px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
+
+.cat-tile {
+  border: 1px solid rgba(201,149,10,0.16);
+  background: #fdfcf8; padding: 1.6rem 1.6rem 1.5rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.35s, background 0.35s, box-shadow 0.35s, transform 0.3s;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.cat-tile::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, #ffd84a, #c9950a, transparent);
+  opacity: 0.4; transition: opacity 0.35s;
+}
+.cat-tile:hover {
+  border-color: rgba(201,149,10,0.45); background: #fffdf5;
+  box-shadow: 0 4px 20px rgba(160,110,0,0.09); transform: translateY(-2px);
+}
+.cat-tile:hover::before { opacity: 1; }
+
+.cat-icon { font-size: 1.4rem; margin-bottom: 0.9rem; display: block; }
+.cat-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #b87c00; margin-bottom: 0.5rem;
+}
+.cat-desc { font-size: 0.8rem; color: #555; letter-spacing: 0.04em; line-height: 1.7; }
+
+/* ======================== */
+/*   FORM                   */
+/* ======================== */
+.form-wrap {
+  max-width: 1280px; margin: 0 auto;
+  padding: 3rem 2.5rem 5rem; background: #f9f7f2;
+  border-top: 1px solid rgba(201,149,10,0.14);
+}
+@media (max-width: 700px) { .form-wrap { padding: 2.5rem 1.2rem 4rem; } }
+
+.form-sub {
+  text-align: center; font-size: 0.78rem; letter-spacing: 0.2em;
+  color: #999; text-transform: uppercase; margin-bottom: 2.5rem;
+}
+.inquiry-form {
+  max-width: 780px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media (max-width: 600px) { .inquiry-form { grid-template-columns: 1fr; } }
+
+.field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.field-group.full { grid-column: 1 / -1; }
+
+.field-group label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem; letter-spacing: 0.35em;
+  color: #b87c00; text-transform: uppercase;
+}
+.field-group input,
+.field-group select,
+.field-group textarea {
+  background: #ffffff; border: 1px solid rgba(201,149,10,0.28);
+  color: #1a1a1a; font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem; padding: 0.75rem 1rem; outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%; -webkit-appearance: none; appearance: none; border-radius: 0;
+}
+.field-group input::placeholder,
+.field-group textarea::placeholder { color: #bbb; }
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  border-color: #c9950a; box-shadow: 0 0 0 3px rgba(201,149,10,0.10);
+}
+.field-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9950a' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center;
+  background-color: #ffffff; padding-right: 2.5rem; cursor: pointer;
+}
+.field-group select option { background: #fff; color: #1a1a1a; }
+.field-group textarea { resize: vertical; min-height: 130px; }
+
+.ohnohoney { opacity:0; position:absolute; top:0; left:0; height:0; width:0; z-index:-1; }
+
+.submit-row {
+  grid-column: 1 / -1; display: flex; flex-direction: column;
+  align-items: center; gap: 1rem; margin-top: 0.5rem;
+}
+.btn-submit {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #0b0b0b;
+  background: linear-gradient(180deg,
+    #fff8d0 0%, #ffd84a 15%, #c9950a 45%,
+    #7a5200 65%, #c9950a 80%, #ffd84a 95%, #b87c00 100%
+  );
+  border: none; padding: 1rem 3rem; cursor: pointer; font-weight: 700;
+  box-shadow: 0 1px 0px rgba(255,240,140,0.9), 0 5px 20px rgba(100,60,0,0.40), inset 0 1px 0 rgba(255,250,200,0.6);
+  transition: transform 0.2s, box-shadow 0.3s; min-width: 220px;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0px rgba(255,240,140,0.9), 0 10px 30px rgba(100,60,0,0.50), inset 0 1px 0 rgba(255,250,200,0.6);
+}
+.btn-submit:active { transform: translateY(0); }
+
+.form-privacy {
+  font-size: 0.65rem; letter-spacing: 0.18em;
+  color: #aaa; text-transform: uppercase; text-align: center;
+}
+
+#form-success {
+  display: none; max-width: 780px; margin: 0 auto;
+  border: 1px solid rgba(201,149,10,0.3); padding: 2.5rem;
+  text-align: center; background: #fffdf4;
+}
+#form-success.visible { display: block; }
+.success-icon { font-size: 2rem; margin-bottom: 1rem; }
+.success-title {
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.25em;
+  color: #c9950a; text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.success-msg { font-size: 0.88rem; color: #555; letter-spacing: 0.06em; line-height: 1.8; }
+.success-email { color: #b87c00; font-weight: 600; }
+
+/* ======================== */
+/*   FOOTER                 */
+/* ======================== */
 footer {
-  text-align: center;
-  border-top: 1px solid rgba(201,168,76,0.12);
-  padding: 2.5rem 2rem 3rem;
-  background: linear-gradient(to right, #0b0b0b 55%, #141000 100%);
+  text-align: center; border-top: 1px solid rgba(201,168,76,0.12);
+  padding: 2.5rem 2rem 3rem; background: #0b0b0b;
 }
 .foot-phone {
-  font-family: 'Cinzel', serif;
-  font-size: 1.05rem; letter-spacing: 0.22em;
-  color: #c9a84c; display: block;
-  text-decoration: none; margin-bottom: 0.5rem;
-  transition: color 0.3s;
+  font-family: 'Cinzel', serif; font-size: 1.05rem; letter-spacing: 0.22em;
+  color: #c9a84c; display: block; text-decoration: none;
+  margin-bottom: 0.5rem; transition: color 0.3s;
 }
-.foot-phone:hover { color: #f0d080; }
-.foot-note {
-  font-size: 0.67rem; letter-spacing: 0.2em;
-  color: #4a3a1a; text-transform: uppercase;
-}
-
-.contact-detail{color:#8a7a5a;font-size:13px;margin-top:22px;font-family:'Cinzel',serif;letter-spacing:.08em}
-
-/* CONTACT - matching aviation/marine style */
-.ss{background:rgba(0,0,0,0.55)}
-.cw{max-width:1160px;margin:0 auto;padding:100px 44px;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
-.cil{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;background:linear-gradient(90deg,#C9A84C,#F5D485);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
-.civ{color:#F8F4EE;font-size:15px;margin-bottom:24px}
-.cf{display:flex;flex-direction:column;gap:15px}
-.fl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.26em;text-transform:uppercase;display:block;margin-bottom:7px;background:linear-gradient(90deg,#C9A84C,#F5D485);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.fg{display:flex;flex-direction:column}
-.fr2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.fii{background:rgba(0,0,0,.52);border:1px solid rgba(201,168,76,.18);color:#F8F4EE;padding:13px 16px;font-family:'Rajdhani',sans-serif;font-size:16px;outline:none;width:100%;transition:border-color .22s;appearance:none;backdrop-filter:blur(6px);box-sizing:border-box}
-.fii:focus{border-color:#C9A84C}
-.fii::placeholder{color:rgba(255,255,255,.28)}
-textarea.fii{resize:vertical;min-height:110px}
-select.fii{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23C9A84C' d='M5 6L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer;background-color:rgba(0,0,0,.52)}
-select.fii option{background:#1a1000;color:#F8F4EE}
-.sub{padding:18px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;background:linear-gradient(135deg,#5a4010,#8B6914,#C9A84C,#F5D485);color:#000;font-weight:700;border:none;cursor:pointer;width:100%;transition:filter .22s,transform .22s}
-.sub:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.fn{font-size:12px;color:#C8C0B0;text-align:center;margin-top:6px}
-@media(max-width:700px){.cw{grid-template-columns:1fr;padding:60px 22px;gap:40px}}
+.foot-phone:hover { color: #ffd84a; }
+.foot-note { font-size: 0.67rem; letter-spacing: 0.2em; color: #4a3a1a; text-transform: uppercase; }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute;overflow:hidden">
-  <defs>
-    <filter id="goldShine" x="-10%" y="-50%" width="120%" height="200%" color-interpolation-filters="sRGB">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bump"/>
-      <feSpecularLighting in="bump" surfaceScale="6" specularConstant="2.2" specularExponent="80" lighting-color="white" result="spec">
-        <fePointLight x="-200" y="-150" z="180">
-          <animate attributeName="x" values="-300;1100;-300" dur="5s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="-150;-80;-150" dur="5s" repeatCount="indefinite"/>
-        </fePointLight>
-      </feSpecularLighting>
-      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specMasked"/>
-      <feBlend in="SourceGraphic" in2="specMasked" mode="screen"/>
-    </filter>
-  </defs>
-</svg>
 
 <div id="fade-overlay"></div>
 
+<!-- NAV -->
 <nav>
   <div class="nav-brand">
     CrosMinX Business Broker
@@ -325,22 +442,149 @@ select.fii option{background:#1a1000;color:#F8F4EE}
   <a class="nav-phone" href="tel:+12154368268">+1 (215) 436-8268</a>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-  <img src="hero.jpg" alt="">
+  <img class="hero-bg" src="hero.jpg" alt="">
   <div class="hero-grad"></div>
   <div class="hero-text">
+
     <div class="hero-eyebrow">CrosMinX Business Broker</div>
-    <div class="hero-title">Private Capital Solutions</div>
+
+    <!-- ============================================================ -->
+    <!-- SLOT A: SVG feSpecularLighting — LIVE NOW                    -->
+    <!-- Moving virtual point light sweeps across physical gold text  -->
+    <!-- ============================================================ -->
+    <div class="hero-svg-wrap">
+      <svg viewBox="0 0 860 110" xmlns="http://www.w3.org/2000/svg"
+           aria-label="Private Capital Solutions">
+        <defs>
+
+          <!-- Gold base gradient — top highlight to bottom shadow -->
+          <linearGradient id="goldFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff"/>
+            <stop offset="5%"   stop-color="#fff8d0"/>
+            <stop offset="14%"  stop-color="#ffd84a"/>
+            <stop offset="30%"  stop-color="#c9950a"/>
+            <stop offset="48%"  stop-color="#2e1600"/>
+            <stop offset="62%"  stop-color="#7a5200"/>
+            <stop offset="76%"  stop-color="#c9950a"/>
+            <stop offset="87%"  stop-color="#ffe066"/>
+            <stop offset="94%"  stop-color="#fff0a0"/>
+            <stop offset="100%" stop-color="#5a3600"/>
+          </linearGradient>
+
+          <!-- Specular lighting filter — real virtual point light physics -->
+          <filter id="goldShine" x="-5%" y="-60%" width="110%" height="220%"
+                  color-interpolation-filters="sRGB">
+
+            <!-- Step 1: Alpha channel of text becomes the bump surface -->
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2.8" result="bumpSurface"/>
+
+            <!-- Step 2: Cast virtual point light onto the bumped surface -->
+            <feSpecularLighting
+              in="bumpSurface"
+              surfaceScale="7"
+              specularConstant="2.4"
+              specularExponent="85"
+              lighting-color="rgb(255, 252, 230)"
+              result="specularHighlight">
+              <fePointLight x="430" y="-120" z="200">
+                <!-- Light sweeps left → right → left, 5 second cycle -->
+                <animate
+                  attributeName="x"
+                  values="-250; 1100; -250"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+                <!-- Light rises slightly at center of sweep -->
+                <animate
+                  attributeName="y"
+                  values="-80; -160; -80"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+                <!-- Light pulls closer at peak -->
+                <animate
+                  attributeName="z"
+                  values="160; 260; 160"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+              </fePointLight>
+            </feSpecularLighting>
+
+            <!-- Step 3: Clip specular highlight to text shape only -->
+            <feComposite
+              in="specularHighlight"
+              in2="SourceAlpha"
+              operator="in"
+              result="specularMasked"/>
+
+            <!-- Step 4: Screen-blend over the gold gradient fill -->
+            <feBlend
+              in="SourceGraphic"
+              in2="specularMasked"
+              mode="screen"
+              result="goldLit"/>
+
+            <!-- Step 5: Physical depth — layered drop shadows -->
+            <feDropShadow dx="0" dy="1" stdDeviation="0" flood-color="rgba(255,240,140,0.95)"/>
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(40,20,0,0.85)"/>
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.6)"/>
+
+          </filter>
+
+        </defs>
+
+        <!-- The text — gradient fill + specular light filter -->
+        <text
+          x="430"
+          y="82"
+          text-anchor="middle"
+          font-family="'Cinzel Decorative', 'Cinzel', serif"
+          font-size="54"
+          font-weight="700"
+          letter-spacing="3"
+          fill="url(#goldFill)"
+          filter="url(#goldShine)">
+          Private Capital Solutions
+        </text>
+
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SLOT B: GEMINI PNG SWAP — ready when your PNG is generated   -->
+    <!-- HOW TO ACTIVATE:                                             -->
+    <!--   1. Generate PNG in Gemini (transparent bg preferred)       -->
+    <!--   2. Name it: hero-title.png                                 -->
+    <!--   3. Upload to your GitHub repo alongside broker.html        -->
+    <!--   4. Change display:none → display:block on .gemini-title-slot -->
+    <!--   5. Delete or hide the hero-svg-wrap div above              -->
+    <!-- ============================================================ -->
+    <div class="gemini-title-slot">
+      <img src="hero-title.png" alt="Private Capital Solutions">
+    </div>
+
     <div class="hero-rule"></div>
   </div>
 </div>
 
+<!-- SHARP GOLD HAIRLINE CUT -->
+<div class="section-divider"></div>
+
+<!-- PRIMARY CARDS — WHITE -->
 <div class="wrap">
   <div class="section-eyebrow">Asset-Based Lending</div>
-  <div class="section-heading">Select Your Financing Category</div>
+  <h2 class="section-heading gold-3d">Select Your Financing Category</h2>
 
   <div class="cards">
-
     <a class="card" href="https://croshiremarine.com/">
       <img src="yacht.jpg" alt="Yacht Financing">
       <div class="card-veil"></div>
@@ -352,7 +596,6 @@ select.fii option{background:#1a1000;color:#F8F4EE}
         <div class="card-sub">Marine Asset Lending &bull; Private Programs</div>
       </div>
     </a>
-
     <a class="card" href="https://croshireestates.com/#about">
       <img src="aviation.jpg" alt="Aviation Financing">
       <div class="card-veil"></div>
@@ -364,81 +607,122 @@ select.fii option{background:#1a1000;color:#F8F4EE}
         <div class="card-sub">Aircraft Asset Lending &bull; Private Programs</div>
       </div>
     </a>
-
   </div>
 </div>
 
+<!-- ADDITIONAL CATEGORIES -->
+<div class="more-wrap">
+  <div class="gold-rule"></div>
+  <div class="section-eyebrow">Expanded Capital Access</div>
+  <h2 class="section-heading gold-3d" style="margin-bottom:2rem;">Additional Financing Programs</h2>
 
-
-<!-- CONTACT -->
-<div id="contact" class="ss">
-<div class="cw">
-  <div>
-    <div class="ey" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:.38em;text-transform:uppercase;background:linear-gradient(90deg,#C9A84C,#F5D485);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px">Submit a File</div>
-    <h2 style="font-family:'Cinzel',serif;font-size:clamp(24px,3.5vw,42px);font-weight:700;line-height:1.1;margin-bottom:20px;color:#F8F4EE">Private Capital <span style="background:linear-gradient(90deg,#C9A84C,#F5D485);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Solutions</span></h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#C8C0B0;line-height:1.7;margin-bottom:36px">Confidential. No obligation. A senior broker reviews every submission within 24 hours.</p>
-    <div class="cil">Email</div><div class="civ">info@croshireestates.com</div>
-    <div class="cil">Phone</div><div class="civ">+1 (215) 436-8268</div>
-    <div class="cil">Location</div><div class="civ">Pottstown, Pennsylvania</div>
-    <div class="cil">Response</div><div class="civ">Within 24 hours</div>
-  </div>
-  <form class="cf" name="broker-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleBrokerSubmit(event)">
-    <input type="hidden" name="form-name" value="broker-inquiry">
-    <input type="hidden" name="bot-field" style="display:none">
-    <div class="fg"><label class="fl">Full Name</label><input class="fii" type="text" name="full_name" placeholder="Your full name" required></div>
-    <div class="fr2">
-      <div class="fg"><label class="fl">Email</label><input class="fii" type="email" name="email" placeholder="your@email.com" required></div>
-      <div class="fg"><label class="fl">Phone</label><input class="fii" type="tel" name="phone" placeholder="+1 (xxx) xxx-xxxx"></div>
+  <div class="cat-grid">
+    <div class="cat-tile">
+      <span class="cat-icon">🏢</span>
+      <div class="cat-name">Commercial Real Estate</div>
+      <div class="cat-desc">Acquisition, refinancing and bridge loans for commercial properties. Cross-collateral structures available.</div>
     </div>
-    <div class="fg">
-      <label class="fl">Financing Category</label>
-      <select class="fii" name="financing_category" required>
-        <option value="">Select one...</option>
-        <option>Yacht / Marine Asset Lending</option>
-        <option>Aviation / Aircraft Lending</option>
+    <div class="cat-tile">
+      <span class="cat-icon">💼</span>
+      <div class="cat-name">Business Acquisition</div>
+      <div class="cat-desc">Capital for business buyouts, mergers, and ownership transitions. Seller cooperation structures welcomed.</div>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-icon">🔗</span>
+      <div class="cat-name">Asset-Based Lending</div>
+      <div class="cat-desc">ABL structures secured against receivables, inventory, and hard assets. Ideal for previously rejected borrowers.</div>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-icon">⚙️</span>
+      <div class="cat-name">Equipment Financing</div>
+      <div class="cat-desc">Heavy machinery, industrial equipment, and technology assets. Lease-to-own and direct lending programs.</div>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-icon">🌍</span>
+      <div class="cat-name">International Financing</div>
+      <div class="cat-desc">Cross-border capital including Morocco, Caribbean, and Latin American markets. Sovereign-level channels.</div>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-icon">⚡</span>
+      <div class="cat-name">Alternative Capital</div>
+      <div class="cat-desc">Private equity, venture debt, and hard-money channels for non-traditional borrowers and special situations.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+  <div class="section-eyebrow">Confidential Inquiry</div>
+  <h2 class="section-heading gold-3d">Submit a Financing Request</h2>
+  <div class="form-sub">
+    Response from <span style="color:#b87c00;font-weight:600;">info@croshireestates.com</span> &bull; By Appointment Only
+  </div>
+
+  <div id="form-success">
+    <div class="success-icon">✦</div>
+    <div class="success-title">Inquiry Received</div>
+    <div class="success-msg">
+      Your request has been submitted confidentially.<br>
+      A broker will respond from <span class="success-email">info@croshireestates.com</span> within 1 business day.
+    </div>
+  </div>
+
+  <form class="inquiry-form" id="broker-form" name="broker-inquiry"
+        method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="broker-inquiry">
+    <p class="ohnohoney"><label>Leave blank: <input name="bot-field"></label></p>
+
+    <div class="field-group">
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" name="full_name" placeholder="Your full name" required>
+    </div>
+    <div class="field-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+    </div>
+    <div class="field-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000">
+    </div>
+    <div class="field-group">
+      <label for="loan-amount">Loan Amount Requested</label>
+      <input type="text" id="loan-amount" name="loan_amount" placeholder="e.g. $500,000">
+    </div>
+    <div class="field-group full">
+      <label for="financing-type">Financing Category</label>
+      <select id="financing-type" name="financing_type" required>
+        <option value="" disabled selected>Select a category</option>
+        <option>Yacht Financing</option>
+        <option>Aviation Financing</option>
         <option>Commercial Real Estate</option>
         <option>Business Acquisition</option>
         <option>Asset-Based Lending (ABL)</option>
         <option>Equipment Financing</option>
         <option>International Financing</option>
         <option>Alternative Capital</option>
+        <option>Other</option>
       </select>
     </div>
-    <div class="fg"><label class="fl">Loan Amount</label><input class="fii" type="text" name="loan_amount" placeholder="e.g. $2,500,000"></div>
-    <div class="fg"><label class="fl">Asset / Project Details</label><textarea class="fii" name="details" placeholder="Describe the asset or project..."></textarea></div>
-    <button type="submit" class="sub">Submit Confidential Inquiry</button>
-    <div class="fn">Commission structures vary by product. All submissions are confidential.</div>
+    <div class="field-group full">
+      <label for="asset-details">Asset / Project Details</label>
+      <textarea id="asset-details" name="asset_details"
+        placeholder="Briefly describe the asset, property, or business. Include location, current condition, and intended use of funds."></textarea>
+    </div>
+    <div class="submit-row">
+      <button type="submit" class="btn-submit">Submit Inquiry</button>
+      <p class="form-privacy">All inquiries are strictly confidential &bull; No obligation</p>
+    </div>
   </form>
-  <div id="broker-success" style="display:none;text-align:center;padding:2rem;color:#c9a84c;font-family:'Cinzel',serif;letter-spacing:0.2em;">
-    INQUIRY RECEIVED — A broker will contact you within 24 hours.
-  </div>
-</div>
 </div>
 
-<script>
-function handleBrokerSubmit(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: new URLSearchParams(data).toString()
-  }).then(function() {
-    form.style.display = 'none';
-    document.getElementById('broker-success').style.display = 'block';
-  }).catch(function() {
-    alert('Submission error. Please call us directly.');
-  });
-}
-</script>
-
+<!-- FOOTER -->
 <footer>
   <a class="foot-phone" href="tel:+12154368268">+1 (215) 436-8268</a>
   <div class="foot-note">Confidential Inquiries Welcome &bull; By Appointment Only</div>
 </footer>
 
 <script>
+  /* Card fade */
   var overlay = document.getElementById('fade-overlay');
   document.querySelectorAll('.card').forEach(function(card) {
     card.addEventListener('click', function(e) {
@@ -450,6 +734,26 @@ function handleBrokerSubmit(e) {
   });
   window.addEventListener('pageshow', function(e) {
     if (e.persisted) overlay.classList.remove('active');
+  });
+
+  /* AJAX Netlify submit */
+  var form    = document.getElementById('broker-form');
+  var success = document.getElementById('form-success');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function() {
+      form.style.display = 'none';
+      success.classList.add('visible');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(function() {
+      alert('Submission error. Please call us at +1 (215) 436-8268.');
+    });
   });
 </script>
 
