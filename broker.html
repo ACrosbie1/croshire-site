@@ -105,9 +105,19 @@ nav {
 .hero-title {
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(2rem, 5.5vw, 3.4rem);
-  font-weight: 700; color: #c9a84c;
+  font-weight: 700;
   letter-spacing: 0.06em; line-height: 1.1;
   margin-bottom: 0.85rem;
+  background: linear-gradient(180deg,
+    #fff8d0 0%,#ffe566 8%,#c9950a 20%,
+    #8b6200 34%,#1e0d00 50%,
+    #6b4800 62%,#c9950a 72%,
+    #ffe566 82%,#fff8d0 88%,#5a3600 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: url(#goldShine) drop-shadow(0 4px 8px rgba(0,0,0,.8)) drop-shadow(0 2px 3px rgba(201,149,10,.4));
 }
 .hero-rule {
   width: 70px; height: 1px;
@@ -289,6 +299,21 @@ select.fii option{background:#1a1000;color:#F8F4EE}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <filter id="goldShine" x="-10%" y="-50%" width="120%" height="200%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bump"/>
+      <feSpecularLighting in="bump" surfaceScale="6" specularConstant="2.2" specularExponent="80" lighting-color="white" result="spec">
+        <fePointLight x="-200" y="-150" z="180">
+          <animate attributeName="x" values="-300;1100;-300" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="-150;-80;-150" dur="5s" repeatCount="indefinite"/>
+        </fePointLight>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specMasked"/>
+      <feBlend in="SourceGraphic" in2="specMasked" mode="screen"/>
+    </filter>
+  </defs>
+</svg>
 
 <div id="fade-overlay"></div>
 
