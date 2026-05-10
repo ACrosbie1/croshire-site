@@ -264,6 +264,23 @@ footer {
   font-size: 0.67rem; letter-spacing: 0.2em;
   color: #4a3a1a; text-transform: uppercase;
 }
+
+/* CONTACT */
+.contact-sect{background:#fff;padding:70px 30px;text-align:center;border-top:3px solid rgba(201,168,76,0.2)}
+.contact-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.4em;color:#8B6914;text-transform:uppercase;margin-bottom:18px}
+.contact-heading{font-family:'Cinzel',serif;font-size:clamp(22px,3.5vw,38px);font-weight:700;color:#1a1000;margin-bottom:12px}
+.contact-sub{font-family:'Cormorant Garamond',serif;font-size:18px;color:#6a5a3a;font-style:italic;max-width:520px;margin:0 auto 36px;line-height:1.5}
+.cf-wrap{width:100%;max-width:520px;margin:0 auto}
+.cf-row{display:flex;gap:14px;margin-bottom:14px}
+.cf-row input,.cf-inp{width:100%;padding:13px 16px;background:#f8f5ef;border:1px solid rgba(139,105,20,0.3);border-radius:6px;color:#1a1000;font-family:inherit;font-size:14px;outline:none;box-sizing:border-box;transition:border-color .2s}
+.cf-inp:focus,.cf-row input:focus{border-color:#8B6914}
+.cf-select{width:100%;padding:13px 16px;background:#f8f5ef;border:1px solid rgba(139,105,20,0.3);border-radius:6px;color:#1a1000;font-family:inherit;font-size:14px;margin-bottom:14px;outline:none;box-sizing:border-box;appearance:none;cursor:pointer}
+.cf-ta{width:100%;padding:13px 16px;background:#f8f5ef;border:1px solid rgba(139,105,20,0.3);border-radius:6px;color:#1a1000;font-family:inherit;font-size:14px;resize:vertical;min-height:110px;margin-bottom:14px;outline:none;box-sizing:border-box;transition:border-color .2s}
+.cf-ta:focus{border-color:#8B6914}
+.cf-btn{width:100%;padding:15px;background:linear-gradient(135deg,#5a4010,#8B6914,#C9A84C,#F5D485);color:#000;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.22em;font-weight:700;border:none;border-radius:6px;cursor:pointer;text-transform:uppercase}
+.cf-btn:hover{opacity:.9}
+.cf-success{display:none;text-align:center;padding:30px;color:#8B6914;font-family:'Cinzel',serif;letter-spacing:.1em}
+.contact-detail{color:#8a7a5a;font-size:13px;margin-top:22px;font-family:'Cinzel',serif;letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -320,6 +337,56 @@ footer {
 
   </div>
 </div>
+
+
+<!-- CONTACT -->
+<section class="contact-sect" id="contact">
+  <div class="contact-eyebrow">✉ Private Inquiries</div>
+  <h2 class="contact-heading">Submit Your Financing Request</h2>
+  <p class="contact-sub">Confidential. No obligation. A senior broker reviews every submission within 24 hours.</p>
+  <form name="broker-inquiry" data-netlify="true" data-netlify-honeypot="bot-field" class="cf-wrap" id="brokerForm">
+    <input type="hidden" name="form-name" value="broker-inquiry">
+    <input type="hidden" name="bot-field">
+    <div class="cf-row">
+      <input type="text" name="full-name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+    </div>
+    <div class="cf-row">
+      <input type="tel" name="phone" placeholder="Phone Number">
+      <input type="text" name="loan-amount" placeholder="Loan Amount ($)">
+    </div>
+    <select name="financing-category" class="cf-select" required>
+      <option value="" disabled selected>Financing Category</option>
+      <option value="yacht">Yacht / Marine Asset Lending</option>
+      <option value="aviation">Aviation / Aircraft Lending</option>
+      <option value="commercial-re">Commercial Real Estate</option>
+      <option value="business-acquisition">Business Acquisition</option>
+      <option value="abl">Asset-Based Lending (ABL)</option>
+      <option value="equipment">Equipment Financing</option>
+      <option value="international">International Financing</option>
+      <option value="alternative">Alternative Capital</option>
+    </select>
+    <textarea name="asset-details" class="cf-ta" placeholder="Describe the asset or project..."></textarea>
+    <button type="submit" class="cf-btn">Submit Confidential Inquiry</button>
+  </form>
+  <div class="cf-success" id="brokerSuccess">
+    <div style="font-size:2em;margin-bottom:10px">✓</div>
+    Request received. A broker will contact you within 24 hours.
+  </div>
+  <p class="contact-detail">info@croshireestates.com &bull; +1 (215) 436-8268 &bull; Pottstown, PA</p>
+  <script>
+    document.getElementById('brokerForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var fd=new FormData(this);
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body:new URLSearchParams(fd).toString()})
+      .then(function(){
+        document.getElementById('brokerForm').style.display='none';
+        document.getElementById('brokerSuccess').style.display='block';
+      });
+    });
+  </script>
+</section>
 
 <footer>
   <a class="foot-phone" href="tel:+12154368268">+1 (215) 436-8268</a>
