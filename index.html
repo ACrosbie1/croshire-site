@@ -504,15 +504,17 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
     <div class="cil">Phone</div><div class="civ">+1 (215) 436-8268</div>
     <div class="cil">Response</div><div class="civ">Within 24 hours</div>
   </div>
-  <div class="cf">
-    <div class="fg"><label class="fl">Full Name</label><input class="fii" type="text" placeholder="Your full name"></div>
+  <form class="cf" name="aviation-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+    <input type="hidden" name="form-name" value="aviation-inquiry">
+    <input type="hidden" name="bot-field" style="display:none">
+    <div class="fg"><label class="fl">Full Name</label><input class="fii" type="text" name="full_name" placeholder="Your full name"></div>
     <div class="fr2">
-      <div class="fg"><label class="fl">Email</label><input class="fii" type="email" placeholder="your@email.com"></div>
-      <div class="fg"><label class="fl">Phone</label><input class="fii" type="tel" placeholder="+1 (xxx) xxx-xxxx"></div>
+      <div class="fg"><label class="fl">Email</label><input class="fii" type="email" name="email" placeholder="your@email.com"></div>
+      <div class="fg"><label class="fl">Phone</label><input class="fii" type="tel" name="phone" placeholder="+1 (xxx) xxx-xxxx"></div>
     </div>
     <div class="fg">
       <label class="fl">I Am Looking To</label>
-      <select class="fii">
+      <select class="fii" name="looking_to">
         <option value="">Select one...</option>
         <option>Sell my aircraft</option>
         <option>Buy an aircraft</option>
@@ -520,11 +522,15 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
         <option>Inquire about fleet acquisition</option>
       </select>
     </div>
-    <div class="fg"><label class="fl">Aircraft Details</label><input class="fii" type="text" placeholder="Year · Make · Model · N-Number"></div>
-    <div class="fg"><label class="fl">Price or Budget</label><input class="fii" type="text" placeholder="e.g. $350,000"></div>
-    <div class="fg"><label class="fl">Tell Us More</label><textarea class="fii" placeholder="Share any details about the aircraft or what you are looking for..."></textarea></div>
-    <button class="sub">Submit Inquiry</button>
+    <div class="fg"><label class="fl">Aircraft Details</label><input class="fii" type="text" name="aircraft_details" placeholder="Year · Make · Model · N-Number"></div>
+    <div class="fg"><label class="fl">Price or Budget</label><input class="fii" type="text" name="price_budget" placeholder="e.g. $350,000"></div>
+    <div class="fg"><label class="fl">Tell Us More</label><textarea class="fii" name="notes" placeholder="Share any details about the aircraft or what you are looking for..."></textarea></div>
+    <button type="submit" class="sub">Submit Inquiry</button>
     <div class="fn">Commission-only. No upfront fees to clients.</div>
+  </form>
+  <div id="success-msg" style="display:none;text-align:center;padding:2rem;color:#c9a84c;font-family:'Cinzel',serif;letter-spacing:0.2em;">
+    INQUIRY RECEIVED — We will contact you within 24 hours.
+  </div>
   </div>
 </div>
 </div>
@@ -542,6 +548,24 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
 <script>
 const obs=new IntersectionObserver((e)=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('vis'),i*60);obs.unobserve(el.target)}})},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(data).toString()
+  }).then(function() {
+    form.style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  }).catch(function() {
+    alert('Submission error. Please call us directly.');
+  });
+}
 </script>
 </body>
 </html>
