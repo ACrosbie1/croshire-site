@@ -79,6 +79,8 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   position: relative; z-index: 10;
 }
+.nav-left { display: flex; align-items: center; gap: 14px; }
+.nav-logo img { width: 44px; height: 44px; object-fit: contain; mix-blend-mode: screen; }
 .nav-brand {
   font-family: 'Cinzel', serif;
   font-size: 0.82rem; letter-spacing: 0.28em;
@@ -469,9 +471,12 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    CrosMinX Business Broker
-    <span>Private Capital Solutions</span>
+  <div class="nav-left">
+    <div class="nav-logo"><img src="logo-clean.png" alt="Croshire Estates"></div>
+    <div class="nav-brand">
+      Croshire Estates
+      <span>Private Capital Solutions</span>
+    </div>
   </div>
   <a class="nav-phone" href="tel:+12154368268">+1 (215) 436-8268</a>
 </nav>
