@@ -142,9 +142,15 @@ nav {
   animation: fadeUp 1s ease both;
 }
 .hero-logo img {
-  width: 280px; height: auto;
+  width: 260px; height: auto;
   display: block; margin: 0 auto;
-  mix-blend-mode: screen;
+}
+.hero-logo {
+  background: linear-gradient(160deg, #F5DFA0 0%, #FAF0CC 40%, #FFFDF5 75%, #FFFFFF 100%);
+  border-radius: 12px;
+  padding: 18px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.22), 0 0 0 1px rgba(201,168,76,0.25);
+  display: inline-block;
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -459,7 +465,7 @@ nav {
 /* ======================== */
 footer {
   text-align: center; border-top: 1px solid rgba(201,168,76,0.12);
-  padding: 2.5rem 2rem 3rem; background: #0b0b0b;
+  padding: 2.5rem 2rem 3rem; background: linear-gradient(160deg, #3a2800 0%, #1e1400 100%);
 }
 .foot-phone {
   font-family: 'Cinzel', serif; font-size: 1.05rem; letter-spacing: 0.22em;
