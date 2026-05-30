@@ -132,8 +132,7 @@ nav {
 }
 .hero-text {
   position: absolute;
-  top: 50%; left: 0; right: 0;
-  transform: translateY(-50%);
+  top: 0; left: 0; right: 0;
   text-align: center; padding: 0 1rem;
   display: flex; flex-direction: column; align-items: center;
 }
@@ -143,50 +142,52 @@ nav {
   animation: fadeUp 1s ease both;
 }
 .hero-banner-wrap {
-  width: 72%;
-  max-width: 820px;
-  margin: 0 auto 16px;
+  width: 78%;
+  max-width: 880px;
+  margin: 0 auto 0;
   position: relative;
-  animation: fadeUp 1s ease both;
-  border-radius: 10px;
+  animation: fadeUp 0.8s ease both;
+  border-radius: 0 0 12px 12px;
   overflow: hidden;
 }
 .hero-banner-img {
   width: 100%;
   display: block;
-  border-radius: 10px;
-  opacity: 0.88;
+  opacity: 0.93;
 }
-/* Tan/gold tint overlay — kills the white, adds warm glow */
+/* Gold-edged tint — clear/white in center, rich gold on edges */
 .hero-banner-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 10px;
-  background: linear-gradient(
-    160deg,
-    rgba(180, 130, 20, 0.45) 0%,
-    rgba(210, 165, 40, 0.30) 25%,
-    rgba(245, 223, 160, 0.22) 50%,
-    rgba(210, 165, 40, 0.30) 75%,
-    rgba(160, 110, 10, 0.45) 100%
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 45%,
+    rgba(255, 252, 240, 0.08) 0%,
+    rgba(255, 248, 220, 0.12) 30%,
+    rgba(201, 168, 76, 0.38) 60%,
+    rgba(160, 110, 10, 0.58) 80%,
+    rgba(120, 80, 0, 0.68) 100%
   );
   pointer-events: none;
 }
-/* Fade edges so jet bleeds through */
+/* Bottom fade only — top stays sharp against nav, bottom dissolves into jet */
 .hero-banner-wrap {
   -webkit-mask-image:
-    radial-gradient(ellipse 90% 85% at 50% 50%,
-      rgba(0,0,0,1) 35%,
-      rgba(0,0,0,0.90) 55%,
-      rgba(0,0,0,0.45) 75%,
-      rgba(0,0,0,0) 100%);
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 55%,
+      rgba(0,0,0,0.7) 75%,
+      rgba(0,0,0,0) 100%
+    );
   mask-image:
-    radial-gradient(ellipse 90% 85% at 50% 50%,
-      rgba(0,0,0,1) 35%,
-      rgba(0,0,0,0.90) 55%,
-      rgba(0,0,0,0.45) 75%,
-      rgba(0,0,0,0) 100%);
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 55%,
+      rgba(0,0,0,0.7) 75%,
+      rgba(0,0,0,0) 100%
+    );
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
