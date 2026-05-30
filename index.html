@@ -80,8 +80,7 @@ nav {
   position: relative; z-index: 10;
 }
 .nav-left { display: flex; align-items: center; gap: 14px; }
-.nav-logo img { width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply; background: transparent; }
-.nav-logo { background: transparent !important; }
+.nav-logo img { width: 80px; height: 80px; object-fit: contain; mix-blend-mode: screen; }
 .nav-brand {
   font-family: 'Cinzel', serif;
   font-size: 0.82rem; letter-spacing: 0.28em;
@@ -133,9 +132,9 @@ nav {
 }
 .hero-text {
   position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   text-align: center; padding: 0 1rem;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center;
 }
 .hero-logo {
   position: relative; z-index: 2;
@@ -145,7 +144,7 @@ nav {
 .hero-banner-wrap {
   width: 72%;
   max-width: 820px;
-  margin: 0 auto 16px;
+  margin: 0 auto;
   position: relative;
   animation: fadeUp 1s ease both;
   border-radius: 10px;
