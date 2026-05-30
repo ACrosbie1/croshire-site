@@ -132,9 +132,9 @@ nav {
 }
 .hero-text {
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0; bottom: 0; left: 0; right: 0;
   text-align: center; padding: 0 1rem;
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
 .hero-logo {
   position: relative; z-index: 2;
@@ -142,52 +142,18 @@ nav {
   animation: fadeUp 1s ease both;
 }
 .hero-banner-wrap {
-  width: 78%;
-  max-width: 880px;
-  margin: 0 auto 0;
+  width: 55%;
+  max-width: 600px;
+  margin: 2.5rem auto 0;
   position: relative;
-  animation: fadeUp 0.8s ease both;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
+  animation: fadeUp 0.9s ease both;
 }
 .hero-banner-img {
   width: 100%;
   display: block;
-  opacity: 0.93;
-}
-/* Gold-edged tint — clear/white in center, rich gold on edges */
-.hero-banner-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 60% 55% at 50% 45%,
-    rgba(255, 252, 240, 0.08) 0%,
-    rgba(255, 248, 220, 0.12) 30%,
-    rgba(201, 168, 76, 0.38) 60%,
-    rgba(160, 110, 10, 0.58) 80%,
-    rgba(120, 80, 0, 0.68) 100%
-  );
-  pointer-events: none;
-}
-/* Bottom fade only — top stays sharp against nav, bottom dissolves into jet */
-.hero-banner-wrap {
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,0.7) 75%,
-      rgba(0,0,0,0) 100%
-    );
-  mask-image:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,0.7) 75%,
-      rgba(0,0,0,0) 100%
-    );
+  /* Transparent PNG — no white box, just the gold crest floating on the hero */
+  filter: drop-shadow(0 4px 32px rgba(180, 130, 10, 0.55))
+          drop-shadow(0 0 12px rgba(255, 210, 60, 0.25));
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -569,7 +535,7 @@ footer {
   <div class="hero-text">
 
     <div class="hero-banner-wrap">
-      <img src="header-banner.jpg" alt="Croshire Capital" class="hero-banner-img">
+      <img src="logo-clean.png" alt="Croshire Capital" class="hero-banner-img">
     </div>
 
     <div class="hero-eyebrow">Private Capital Solutions</div>
