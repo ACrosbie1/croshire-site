@@ -148,26 +148,45 @@ nav {
   margin: 0 auto 16px;
   position: relative;
   animation: fadeUp 1s ease both;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .hero-banner-img {
   width: 100%;
   display: block;
   border-radius: 10px;
-  /* Tan/gold/grey gradient mask — fades edges so jet bleeds through */
+  opacity: 0.88;
+}
+/* Tan/gold tint overlay — kills the white, adds warm glow */
+.hero-banner-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    160deg,
+    rgba(180, 130, 20, 0.45) 0%,
+    rgba(210, 165, 40, 0.30) 25%,
+    rgba(245, 223, 160, 0.22) 50%,
+    rgba(210, 165, 40, 0.30) 75%,
+    rgba(160, 110, 10, 0.45) 100%
+  );
+  pointer-events: none;
+}
+/* Fade edges so jet bleeds through */
+.hero-banner-wrap {
   -webkit-mask-image:
-    radial-gradient(ellipse 88% 82% at 50% 50%,
-      rgba(0,0,0,1) 40%,
-      rgba(0,0,0,0.85) 60%,
-      rgba(0,0,0,0.4) 78%,
+    radial-gradient(ellipse 90% 85% at 50% 50%,
+      rgba(0,0,0,1) 35%,
+      rgba(0,0,0,0.90) 55%,
+      rgba(0,0,0,0.45) 75%,
       rgba(0,0,0,0) 100%);
   mask-image:
-    radial-gradient(ellipse 88% 82% at 50% 50%,
-      rgba(0,0,0,1) 40%,
-      rgba(0,0,0,0.85) 60%,
-      rgba(0,0,0,0.4) 78%,
+    radial-gradient(ellipse 90% 85% at 50% 50%,
+      rgba(0,0,0,1) 35%,
+      rgba(0,0,0,0.90) 55%,
+      rgba(0,0,0,0.45) 75%,
       rgba(0,0,0,0) 100%);
-  mix-blend-mode: luminosity;
-  opacity: 0.92;
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
