@@ -116,7 +116,7 @@ nav {
 /* ======================== */
 .hero {
   position: relative; width: 100%;
-  height: 80vh; min-height: 480px;
+  height: 90vh; min-height: 560px;
   overflow: hidden; background: #0b0b0b;
 }
 .hero img.hero-bg {
@@ -132,7 +132,8 @@ nav {
 }
 .hero-text {
   position: absolute;
-  bottom: 2.2rem; left: 0; right: 0;
+  top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
   text-align: center; padding: 0 1rem;
   display: flex; flex-direction: column; align-items: center;
 }
@@ -141,16 +142,32 @@ nav {
   margin-bottom: 20px;
   animation: fadeUp 1s ease both;
 }
-.hero-logo img {
-  width: 260px; height: auto;
-  display: block; margin: 0 auto;
+.hero-banner-wrap {
+  width: 72%;
+  max-width: 820px;
+  margin: 0 auto 16px;
+  position: relative;
+  animation: fadeUp 1s ease both;
 }
-.hero-logo {
-  background: linear-gradient(160deg, #F5DFA0 0%, #FAF0CC 40%, #FFFDF5 75%, #FFFFFF 100%);
-  border-radius: 12px;
-  padding: 18px 28px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.22), 0 0 0 1px rgba(201,168,76,0.25);
-  display: inline-block;
+.hero-banner-img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  /* Tan/gold/grey gradient mask — fades edges so jet bleeds through */
+  -webkit-mask-image:
+    radial-gradient(ellipse 88% 82% at 50% 50%,
+      rgba(0,0,0,1) 40%,
+      rgba(0,0,0,0.85) 60%,
+      rgba(0,0,0,0.4) 78%,
+      rgba(0,0,0,0) 100%);
+  mask-image:
+    radial-gradient(ellipse 88% 82% at 50% 50%,
+      rgba(0,0,0,1) 40%,
+      rgba(0,0,0,0.85) 60%,
+      rgba(0,0,0,0.4) 78%,
+      rgba(0,0,0,0) 100%);
+  mix-blend-mode: luminosity;
+  opacity: 0.92;
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -502,10 +519,7 @@ footer {
   gtag('event', 'conversion', {'send_to': 'AW-1057166144/rzc_CIyW6a0cEMCmjPgD'});
 </script>
 </head>
-<!-- CROSHIRE CAPITAL HEADER BANNER -->
-<div style="width:100%;overflow:hidden;line-height:0;background:#fff;border-bottom:2px solid #C9A84C;">
-  <img src="header-banner.jpg" alt="Croshire Capital" style="width:100%;display:block;object-fit:contain;">
-</div>
+
 <body>
 
 <div id="fade-overlay"></div>
@@ -534,7 +548,9 @@ footer {
   
   <div class="hero-text">
 
-    <div class="hero-logo"><img src="logo-clean.png" alt="Croshire Estates"></div>
+    <div class="hero-banner-wrap">
+      <img src="header-banner.jpg" alt="Croshire Capital" class="hero-banner-img">
+    </div>
 
     <div class="hero-eyebrow">Private Capital Solutions</div>
 
