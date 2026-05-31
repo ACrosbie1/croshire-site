@@ -81,7 +81,7 @@ nav {
   position: relative; z-index: 10;
 }
 .nav-left { display: flex; align-items: center; gap: 14px; }
-.nav-logo img { width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply; }
+.nav-logo img { width: 80px; height: 80px; object-fit: contain; mix-blend-mode: screen; }
 .nav-brand {
   font-family: 'Cinzel', serif;
   font-size: 0.82rem; letter-spacing: 0.28em;
@@ -525,9 +525,13 @@ footer {
 <div id="fade-overlay"></div>
 
 <!-- NAV -->
+<!-- CROSHIRE CAPITAL HEADER BANNER -->
+<div style="width:100%;line-height:0;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 70%,transparent 100%);">
+  <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-main.jpg" alt="Croshire Capital" style="width:55%;max-width:660px;display:block;margin:0 auto;mix-blend-mode:screen;">
+</div>
 <nav>
   <div class="nav-left">
-    <div class="nav-logo"><img src="logo-shield.png" alt="Croshire Capital"></div>
+    <div class="nav-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-shield.png" alt="Croshire Capital"></div>
     <div class="nav-brand">
       Croshire Estates
       <span>Private Capital Solutions</span>
@@ -547,12 +551,7 @@ footer {
   <!-- AI Consultant Avatar -- right side -->
   
   <div class="hero-text">
-
-    <div class="hero-banner-wrap">
-      <img src="banner-main.jpg" alt="Croshire Capital" class="hero-banner-img">
-    </div>
-
-    <div class="hero-eyebrow">Private Capital Solutions</div>
+<div class="hero-eyebrow">Private Capital Solutions</div>
 
     <!-- ============================================================ -->
     <!-- SLOT A: SVG feSpecularLighting — LIVE NOW                    -->
