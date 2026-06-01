@@ -81,7 +81,7 @@ nav {
   position: relative; z-index: 10;
 }
 .nav-left { display: flex; align-items: center; gap: 14px; }
-.nav-logo img { width: 80px; height: 80px; object-fit: contain; mix-blend-mode: screen; }
+.nav-logo img { width: 80px; height: 80px; object-fit: contain; }
 .nav-brand {
   font-family: 'Cinzel', serif;
   font-size: 0.82rem; letter-spacing: 0.28em;
@@ -137,11 +137,8 @@ nav {
   text-align: center; padding: 0 1rem;
   display: flex; flex-direction: column; align-items: center;
 }
-.hero-logo {
-  position: relative; z-index: 2;
-  margin-bottom: 20px;
-  animation: fadeUp 1s ease both;
-}
+.hero-logo { position:relative; z-index:2; margin-bottom:20px; animation:fadeUp 1s ease both; width:70%; max-width:900px; overflow:hidden; }
+.hero-logo::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,220,80,0.35) 40%,rgba(255,255,255,0.5) 50%,rgba(255,220,80,0.35) 60%,rgba(255,255,255,0) 100%);animation:bannerShine 3s ease-in-out infinite;pointer-events:none;mix-blend-mode:screen;}
 .hero-banner-wrap {
   width: 55%;
   max-width: 640px;
@@ -169,6 +166,7 @@ nav {
   -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 45%, black 30%, transparent 80%);
   mask-image: radial-gradient(ellipse 80% 75% at 50% 45%, black 30%, transparent 80%);
 }
+@keyframes bannerShine{0%{left:-100%}100%{left:200%}}
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -525,13 +523,9 @@ footer {
 <div id="fade-overlay"></div>
 
 <!-- NAV -->
-<!-- CROSHIRE CAPITAL HEADER BANNER -->
-<div style="width:100%;line-height:0;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 70%,transparent 100%);">
-  <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-main.jpg" alt="Croshire Capital" style="width:55%;max-width:660px;display:block;margin:0 auto;mix-blend-mode:screen;">
-</div>
 <nav>
   <div class="nav-left">
-    <div class="nav-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-shield.png" alt="Croshire Capital"></div>
+    <div class="nav-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-nav.png" alt="Croshire Capital"></div>
     <div class="nav-brand">
       Croshire Estates
       <span>Private Capital Solutions</span>
