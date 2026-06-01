@@ -80,7 +80,23 @@ nav{
 .bl{bottom:36px;left:52px;border-bottom:1px solid rgba(201,168,76,.4);border-left:1px solid rgba(201,168,76,.4)}
 .br{bottom:36px;right:52px;border-bottom:1px solid rgba(201,168,76,.4);border-right:1px solid rgba(201,168,76,.4)}
 
-.hero-logo{margin-bottom:20px;width:70%;max-width:900px;}
+.hero-logo{margin-bottom:20px;width:70%;max-width:900px;position:relative;overflow:hidden;}
+.hero-logo::after{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,220,80,0.35) 40%,
+    rgba(255,255,255,0.5) 50%,
+    rgba(255,220,80,0.35) 60%,
+    rgba(255,255,255,0) 100%
+  );
+  animation:bannerShine 3s ease-in-out infinite;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
 .hero-logo img{width:320px;height:auto;display:block;margin:0 auto;mix-blend-mode:screen}
 
 .heb{
@@ -242,6 +258,7 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid rgba(201,168,76,.15);padd
 .flg{font-size:11px;color:#C8C0B0;opacity:.38;max-width:400px;text-align:right;line-height:1.6}
 
 @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes bannerShine{0%{left:-100%}100%{left:200%}}
 @keyframes fu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .reveal.vis{opacity:1;transform:none}
