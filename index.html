@@ -101,16 +101,18 @@ nav {
 .nav-phone:hover { background: rgba(201,168,76,0.1); }
 .nav-apply {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.72rem; letter-spacing: 0.2em;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.2em !important;
   color: #000 !important;
-  background: linear-gradient(135deg,#C9A84C,#E8C96A) !important;
+  background: linear-gradient(135deg,#C9A84C,#E8C96A,#F5DFA0) !important;
   text-decoration: none !important;
-  padding: 0.5rem 1.3rem;
-  border: 1px solid #C9A84C;
-  transition: opacity 0.3s;
-  display: inline-block;
+  padding: 0.5rem 1.3rem !important;
+  border: 1px solid #C9A84C !important;
+  border-radius: 2px !important;
+  transition: opacity 0.3s !important;
+  display: inline-block !important;
 }
-.nav-apply:hover { opacity: 0.85; }
+.nav-apply:hover { opacity: 0.85 !important; }
 
 /* ======================== */
 /*   HERO                   */
@@ -592,16 +594,7 @@ footer {
 }
 
 /* ── MOBILE TIGHTEN: 375px (iPhone SE / older budget phones) ── */
-@media (max-width: 375px) {
-  .nav-apply {
-    font-size: 0.55rem !important;
-    padding: 0.4rem 0.7rem !important;
-  }
-  a[href*="buy.stripe.com"],
-  a[href*="arffinancial"] {
-    font-size: 0.68rem !important;
-    padding: 0.9rem 0.75rem !important;
-  }
+
   #arf-shield-box .shield-title {
     font-size: 0.85rem !important;
   }
