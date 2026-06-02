@@ -504,6 +504,109 @@ footer {
     
     .hero { position:relative; overflow:hidden; }
   }
+
+/* ── MOBILE TIGHTEN: 430px (iPhone 15 Pro Max + modern Android) ── */
+@media (max-width: 430px) {
+
+  /* Nav */
+  .nav-inner { padding: 0 0.75rem; }
+  .nav-logo img { height: 48px !important; }
+  .nav-apply {
+    font-size: 0.6rem !important;
+    padding: 0.45rem 0.9rem !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  /* Hero banner */
+  .hero-banner, .hero img {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+
+  /* Section headings */
+  .section-heading, h1, h2 {
+    font-size: 1.1rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  /* CTA button — full width, easy tap target */
+  a[href*="buy.stripe.com"],
+  a[href*="arffinancial"] {
+    display: block !important;
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    padding: 1rem 1rem !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.18em !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Trust badges — 2 per row max */
+  #arf-shield-box,
+  div[style*="flex-wrap:wrap"] {
+    gap: 0.6rem !important;
+  }
+
+  div[style*="flex-wrap:wrap"] > div {
+    padding: 0.4rem 0.7rem !important;
+    font-size: 0.52rem !important;
+  }
+
+  /* Shield popup */
+  #arf-shield-box {
+    padding: 2rem 1.2rem 1.6rem !important;
+    max-width: 95vw !important;
+  }
+  #arf-shield-box .shield-title {
+    font-size: 0.95rem !important;
+  }
+  #arf-shield-box .shield-body {
+    font-size: 0.8rem !important;
+  }
+  #arf-shield-box .shield-img {
+    width: 68px !important;
+  }
+
+  /* Footer */
+  footer { padding: 1.5rem 0.75rem !important; }
+  footer a, footer span {
+    font-size: 0.7rem !important;
+  }
+
+  /* Service cards / grid */
+  .services-grid, .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Form fields if any remain */
+  input, select, textarea {
+    font-size: 16px !important; /* prevents iOS auto-zoom */
+  }
+
+  /* Stripe badge */
+  div[style*="635BFF"] {
+    transform: scale(0.9);
+  }
+}
+
+/* ── MOBILE TIGHTEN: 375px (iPhone SE / older budget phones) ── */
+@media (max-width: 375px) {
+  .nav-apply {
+    font-size: 0.55rem !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+  a[href*="buy.stripe.com"],
+  a[href*="arffinancial"] {
+    font-size: 0.68rem !important;
+    padding: 0.9rem 0.75rem !important;
+  }
+  #arf-shield-box .shield-title {
+    font-size: 0.85rem !important;
+  }
+}
+/* ── END MOBILE TIGHTEN ── */
 </style>
 <!-- Google Ads Conversion Tracking -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1057166144"></script>
