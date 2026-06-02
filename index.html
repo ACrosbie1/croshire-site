@@ -932,5 +932,180 @@ footer {
 </script>
 
 
+<!-- ═══════════════════════════════════════════ -->
+<!-- ARF APPLICATION SHIELD CONFIRMATION POPUP -->
+<!-- ═══════════════════════════════════════════ -->
+<style>
+#arf-shield-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeInOverlay 0.4s ease;
+}
+#arf-shield-overlay.active {
+  display: flex;
+}
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+#arf-shield-box {
+  background: linear-gradient(160deg, #FFF8E7, #FAF0CC, #FFF5D6, #FFFDF5);
+  border: 1.5px solid #D4B96A;
+  border-radius: 16px;
+  box-shadow: 0 8px 60px rgba(184,134,11,0.45), 0 2px 20px rgba(0,0,0,0.5);
+  padding: 2.8rem 2.5rem 2.2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.45s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+#arf-shield-box .shield-img {
+  width: 88px;
+  height: auto;
+  margin: 0 auto 1.2rem;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(184,134,11,0.5));
+}
+#arf-shield-box .shield-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2A1F00;
+  margin-bottom: 0.6rem;
+}
+#arf-shield-box .shield-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8860B;
+  margin-bottom: 1.2rem;
+}
+#arf-shield-box .shield-body {
+  font-family: Georgia, serif;
+  font-size: 0.88rem;
+  color: #3a2800;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+#arf-shield-box .shield-secure-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8A7040;
+  border-top: 1px solid rgba(212,185,106,0.4);
+  padding-top: 1rem;
+  margin-bottom: 1.2rem;
+}
+#arf-shield-box .shield-secure-bar span {
+  color: #B8860B;
+  font-size: 0.75rem;
+}
+#arf-shield-close {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #000;
+  background: linear-gradient(135deg, #C9A84C, #E8C96A, #F5DFA0);
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 2.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(201,168,76,0.45);
+  transition: all 0.3s;
+}
+#arf-shield-close:hover {
+  box-shadow: 0 6px 28px rgba(201,168,76,0.7);
+  transform: translateY(-1px);
+}
+</style>
+
+<!-- Shield Popup HTML -->
+<div id="arf-shield-overlay">
+  <div id="arf-shield-box">
+    <img
+      class="shield-img"
+      src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-shield.png"
+      alt="Croshire Capital Shield"
+    />
+    <div class="shield-title">Application Received</div>
+    <div class="shield-subtitle">Secured &bull; Confidential &bull; Verified</div>
+    <div class="shield-body">
+      Your funding application has been securely submitted to<br>
+      <strong>Croshire Capital</strong> and forwarded to our lending partner.<br><br>
+      A private capital specialist will reach out to you shortly at<br>
+      <span style="color:#B8860B;font-weight:600;">info@croshireestates.com</span><br><br>
+      Your information is protected and handled with full confidentiality.
+    </div>
+    <div class="shield-secure-bar">
+      <span>&#128274;</span> 256-bit SSL Encrypted &nbsp;&bull;&nbsp; Croshire Capital &nbsp;&bull;&nbsp; Private &amp; Secure
+    </div>
+    <button id="arf-shield-close" onclick="closeShield()">Close</button>
+  </div>
+</div>
+
+<script>
+// ─── ARF Shield Popup Logic ───────────────────────────────────────
+// Fires when the ARF application tab is closed or after 90 seconds
+// (tab-close detection via visibility + focus events)
+
+function openShield() {
+  var overlay = document.getElementById('arf-shield-overlay');
+  if (overlay) overlay.classList.add('active');
+}
+
+function closeShield() {
+  var overlay = document.getElementById('arf-shield-overlay');
+  if (overlay) overlay.classList.remove('active');
+}
+
+// Wire every ARF link on the page
+document.addEventListener('DOMContentLoaded', function() {
+  var arfLinks = document.querySelectorAll('a[href*="arffinancial"]');
+  arfLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      // After 90 seconds assume they completed/closed the form
+      setTimeout(openShield, 90000);
+
+      // Also fire when user returns focus to this tab (tab close = focus return)
+      var firedByFocus = false;
+      function onFocusReturn() {
+        if (!firedByFocus) {
+          firedByFocus = true;
+          // Small delay to let ARF tab fully close
+          setTimeout(openShield, 1200);
+          window.removeEventListener('focus', onFocusReturn);
+        }
+      }
+      // Start listening for focus return after brief delay
+      setTimeout(function() {
+        window.addEventListener('focus', onFocusReturn);
+      }, 3000);
+    });
+  });
+});
+</script>
+
 </body>
 </html>
+
