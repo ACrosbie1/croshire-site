@@ -449,6 +449,487 @@ footer {
 }
 .foot-phone:hover { color: #ffd84a; }
 .foot-note { font-size: 0.67rem; letter-spacing: 0.2em; color: #4a3a1a; text-transform: uppercase; }
+.foot-social { display: flex; justify-content: center; gap: 1.4rem; margin: 1rem 0 0.8rem; }
+.foot-social a { display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.35); color: #c9a84c;
+  transition: all 0.3s; text-decoration: none; }
+.foot-social a:hover { border-color: #c9a84c; color: #ffd84a; background: rgba(201,168,76,0.08); transform: translateY(-2px); }
+.foot-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+
+</style>
+<!-- deploy:1778397258 -->
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <filter id="goldShine" x="-10%" y="-50%" width="120%" height="200%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bump"/>
+      <feSpecularLighting in="bump" surfaceScale="6" specularConstant="2.2" specularExponent="80" lighting-color="white" result="spec">
+        <fePointLight x="-200" y="-150" z="180">
+          <animate attributeName="x" values="-300;1100;-300" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="-150;-80;-150" dur="5s" repeatCount="indefinite"/>
+        </fePointLight>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specMasked"/>
+      <feBlend in="SourceGraphic" in2="specMasked" mode="screen"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-nav.png" alt="Croshire Capital"></div>
+    <div>
+      <div class="nav-brand-top">Croshire Marine</div>
+      <div class="nav-brand-sub">Yacht Consultantage</div>
+    </div>
+  </div>
+  <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;color:#000000;text-transform:uppercase;margin-right:auto;padding:0 20px;">CrosMinX Corp</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#fleet">Vessels</a>
+    <a href="#about">About</a>
+    <a href='https://buy.stripe.com/6oUaEW6dU6DMb71b2w57W02' target='_blank' class='nav-apply'>APPLY NOW</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hgrid"></div>
+  <div class="cm tl"></div><div class="cm tr"></div>
+  <div class="cm bl"></div><div class="cm br"></div>
+
+  <div class="hero-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-main.jpg" alt="Croshire Capital" style="width:100%;max-width:900px;display:block;mix-blend-mode:multiply;opacity:0.95;"></div>
+
+  <div class="heb">Croshire Marine</div>
+
+  <div class="ht">
+    <span class="tg">Croshire</span>
+    <span class="tg">Marine</span>
+    <span class="ts" style="color:#8B6914;">Buy · Sell · Sail</span>
+  </div>
+
+  <p class="htag" style="color:#8B6914;font-weight:600;">We connect buyers and sellers of quality vessels. From first call to final closing, we handle every step so you never have to.</p>
+
+  <div class="pills">
+    <div class="pill">⚓ Powerboat · Sailing Yacht · Motor Yacht · Superyacht</div>
+  </div>
+
+  <div class="ctas">
+    <a href="#contact" class="btn bgold">List Your Vessel</a>
+    <a href="#fleet" class="btn boutl">Browse Vessels</a>
+    <a href="#about" class="btn boutl">About Us</a>
+  </div>
+</div>
+
+<!-- HERO PHOTO DIVIDER -->
+<div class="parallax">
+  <div class="parallax-bg" style="background-image:url('https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content">
+    <h3>Where Every Deal<br>Sets Sail</h3>
+    <p>Professional yacht consultantage with precision execution from start to closing.</p>
+  </div>
+  <div class="parallax-label">Croshire Marine — Yacht Consultantage</div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="sd">
+<div class="si reveal">
+  <div class="ey">What We Do</div>
+  <h2><span class="wh">Yacht Consultantage</span> <span class="gd">Services</span></h2>
+  <p class="lead">Whether you are selling your vessel or searching for your next one, we manage the entire transaction on your behalf.</p>
+
+  <div class="sg">
+    <div class="sc">
+      <div class="sn">Sellers</div>
+      <div class="st">Sell Your Vessel</div>
+      <div class="sb">We list your vessel across all major yacht marketplaces, handle inquiries, qualify serious buyers, coordinate the marine survey and sea trial, and negotiate on your behalf. You receive offers. We do the work.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">Buyers</div>
+      <div class="st">Find Your Vessel</div>
+      <div class="sb">Tell us what you need. We search active and off-market listings, review vessel history and condition reports, arrange surveys, and protect your interests through every stage of the purchase.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">Valuation</div>
+      <div class="st">Know What It's Worth</div>
+      <div class="sb">Using BUCValu and live market comparables, we deliver an accurate valuation before any offer is made. You negotiate with confidence, not guesswork.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">Inspection</div>
+      <div class="st">Marine Survey & Sea Trial</div>
+      <div class="sb">We coordinate a certified NAMS or SAMS marine surveyor and sea trial on every vessel before closing. Every finding is disclosed and negotiated into the final price. No surprises after the deal is done.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">Title</div>
+      <div class="st">USCG Title & Escrow</div>
+      <div class="sb">We run a clean USCG documentation search, verify no liens exist, and coordinate escrow through licensed marine title specialists. Every closing is protected and documented.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">Fleet</div>
+      <div class="st">Fleet & International</div>
+      <div class="sb">Acquiring a charter fleet or sourcing from Caribbean and European markets? We manage the full pipeline across domestic and international inventory for operators and corporate buyers.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PHOTO DIVIDER 2 -->
+<div class="pd" style="background-image:url('https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');">
+  <div class="pd-cap">
+    <h3>Commission Only.<br>Zero Upfront Cost.</h3>
+    <p>We earn when your deal closes. Not before.</p>
+  </div>
+  <div class="pd-lbl">Croshire Marine — $5 consulting fee</div>
+</div>
+
+<!-- FLEET -->
+<div id="fleet" class="ss">
+<div class="si reveal">
+  <div class="ey">Yachts &amp; Vessels We Consultant</div>
+  <h2><span class="wh">Every Vessel.</span> <span class="gd">Every Budget.</span></h2>
+  <p class="lead">From day boats to superyachts. If it floats, we consultant it.</p>
+
+  <div class="ig">
+    <div class="ic"><span class="ii">🚤</span><div class="it">Day Boat / Bowrider</div><span class="ir">$10K – $80K</span><div class="ie">Sea Ray, Cobalt, Chaparral, Bayliner</div></div>
+    <div class="ic"><span class="ii">🚤</span><div class="it">Center Console</div><span class="ir">$20K – $300K</span><div class="ie">Boston Whaler, Grady-White, Pursuit</div></div>
+    <div class="ic"><span class="ii">🛥</span><div class="it">Sport Cruiser</div><span class="ir">$60K – $600K</span><div class="ie">Regal, Formula, Cruisers Yachts, Tiara</div></div>
+    <div class="ic"><span class="ii">⛵</span><div class="it">Sailing Yacht</div><span class="ir">$30K – $800K</span><div class="ie">Beneteau, Jeanneau, Catalina, Hunter</div></div>
+    <div class="ic"><span class="ii">🚢</span><div class="it">Motor Yacht</div><span class="ir">$200K – $5M</span><div class="ie">Sunseeker, Princess, Azimut, Viking</div></div>
+    <div class="ic"><span class="ii">⛵</span><div class="it">Catamaran</div><span class="ir">$50K – $2M</span><div class="ie">Leopard, Fountaine Pajot, Lagoon</div></div>
+    <div class="ic"><span class="ii">🚢</span><div class="it">Superyacht</div><span class="ir">$1M+</span><div class="ie">Feadship, Benetti, Lurssen, Heesen</div></div>
+    <div class="ic"><span class="ii">🎣</span><div class="it">Sport Fishing</div><span class="ir">$50K – $2M</span><div class="ie">Bertram, Viking, Cabo, Hatteras</div></div>
+  </div>
+
+  <div class="img-grid">
+    <div class="img-tile">
+      <img src="https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800&q=80" alt="Motor yacht">
+      <div class="img-tile-lbl">Motor Yachts</div>
+    </div>
+    <div class="img-tile">
+      <img src="https://images.pexels.com/photos/3030045/pexels-photo-3030045.jpeg?auto=compress&cs=tinysrgb&w=800&q=80" alt="Sailing yacht">
+      <div class="img-tile-lbl">Sailing Yachts</div>
+    </div>
+    <div class="img-tile">
+      <img src="https://images.pexels.com/photos/6752179/pexels-photo-6752179.jpeg?auto=compress&cs=tinysrgb&w=800&q=80" alt="Superyacht">
+      <div class="img-tile-lbl">Superyachts</div>
+    </div>
+  </div>
+
+  <div class="ey" style="margin-top:40px;margin-bottom:12px">Where We List</div>
+  <div class="mr">
+    <div class="mc">YachtWorld.com</div>
+    <div class="mc">Boat Trader</div>
+    <div class="mc">boats.com</div>
+    <div class="mc">YachtCloser</div>
+    <div class="mc">YachtConsultant.com</div>
+    <div class="mc">IYBA Network</div>
+  </div>
+</div>
+</div>
+
+<!-- CONSULTING STRIP -->
+<div class="fin">
+  <p>Consulting options available for <span>qualified buyers</span> upon request.</p>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="sd">
+<div class="si reveal">
+  <div class="ey">About Us</div>
+  <h2><span class="wh">Built on</span> <span class="gd">Relationships.</span> <span class="wh">Driven by Results.</span></h2>
+
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.pexels.com/photos/6752179/pexels-photo-6752179.jpeg?auto=compress&cs=tinysrgb&w=900&q=80" alt="Yacht consultantage">
+    </div>
+    <div class="about-text">
+      <p class="lead" style="margin-bottom:24px">Croshire Marine was founded on one principle -- that buying or selling a vessel should be simple, transparent, and stress-free.</p>
+      <p style="color:#C8C0B0;font-size:15px;line-height:1.75;margin-bottom:24px">We are a commission-only consultantage. That means we have no upfront fees, no listing charges, and no retainers. Our success is tied directly to yours. We earn only when your deal closes.</p>
+      <p style="color:#C8C0B0;font-size:15px;line-height:1.75;margin-bottom:32px">From single engine pistons to corporate jets, we manage every step of the transaction -- valuation, marketing, buyer qualification, pre-purchase inspection, title search, and escrow coordination. You focus on the water. We handle everything else.</p>
+      <div class="about-quote">"We don't just connect buyers and sellers. We protect both sides of every transaction from first contact to final closing."</div>
+      <p style="color:#C9A84C;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase">— Croshire Marine</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- APPLY NOW CTA — TWO STEP FLOW -->
+<div style="text-align:center;padding:3.5rem 1rem 3rem;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);">
+
+  
+
+
+  <!-- Seal + D&B horizontal duo above CTA -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.4rem;flex-wrap:wrap;">
+
+    <!-- Left: Croshire Capital Seal -->
+    <div style="text-align:center;flex-shrink:0;">
+      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/badge-croshire.png"
+        alt="Croshire Capital Seal"
+        style="width:100px;height:auto;display:inline-block;
+          filter:drop-shadow(0 4px 16px rgba(201,168,76,0.45));
+          transition:transform 0.3s,filter 0.3s;"
+        onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 24px rgba(201,168,76,0.7))'"
+        onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.45))'"/>
+    </div>
+
+    <!-- Right: D&B Badge -->
+    <div style="text-align:center;flex-shrink:0;">
+      <a href="https://www.dnb.com/duns-number/lookup.html" target="_blank" rel="noopener"
+        style="display:inline-block;text-decoration:none;" title="Verify Croshire Estates Corp on Dun &amp; Bradstreet">
+        <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/duns-badge-croshire.png"
+          alt="D-U-N-S Registered - Croshire Estates Corp 14-238-0998"
+          style="width:80px;height:auto;display:block;margin:0 auto;
+            filter:drop-shadow(0 4px 16px rgba(201,168,76,0.5));
+            transition:transform 0.3s,filter 0.3s;"
+          onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 22px rgba(201,168,76,0.8))'"
+          onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.5))'"/>
+        <p style="font-family:'Cinzel',serif;font-size:0.44rem;letter-spacing:0.16em;
+          color:#C9A84C;text-transform:uppercase;margin-top:0.3rem;">D&amp;B Verified</p>
+      </a>
+    </div>
+
+  </div>
+
+  <p style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.25em;color:#C9A84C;text-transform:uppercase;margin-bottom:1.8rem;">Ready to Apply for Funding?</p>
+
+  <!-- ARF Application Button -->
+  <div>
+    <a href="https://arffinancial.my.site.com/portal/ARFRegistration?RPId=003Vy00001hJsTFIA0" target="_blank"
+      style="display:inline-block;font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.3em;text-transform:uppercase;color:#C9A84C;background:transparent;text-decoration:none;padding:1.1rem 3rem;border:1px solid rgba(201,168,76,0.6);border-radius:4px;box-shadow:0 4px 18px rgba(201,168,76,0.15);transition:all 0.3s;"
+      onmouseover="this.style.boxShadow='0 6px 28px rgba(201,168,76,0.4)';this.style.transform='translateY(-2px)';this.style.borderColor='#C9A84C'"
+      onmouseout="this.style.boxShadow='0 4px 18px rgba(201,168,76,0.15)';this.style.transform='translateY(0)';this.style.borderColor='rgba(201,168,76,0.6)'">
+      Apply for Funding &rarr;
+    </a>
+
+    <!-- Stripe badge directly below button -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
+      <div style="background:#635BFF;border-radius:3px;padding:3px 10px;">
+        <span style="font-family:'Arial',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:0.5px;">stripe</span>
+      </div>
+      <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.2em;color:rgba(200,192,176,0.5);text-transform:uppercase;">Payments Secured</span>
+    </div>
+
+    <p style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.18em;color:rgba(200,192,176,0.4);margin-top:0.6rem;text-transform:uppercase;">Confidential &bull; Secure &bull; No Obligation</p>
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- CROSHIRE CAPITAL TRUST SEAL BLOCK  -->
+<!-- ═══════════════════════════════════ -->
+<div style="background:linear-gradient(160deg,#F5DFA0 0%,#C9A84C 40%,#8B6914 100%);padding:2rem 1rem 1.5rem;border-top:1px solid rgba(201,168,76,0.4)">
+  <!-- Official Trust Badges Row -->
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;">
+
+    <!-- Badge boxes left -->
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.9rem;margin-bottom:0.8rem;">
+
+    <!-- Stripe -->
+    <div style="display:flex;align-items:center;gap:0.4rem;
+      background:rgba(201,168,76,0.85);border:1.5px solid #000;
+      border-radius:5px;padding:0.45rem 0.85rem;">
+      <svg width="36" height="16" viewBox="0 0 60 25">
+        <rect width="60" height="25" rx="3" fill="#635BFF"/>
+        <text x="50%" y="17" text-anchor="middle" font-family="Arial,sans-serif"
+          font-size="13" font-weight="700" fill="#fff" letter-spacing="0.5">stripe</text>
+      </svg>
+      <span style="font-family:\'Cinzel\',serif;font-size:0.52rem;letter-spacing:0.18em;color:#000;text-transform:uppercase">Secured</span>
+    </div>
+
+    <!-- PCI DSS -->
+    <div style="display:flex;align-items:center;gap:0.4rem;
+      background:rgba(201,168,76,0.85);border:1.5px solid #000;
+      border-radius:5px;padding:0.45rem 0.85rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 6V12C3 17 6.5 21.5 12 23C17.5 21.5 21 17 21 12V6L12 2Z"
+          fill="#C9A84C" opacity="0.2" stroke="#C9A84C" stroke-width="1.2"/>
+        <path d="M8 12L11 15L16 9" stroke="#C9A84C" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span style="font-family:\'Cinzel\',serif;font-size:0.52rem;letter-spacing:0.18em;color:#000;text-transform:uppercase">PCI DSS</span>
+    </div>
+
+    <!-- SSL -->
+    <div style="display:flex;align-items:center;gap:0.4rem;
+      background:rgba(201,168,76,0.85);border:1.5px solid #000;
+      border-radius:5px;padding:0.45rem 0.85rem;">
+      <svg width="13" height="16" viewBox="0 0 20 24" fill="none">
+        <rect x="2" y="10" width="16" height="12" rx="2"
+          fill="#C9A84C" opacity="0.2" stroke="#C9A84C" stroke-width="1.2"/>
+        <path d="M6 10V7C6 4.8 7.8 3 10 3C12.2 3 14 4.8 14 7V10"
+          stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="16" r="2" fill="#C9A84C"/>
+      </svg>
+      <span style="font-family:\'Cinzel\',serif;font-size:0.52rem;letter-spacing:0.18em;color:#000;text-transform:uppercase">256-bit SSL</span>
+    </div>
+
+    <!-- USA Inc -->
+    <div style="display:flex;align-items:center;gap:0.4rem;
+      background:rgba(201,168,76,0.85);border:1.5px solid #000;
+      border-radius:5px;padding:0.45rem 0.85rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#C9A84C" stroke-width="1.2"/>
+        <ellipse cx="12" cy="12" rx="5" ry="9" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+      </svg>
+      <span style="font-family:\'Cinzel\',serif;font-size:0.52rem;letter-spacing:0.18em;color:#000;text-transform:uppercase">USA Incorporated</span>
+    </div>
+
+    <!-- PA Licensed -->
+    <div style="display:flex;align-items:center;gap:0.4rem;
+      background:rgba(201,168,76,0.85);border:1.5px solid #000;
+      border-radius:5px;padding:0.45rem 0.85rem;">
+      <svg width="14" height="16" viewBox="0 0 20 22" fill="none">
+        <polygon points="10,1 19,6 19,16 10,21 1,16 1,6"
+          fill="#C9A84C" opacity="0.15" stroke="#C9A84C" stroke-width="1.2"/>
+        <text x="10" y="14" text-anchor="middle" font-family="Georgia,serif"
+          font-size="7" fill="#C9A84C" font-weight="700">PA</text>
+      </svg>
+      <span style="font-family:\'Cinzel\',serif;font-size:0.52rem;letter-spacing:0.18em;color:#000;text-transform:uppercase">PA Licensed</span>
+    </div>
+
+  </div>
+
+  <p style="font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.2em;
+    color:rgba(200,192,176,0.3);text-transform:uppercase;margin:0;">
+    Croshire Estates Corp &bull; Pottstown, Pennsylvania &bull; Est. 2023
+  </p>
+
+</div>
+<!-- ═══════════════════════════════════ --    </div>
+
+    </div>
+
+  
+
+  <!-- END TRUST SEAL BLOCK               -->
+<!-- ═══════════════════════════════════ -->
+  <footer style="position:relative;">
+  <!-- QR Code -- bottom right corner -->
+  <div style="position:absolute;bottom:1rem;right:1.2rem;text-align:center;z-index:10;">
+    <a href="https://www.instagram.com/croshire_estates" target="_blank"
+      style="display:inline-block;text-decoration:none;">
+      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/qr-instagram.png"
+        alt="Follow @CROSHIRE_ESTATES on Instagram"
+        style="width:65px;height:auto;display:block;margin:0 auto;
+          border-radius:6px;
+          box-shadow:0 3px 12px rgba(0,0,0,0.5);
+          opacity:0.85;
+          transition:transform 0.3s,opacity 0.3s;"
+        onmouseover="this.style.transform='scale(1.08)';this.style.opacity='1'"
+        onmouseout="this.style.transform='scale(1)';this.style.opacity='0.85'"/>
+      <p style="font-family:'Cinzel',serif;font-size:0.38rem;letter-spacing:0.14em;
+        color:rgba(201,168,76,0.7);text-transform:uppercase;margin-top:0.25rem;">
+        @Croshire_Estates
+      </p>
+    </a>
+  </div>
+  <div class="foot-social">
+    <a href="https://www.facebook.com/profile.php?id=61575867742040" target="_blank" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/croshireestates" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/channel/UCxxXlujqkLt9YjYG76JTWvg" target="_blank" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+  </div>
+  <a class="foot-phone" href="tel:+12154368268">+1 (215) 436-8268</a>
+  <div class="foot-note">Confidential Inquiries Welcome</div>
+</footer>
+<div style="position:fixed;bottom:8px;right:12px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,0.25);text-transform:uppercase;z-index:999;pointer-events:none;">Powered by Croshire Capital</div>
+
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('vis'),i*60);obs.unobserve(el.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(data).toString()
+  }).then(function() {
+    form.style.display = 'none';
+    setTimeout(function() { window.location.href = 'https://buy.stripe.com/6oUaEW6dU6DMb71b2w57W02'; }, 1500);
+    document.getElementById('success-msg').style.display = 'block';
+  }).catch(function() {
+    alert('Submission error. Please call us directly.');
+  });
+}
+</script>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ARF SHIELD CONFIRMATION POPUP              -->
+<!-- ═══════════════════════════════════════════ -->
+<style>
+#arf-shield-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);justify-content:center;align-items:center;animation:fadeInOverlay 0.4s ease}
+#arf-shield-overlay.active{display:flex}
+@keyframes fadeInOverlay{from{opacity:0}to{opacity:1}}
+#arf-shield-box{background:linear-gradient(160deg,#FFF8E7,#FAF0CC,#FFF5D6,#FFFDF5);border:1.5px solid #D4B96A;border-radius:16px;box-shadow:0 8px 60px rgba(184,134,11,0.45),0 2px 20px rgba(0,0,0,0.5);padding:2.8rem 2.5rem 2.2rem;max-width:420px;width:90%;text-align:center;position:relative;animation:popIn 0.45s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes popIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
+#arf-shield-box .shield-img{width:88px;height:auto;margin:0 auto 1.2rem;display:block;filter:drop-shadow(0 4px 14px rgba(184,134,11,0.5))}
+#arf-shield-box .shield-title{font-family:'Cinzel',serif;font-size:1.15rem;letter-spacing:0.18em;text-transform:uppercase;color:#2A1F00;margin-bottom:0.6rem}
+#arf-shield-box .shield-subtitle{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:#B8860B;margin-bottom:1.2rem}
+#arf-shield-box .shield-body{font-family:Georgia,serif;font-size:0.88rem;color:#3a2800;line-height:1.75;margin-bottom:1.5rem}
+#arf-shield-box .shield-secure-bar{display:flex;align-items:center;justify-content:center;gap:0.5rem;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#8A7040;border-top:1px solid rgba(212,185,106,0.4);padding-top:1rem;margin-bottom:1.2rem}
+#arf-shield-box .shield-secure-bar span{color:#B8860B;font-size:0.75rem}
+#arf-shield-close{display:inline-block;font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:#000;background:linear-gradient(135deg,#C9A84C,#E8C96A,#F5DFA0);border:none;border-radius:4px;padding:0.75rem 2.2rem;cursor:pointer;box-shadow:0 4px 18px rgba(201,168,76,0.45);transition:all 0.3s}
+#arf-shield-close:hover{box-shadow:0 6px 28px rgba(201,168,76,0.7);transform:translateY(-1px)}
+@keyframes shieldGlow{0%,100%{box-shadow:0 8px 60px rgba(184,134,11,0.45),0 2px 20px rgba(0,0,0,0.5)}50%{box-shadow:0 8px 80px rgba(201,168,76,0.75),0 0 40px rgba(232,201,106,0.4),0 2px 20px rgba(0,0,0,0.5)}}
+#arf-shield-overlay.active #arf-shield-box{animation:popIn 0.45s cubic-bezier(0.175,0.885,0.32,1.275),shieldGlow 2.5s ease-in-out 0.5s infinite}
+@keyframes shineShield{0%{filter:drop-shadow(0 4px 14px rgba(184,134,11,0.5)) brightness(1)}50%{filter:drop-shadow(0 4px 24px rgba(201,168,76,0.9)) brightness(1.25)}100%{filter:drop-shadow(0 4px 14px rgba(184,134,11,0.5)) brightness(1)}}
+#arf-shield-overlay.active .shield-img{animation:shineShield 2.5s ease-in-out 0.5s infinite}
+</style>
+<div id="arf-shield-overlay">
+  <div id="arf-shield-box">
+    <img class="shield-img" src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-shield.png" alt="Croshire Capital Shield"/>
+    <div class="shield-title">Application Received</div>
+    <div class="shield-subtitle">Secured &bull; Confidential &bull; Verified</div>
+    <div class="shield-body">
+      Your funding application has been securely submitted to<br>
+      <strong>Croshire Capital</strong> and forwarded to our lending partner.<br><br>
+      A private capital specialist will reach out to you shortly at<br>
+      <span style="color:#B8860B;font-weight:600;">info@croshireestates.com</span><br><br>
+      Your information is protected and handled with full confidentiality.
+    </div>
+    <div class="shield-secure-bar">
+      <span>&#128274;</span> 256-bit SSL Encrypted &nbsp;&bull;&nbsp; Croshire Capital &nbsp;&bull;&nbsp; Private &amp; Secure
+    </div>
+    <button id="arf-shield-close" onclick="closeShield()">Close</button>
+  </div>
+</div>
+<script>
+function openShield(){var o=document.getElementById('arf-shield-overlay');if(o)o.classList.add('active')}
+function closeShield(){var o=document.getElementById('arf-shield-overlay');if(o)o.classList.remove('active')}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('a[href*="arffinancial"]').forEach(function(link){
+    link.addEventListener('click',function(){
+      setTimeout(openShield,90000);
+      var fired=false;
+      function onFocus(){if(!fired){fired=true;setTimeout(openShield,1200);window.removeEventListener('focus',onFocus)}}
+      setTimeout(function(){window.addEventListener('focus',onFocus)},3000);
+    });
+  });
+});
+</script>
+</body>
 </style>
 <!-- Google Ads Conversion Tracking -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1057166144"></script>
