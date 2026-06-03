@@ -890,23 +890,6 @@ footer {
   <!-- Seal + QR + D&B horizontal row above CTA -->
   <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.4rem;flex-wrap:wrap;">
 
-    <!-- Left: Instagram QR -->
-    <div style="text-align:center;flex-shrink:0;">
-      <a href="https://www.instagram.com/croshire_estates" target="_blank"
-        style="display:inline-block;text-decoration:none;">
-        <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/qr-instagram.png"
-          alt="Follow @CROSHIRE_ESTATES on Instagram"
-          style="width:80px;height:auto;display:block;margin:0 auto;
-            border-radius:8px;
-            box-shadow:0 4px 16px rgba(0,0,0,0.4);
-            transition:transform 0.3s,box-shadow 0.3s;"
-          onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.6)'"
-          onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.4)'"/>
-        <p style="font-family:'Cinzel',serif;font-size:0.44rem;letter-spacing:0.16em;
-          color:#C9A84C;text-transform:uppercase;margin-top:0.3rem;">@Croshire_Estates</p>
-      </a>
-    </div>
-
     <!-- Center: Croshire Capital Seal -->
     <div style="text-align:center;flex-shrink:0;">
       <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/badge-croshire.png"
@@ -1050,7 +1033,26 @@ footer {
 
   <!-- END TRUST SEAL BLOCK               -->
 <!-- ═══════════════════════════════════ -->
-  <footer>
+  <footer style="position:relative;">
+  <!-- QR Code -- bottom right corner -->
+  <div style="position:absolute;bottom:1rem;right:1.2rem;text-align:center;z-index:10;">
+    <a href="https://www.instagram.com/croshire_estates" target="_blank"
+      style="display:inline-block;text-decoration:none;">
+      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/qr-instagram.png"
+        alt="Follow @CROSHIRE_ESTATES on Instagram"
+        style="width:65px;height:auto;display:block;margin:0 auto;
+          border-radius:6px;
+          box-shadow:0 3px 12px rgba(0,0,0,0.5);
+          opacity:0.85;
+          transition:transform 0.3s,opacity 0.3s;"
+        onmouseover="this.style.transform='scale(1.08)';this.style.opacity='1'"
+        onmouseout="this.style.transform='scale(1)';this.style.opacity='0.85'"/>
+      <p style="font-family:'Cinzel',serif;font-size:0.38rem;letter-spacing:0.14em;
+        color:rgba(201,168,76,0.7);text-transform:uppercase;margin-top:0.25rem;">
+        @Croshire_Estates
+      </p>
+    </a>
+  </div>
   <div class="foot-social">
     <a href="https://www.facebook.com/profile.php?id=61575867742040" target="_blank" aria-label="Facebook">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
