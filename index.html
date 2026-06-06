@@ -893,48 +893,37 @@ footer {
 <!-- APPLY NOW CTA — TWO STEP FLOW -->
 <div style="text-align:center;padding:3.5rem 1rem 3rem;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);">
 
-  <!-- Seal + QR + D&B horizontal row above CTA -->
-  <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.4rem;flex-wrap:wrap;">
-
-    <!-- Center: Croshire Capital Seal -->
-    <div style="text-align:center;flex-shrink:0;">
-      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/badge-croshire.png"
-        alt="Croshire Capital Seal"
-        style="width:100px;height:auto;display:inline-block;
-          filter:drop-shadow(0 4px 16px rgba(201,168,76,0.45));
-          transition:transform 0.3s,filter 0.3s;"
-        onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 24px rgba(201,168,76,0.7))'"
-        onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.45))'"/>
-    </div>
-
-    <!-- Right: D&B Badge -->
-    <div style="text-align:center;flex-shrink:0;">
-      <a href="https://www.dnb.com/duns-number/lookup.html" target="_blank" rel="noopener"
-        style="display:inline-block;text-decoration:none;" title="Verify Croshire Estates Corp on Dun &amp; Bradstreet">
-        <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/duns-badge-croshire.png"
-          alt="D-U-N-S Registered - Croshire Estates Corp 14-238-0998"
-          style="width:80px;height:auto;display:block;margin:0 auto;
-            filter:drop-shadow(0 4px 16px rgba(201,168,76,0.5));
-            transition:transform 0.3s,filter 0.3s;"
-          onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 22px rgba(201,168,76,0.8))'"
-          onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.5))'"/>
-        <p style="font-family:'Cinzel',serif;font-size:0.44rem;letter-spacing:0.16em;
-          color:#C9A84C;text-transform:uppercase;margin-top:0.3rem;">D&amp;B Verified</p>
-      </a>
-    </div>
-
-  </div>
-
-  <!-- Shield Video centered above CTA -->
-  <div style="display:flex;justify-content:center;margin-bottom:1.6rem;">
-    <div style="position:relative;width:220px;">
-      <video id="shieldVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:12px;filter:drop-shadow(0 0 24px rgba(201,168,76,0.5));">
+  <!-- Shield Video — full width centered -->
+  <div style="display:flex;justify-content:center;margin-bottom:1.4rem;">
+    <div style="position:relative;width:100%;max-width:480px;">
+      <video id="shieldVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:14px;filter:drop-shadow(0 0 32px rgba(201,168,76,0.6));">
         <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-2.mp4" type="video/mp4">
       </video>
       <button onclick="var v=document.getElementById('shieldVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
-        style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:4px 10px;font-family:Georgia,serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;">
+        style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.65);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;">
         🔇 TAP TO UNMUTE
       </button>
+    </div>
+  </div>
+
+  <!-- Seals below shield -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.6rem;flex-wrap:wrap;">
+    <div style="text-align:center;flex-shrink:0;">
+      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/badge-croshire.png"
+        alt="Croshire Capital Seal"
+        style="width:90px;height:auto;display:inline-block;filter:drop-shadow(0 4px 16px rgba(201,168,76,0.45));transition:transform 0.3s,filter 0.3s;"
+        onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 24px rgba(201,168,76,0.7))'"
+        onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.45))'"/>
+    </div>
+    <div style="text-align:center;flex-shrink:0;">
+      <a href="https://www.dnb.com/duns-number/lookup.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">
+        <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/duns-badge-croshire.png"
+          alt="D-U-N-S Registered - Croshire Estates Corp 14-238-0998"
+          style="width:75px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 4px 16px rgba(201,168,76,0.5));transition:transform 0.3s,filter 0.3s;"
+          onmouseover="this.style.transform='scale(1.06)';this.style.filter='drop-shadow(0 6px 22px rgba(201,168,76,0.8))'"
+          onmouseout="this.style.transform='scale(1)';this.style.filter='drop-shadow(0 4px 16px rgba(201,168,76,0.5))'"/>
+        <p style="font-family:'Cinzel',serif;font-size:0.44rem;letter-spacing:0.16em;color:#C9A84C;text-transform:uppercase;margin-top:0.3rem;">D&amp;B Verified</p>
+      </a>
     </div>
   </div>
 
