@@ -642,8 +642,14 @@ footer {
   <!-- AI Consultant Avatar -- right side -->
   
   <div class="hero-text">
-<div class="hero-banner-shine" style="width:62%;max-width:760px;margin:8rem auto 0;position:relative;overflow:hidden;">
-  <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-purple-1.jpg" alt="Croshire Capital" style="width:100%;display:block;opacity:0.75;">
+<div style="width:62%;max-width:760px;margin:8rem auto 0;position:relative;overflow:hidden;border-radius:10px;">
+  <video id="bannerVideo" autoplay loop muted playsinline style="width:100%;display:block;opacity:0.90;border-radius:10px;">
+    <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-3.mp4" type="video/mp4">
+  </video>
+  <button onclick="var v=document.getElementById('bannerVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
+    style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:6px 14px;font-family:Georgia,serif;font-size:0.72rem;letter-spacing:1px;cursor:pointer;">
+    🔇 TAP TO UNMUTE
+  </button>
 </div>
 <div class="hero-eyebrow">Private Capital Solutions</div>
 
@@ -917,6 +923,19 @@ footer {
       </a>
     </div>
 
+  </div>
+
+  <!-- Shield Video centered above CTA -->
+  <div style="display:flex;justify-content:center;margin-bottom:1.6rem;">
+    <div style="position:relative;width:220px;">
+      <video id="shieldVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:12px;filter:drop-shadow(0 0 24px rgba(201,168,76,0.5));">
+        <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-2.mp4" type="video/mp4">
+      </video>
+      <button onclick="var v=document.getElementById('shieldVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
+        style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:4px 10px;font-family:Georgia,serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;">
+        🔇 TAP TO UNMUTE
+      </button>
+    </div>
   </div>
 
   <p style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.25em;color:#C9A84C;text-transform:uppercase;margin-bottom:1.8rem;">Ready to Apply for Funding?</p>
