@@ -642,8 +642,16 @@ footer {
   <!-- AI Consultant Avatar -- right side -->
   
   <div class="hero-text">
-<div class="hero-banner-shine" style="width:62%;max-width:760px;margin:8rem auto 0;position:relative;overflow:hidden;">
-  <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-purple-1.jpg" alt="Croshire Capital" style="width:100%;display:block;opacity:0.75;">
+<div style="display:flex;justify-content:center;margin:6rem auto 0;">
+  <div style="position:relative;width:45%;max-width:480px;">
+    <video id="bannerVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:12px;filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));">
+      <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-1.mp4" type="video/mp4">
+    </video>
+    <button onclick="var v=document.getElementById('bannerVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
+      style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.7rem;letter-spacing:1px;cursor:pointer;">
+      🔇 TAP TO UNMUTE
+    </button>
+  </div>
 </div>
 <div class="hero-eyebrow">Private Capital Solutions</div>
 
@@ -886,19 +894,6 @@ footer {
 
 <!-- APPLY NOW CTA — TWO STEP FLOW -->
 <div style="text-align:center;padding:3.5rem 1rem 3rem;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);">
-
-  <!-- Shield Video — full width centered -->
-  <div style="display:flex;justify-content:center;margin-bottom:1.4rem;">
-    <div style="position:relative;width:160px;">
-      <video id="shieldVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:14px;filter:drop-shadow(0 0 32px rgba(201,168,76,0.6));">
-        <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-2.mp4" type="video/mp4">
-      </video>
-      <button onclick="var v=document.getElementById('shieldVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
-        style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.65);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;">
-        🔇 TAP TO UNMUTE
-      </button>
-    </div>
-  </div>
 
   <!-- Seals below shield -->
   <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.6rem;flex-wrap:wrap;">
