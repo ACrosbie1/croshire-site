@@ -642,18 +642,136 @@ footer {
   <!-- AI Consultant Avatar -- right side -->
   
   <div class="hero-text">
-    <div style="display:flex;justify-content:center;align-items:center;padding:6rem 0 2rem;background:transparent;">
-      <div style="position:relative;width:55%;max-width:560px;">
-        <video id="bannerVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:12px;filter:drop-shadow(0 0 30px rgba(201,168,76,0.4));">
-          <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-1.mp4" type="video/mp4">
-        </video>
-        <button onclick="var v=document.getElementById('bannerVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
-          style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.7rem;letter-spacing:1px;cursor:pointer;">
-          🔇 TAP TO UNMUTE
-        </button>
-      </div>
+<div class="hero-banner-shine" style="width:62%;max-width:760px;margin:8rem auto 0;position:relative;overflow:hidden;">
+  <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/banner-purple-1.jpg" alt="Croshire Capital" style="width:100%;display:block;opacity:0.75;">
+</div>
+<div class="hero-eyebrow">Private Capital Solutions</div>
+
+    <!-- ============================================================ -->
+    <!-- SLOT A: SVG feSpecularLighting — LIVE NOW                    -->
+    <!-- Moving virtual point light sweeps across physical gold text  -->
+    <!-- ============================================================ -->
+    <div class="hero-svg-wrap">
+      <svg viewBox="0 0 860 110" xmlns="http://www.w3.org/2000/svg"
+           aria-label="Private Capital Solutions">
+        <defs>
+
+          <!-- Gold base gradient — top highlight to bottom shadow -->
+          <linearGradient id="goldFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff"/>
+            <stop offset="5%"   stop-color="#fff8d0"/>
+            <stop offset="14%"  stop-color="#ffd84a"/>
+            <stop offset="30%"  stop-color="#c9950a"/>
+            <stop offset="48%"  stop-color="#2e1600"/>
+            <stop offset="62%"  stop-color="#7a5200"/>
+            <stop offset="76%"  stop-color="#c9950a"/>
+            <stop offset="87%"  stop-color="#ffe066"/>
+            <stop offset="94%"  stop-color="#fff0a0"/>
+            <stop offset="100%" stop-color="#5a3600"/>
+          </linearGradient>
+
+          <!-- Specular lighting filter — real virtual point light physics -->
+          <filter id="goldShine" x="-5%" y="-60%" width="110%" height="220%"
+                  color-interpolation-filters="sRGB">
+
+            <!-- Step 1: Alpha channel of text becomes the bump surface -->
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2.8" result="bumpSurface"/>
+
+            <!-- Step 2: Cast virtual point light onto the bumped surface -->
+            <feSpecularLighting
+              in="bumpSurface"
+              surfaceScale="7"
+              specularConstant="2.4"
+              specularExponent="85"
+              lighting-color="rgb(255, 252, 230)"
+              result="specularHighlight">
+              <fePointLight x="430" y="-120" z="200">
+                <!-- Light sweeps left → right → left, 5 second cycle -->
+                <animate
+                  attributeName="x"
+                  values="-250; 1100; -250"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+                <!-- Light rises slightly at center of sweep -->
+                <animate
+                  attributeName="y"
+                  values="-80; -160; -80"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+                <!-- Light pulls closer at peak -->
+                <animate
+                  attributeName="z"
+                  values="160; 260; 160"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
+                  keyTimes="0; 0.5; 1"/>
+              </fePointLight>
+            </feSpecularLighting>
+
+            <!-- Step 3: Clip specular highlight to text shape only -->
+            <feComposite
+              in="specularHighlight"
+              in2="SourceAlpha"
+              operator="in"
+              result="specularMasked"/>
+
+            <!-- Step 4: Screen-blend over the gold gradient fill -->
+            <feBlend
+              in="SourceGraphic"
+              in2="specularMasked"
+              mode="screen"
+              result="goldLit"/>
+
+            <!-- Step 5: Physical depth — layered drop shadows -->
+            <feDropShadow dx="0" dy="1" stdDeviation="0" flood-color="rgba(255,240,140,0.95)"/>
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(40,20,0,0.85)"/>
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.6)"/>
+
+          </filter>
+
+        </defs>
+
+        <!-- The text — gradient fill + specular light filter -->
+        <text
+          x="430"
+          y="82"
+          text-anchor="middle"
+          font-family="'Cinzel Decorative', 'Cinzel', serif"
+          font-size="54"
+          font-weight="700"
+          letter-spacing="3"
+          fill="url(#goldFill)"
+          filter="url(#goldShine)">
+          Private Capital Solutions
+        </text>
+
+      </svg>
     </div>
+
+    <!-- ============================================================ -->
+    <!-- SLOT B: GEMINI PNG SWAP — ready when your PNG is generated   -->
+    <!-- HOW TO ACTIVATE:                                             -->
+    <!--   1. Generate PNG in Gemini (transparent bg preferred)       -->
+    <!--   2. Name it: hero-title.png                                 -->
+    <!--   3. Upload to your GitHub repo alongside consultant.html        -->
+    <!--   4. Change display:none → display:block on .gemini-title-slot -->
+    <!--   5. Delete or hide the hero-svg-wrap div above              -->
+    <!-- ============================================================ -->
+    <div class="gemini-title-slot">
+      <img src="hero-title.png" alt="Private Capital Solutions">
+    </div>
+
+    <div class="hero-rule"></div>
   </div>
+</div>
 
 <!-- SHARP GOLD HAIRLINE CUT -->
 <div class="section-divider"></div>
@@ -768,6 +886,20 @@ footer {
 
 <!-- APPLY NOW CTA — TWO STEP FLOW -->
 <div style="text-align:center;padding:3.5rem 1rem 3rem;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);">
+
+  <!-- Shield Video — full width centered -->
+  <div style="display:flex;justify-content:center;margin-bottom:1.4rem;">
+    <div style="position:relative;width:160px;">
+      <video id="shieldVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:14px;filter:drop-shadow(0 0 32px rgba(201,168,76,0.6));">
+        <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-2.mp4" type="video/mp4">
+      </video>
+      <button onclick="var v=document.getElementById('shieldVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
+        style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.65);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;">
+        🔇 TAP TO UNMUTE
+      </button>
+    </div>
+  </div>
+
   <!-- Seals below shield -->
   <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:1.6rem;flex-wrap:wrap;">
     <div style="text-align:center;flex-shrink:0;">
