@@ -181,10 +181,7 @@ body{font-family:'Cormorant Garamond',Georgia,serif;color:var(--text);overflow-x
 footer{ text-align:center; }
 </style>
 </head>
-<!-- CROSHIRE CAPITAL HEADER BANNER -->
-<div style="width:100%;text-align:center;padding:100px 0 60px;background:transparent;">
-  <video id="bannerVideoAv" autoplay loop muted playsinline style="width:48%;max-width:580px;display:inline-block;border-radius:8px;opacity:0.92;vertical-align:top;"><source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-3.mp4" type="video/mp4"></video>
-</div>
+
 <body>
 
 <nav class="nav">
@@ -199,6 +196,17 @@ footer{ text-align:center; }
 <section class="hero">
   <div class="hero-plane"></div>
   <div class="hero-badge">✈ Aviation Industry Funding</div>
+<div style="display:flex;justify-content:center;margin:1.5rem auto 0;">
+  <div style="position:relative;width:45%;max-width:460px;">
+    <video id="bannerVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:50% / 40%;filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));">
+      <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-1.mp4" type="video/mp4">
+    </video>
+    <button onclick="var v=document.getElementById('bannerVideo');v.muted=!v.muted;this.textContent=v.muted?'🔇 TAP TO UNMUTE':'🔊 MUTE';"
+      style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.6);color:#F5DFA0;border:1px solid #C9A84C;border-radius:20px;padding:5px 12px;font-family:Georgia,serif;font-size:0.7rem;letter-spacing:1px;cursor:pointer;">
+      🔇 TAP TO UNMUTE
+    </button>
+  </div>
+</div>
   <div class="hero-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-nav-purple.png" alt="Croshire Capital" style="width:220px;height:auto;mix-blend-mode:screen;filter:drop-shadow(0 4px 24px rgba(180,130,10,0.6));"></div>
   <h1>Capital Built for<br><span>Aviation Businesses</span></h1>
   <p class="hero-sub">Flight schools, charter operators, MRO facilities — we connect you to the capital that keeps you airborne.</p>
