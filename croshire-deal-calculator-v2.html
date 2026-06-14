@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croshire Capital — Deal Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at center,#1a1200 0%,#0a0900 60%,#000 100%);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Inter',sans-serif;
+  padding:20px;
+}
+.device{
+  width:100%;
+  max-width:1100px;
+  background:linear-gradient(145deg,#1a1a1a,#0d0d0d);
+  border-radius:24px;
+  border:2px solid #C9A84C;
+  box-shadow:
+    0 0 0 1px #8B6500,
+    0 0 40px rgba(201,168,76,0.4),
+    0 0 80px rgba(201,168,76,0.15),
+    inset 0 1px 0 rgba(232,201,106,0.3),
+    0 40px 80px rgba(0,0,0,0.8);
+  overflow:hidden;
+  position:relative;
+}
+.device::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.01) 2px,
+    rgba(255,255,255,0.01) 4px
+  );
+  pointer-events:none;
+  border-radius:22px;
+}
+/* GOLD TOP STRIP */
+.gold-strip-top{height:4px;background:linear-gradient(90deg,#5a3800,#C9A84C,#FFD700,#E8C96A,#C9A84C,#5a3800)}
+.gold-strip-bot{height:4px;background:linear-gradient(90deg,#5a3800,#C9A84C,#FFD700,#E8C96A,#C9A84C,#5a3800)}
+
+/* HEADER */
+.header{
+  display:flex;
+  align-items:center;
+  padding:18px 28px 14px;
+  background:linear-gradient(180deg,rgba(201,168,76,0.08) 0%,transparent 100%);
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  gap:20px;
+}
+.logo-area{display:flex;align-items:center;gap:14px;min-width:220px}
+.logo-img{
+  width:68px;height:68px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(201,168,76,0.5),0 0 40px rgba(201,168,76,0.2);
+  object-fit:cover;
+}
+.logo-text h1{
+  font-family:'Cinzel',serif;
+  font-size:22px;
+  font-weight:900;
+  color:#E8C96A;
+  letter-spacing:3px;
+  text-shadow:0 0 20px rgba(232,201,106,0.5);
+  line-height:1;
+}
+.logo-text p{
+  font-size:10px;
+  color:#8B6500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:3px;
+}
+.sectors{
+  flex:1;
+  text-align:center;
+  font-size:11px;
+  color:#8B6500;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.sectors span{color:#C9A84C}
+
+/* TABS */
+.tabs{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.tab{
+  padding:8px 18px;
+  border:1px solid rgba(201,168,76,0.4);
+  border-radius:6px;
+  background:rgba(0,0,0,0.4);
+  color:#8B6500;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:all 0.2s;
+  font-family:'Inter',sans-serif;
+  text-transform:uppercase;
+}
+.tab:hover{border-color:#C9A84C;color:#C9A84C;background:rgba(201,168,76,0.1)}
+.tab.active{
+  background:linear-gradient(135deg,#8B6500,#C9A84C);
+  color:#000;
+  border-color:#FFD700;
+  box-shadow:0 0 15px rgba(201,168,76,0.4);
+}
+
+/* MAIN BODY */
+.body{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:480px}
+
+/* LEFT PANEL */
+.left-panel{
+  padding:28px;
+  border-right:1px solid rgba(201,168,76,0.15);
+}
+.panel-label{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#C9A84C;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.panel-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,0.2)}
+
+.input-row{
+  display:flex;
+  align-items:center;
+  background:rgba(0,0,0,0.5);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:8px;
+  margin-bottom:6px;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.input-row:focus-within{border-color:#C9A84C;box-shadow:0 0 10px rgba(201,168,76,0.2)}
+.input-prefix{
+  width:36px;
+  text-align:center;
+  font-size:14px;
+  color:#C9A84C;
+  font-weight:700;
+  background:rgba(201,168,76,0.1);
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border-right:1px solid rgba(201,168,76,0.15);
+}
+.input-row input,.input-row select{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#E8C96A;
+  font-size:15px;
+  font-weight:500;
+  padding:0 14px;
+  height:44px;
+  font-family:'Inter',sans-serif;
+}
+.input-row select option{background:#111;color:#E8C96A}
+.input-suffix{
+  padding:0 12px;
+  font-size:12px;
+  color:#555;
+  height:44px;
+  display:flex;
+  align-items:center;
+}
+.field-label{
+  font-size:10px;
+  color:#555;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:4px;
+  margin-top:10px;
+}
+
+/* SLIDER */
+.slider-wrap{margin-bottom:8px}
+.slider-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:6px;
+}
+.slider-name{font-size:10px;color:#555;letter-spacing:1px;text-transform:uppercase}
+.slider-val{font-size:11px;color:#C9A84C;font-weight:700}
+input[type=range]{
+  width:100%;
+  -webkit-appearance:none;
+  height:3px;
+  background:rgba(201,168,76,0.15);
+  border-radius:2px;
+  outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:20px;height:20px;
+  border-radius:50%;
+  background:radial-gradient(circle,#FFD700,#C9A84C);
+  cursor:pointer;
+  border:2px solid #000;
+  box-shadow:0 0 12px rgba(201,168,76,0.7);
+}
+
+/* FORMULA BOX */
+.formula{
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(201,168,76,0.12);
+  border-radius:8px;
+  padding:14px 16px;
+  margin-top:14px;
+}
+.formula-dim{font-size:10px;color:#444;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase}
+.formula code{
+  font-family:'Courier New',monospace;
+  font-size:11px;
+  color:#666;
+  display:block;
+  line-height:2;
+}
+.formula code.highlight{color:#C9A84C;font-weight:700;font-size:12px}
+
+/* RIGHT PANEL */
+.right-panel{padding:28px;display:flex;flex-direction:column;gap:16px}
+
+/* HERO OFFER PRICE */
+.hero{
+  background:linear-gradient(135deg,#0F0C00,#1a1400,#0F0C00);
+  border:1px solid #C9A84C;
+  border-radius:12px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 0 30px rgba(201,168,76,0.2),inset 0 1px 0 rgba(232,201,106,0.2);
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-1px;left:10%;right:10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#FFD700,transparent);
+}
+.hero-label{
+  font-size:11px;
+  letter-spacing:3px;
+  color:#8B6500;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.hero-value{
+  font-family:'Cinzel',serif;
+  font-size:48px;
+  font-weight:900;
+  color:#E8C96A;
+  line-height:1;
+  text-shadow:0 0 30px rgba(232,201,106,0.5),0 0 60px rgba(201,168,76,0.3);
+}
+.hero-sub{font-size:12px;color:#555;margin-top:6px}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{
+  background:rgba(0,0,0,0.5);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:10px;
+  padding:14px 16px;
+  text-align:center;
+}
+.kpi-label{font-size:9px;letter-spacing:1.5px;color:#555;text-transform:uppercase;margin-bottom:6px}
+.kpi-value{font-size:22px;font-weight:700;color:#E8C96A}
+.kpi-value.green{color:#22C55E;text-shadow:0 0 15px rgba(34,197,94,0.4)}
+.kpi-value.red{color:#EF4444;text-shadow:0 0 15px rgba(239,68,68,0.3)}
+.kpi-value.blue{color:#60A5FA}
+
+/* VERDICT */
+.verdict{
+  border-radius:10px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.verdict.go{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3)}
+.verdict.caution{background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3)}
+.verdict.stop{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)}
+.verdict-icon{font-size:26px}
+.verdict-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.verdict.go .verdict-title{color:#22C55E}
+.verdict.caution .verdict-title{color:#EAB308}
+.verdict.stop .verdict-title{color:#EF4444}
+.verdict-msg{font-size:11px;color:#555}
+
+/* RESULT ROWS */
+.result-card{
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(201,168,76,0.15);
+  border-radius:10px;
+  padding:16px 18px;
+}
+.result-card-title{font-size:10px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;margin-bottom:12px}
+.rrow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:12px;
+}
+.rrow:last-child{border-bottom:none}
+.rrow .rl{color:#555}
+.rrow .rv{font-weight:600;color:#E8C96A}
+.rrow .rv.g{color:#22C55E}
+.rrow .rv.r{color:#EF4444}
+
+/* TAB CONTENTS */
+.tab-content{display:none}
+.tab-content.active{display:contents}
+
+/* DSCR PASS/FAIL BADGES */
+.badge{
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:4px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+.badge.pass{background:rgba(34,197,94,0.2);color:#22C55E;border:1px solid rgba(34,197,94,0.4)}
+.badge.fail{background:rgba(239,68,68,0.2);color:#EF4444;border:1px solid rgba(239,68,68,0.4)}
+
+/* FOOTER */
+.footer{
+  background:rgba(0,0,0,0.5);
+  border-top:1px solid rgba(201,168,76,0.15);
+  padding:10px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-left{font-size:10px;color:#444;letter-spacing:1px}
+.footer-right{font-size:10px;color:#555}
+.footer-right a{color:#C9A84C;text-decoration:none}
+
+/* REFLECTION */
+.reflection{
+  height:40px;
+  background:linear-gradient(180deg,rgba(201,168,76,0.05),transparent);
+  margin-top:-2px;
+  border-radius:0 0 24px 24px;
+  transform:scaleY(-0.3);
+  opacity:0.4;
+  filter:blur(4px);
+}
+
+@media(max-width:768px){
+  .body{grid-template-columns:1fr}
+  .left-panel{border-right:none;border-bottom:1px solid rgba(201,168,76,0.15)}
+  .hero-value{font-size:36px}
+  .tabs{justify-content:center}
+  .header{flex-wrap:wrap;gap:12px}
+  .sectors{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div style="width:100%;max-width:1100px">
+<div class="device">
+  <div class="gold-strip-top"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-area">
+      <img class="logo-img"
+        src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-purple-master.png"
+        alt="Croshire Capital"
+        onerror="this.style.display='none'">
+      <div class="logo-text">
+        <h1>CROSHIRE</h1>
+        <p>Private Capital Consulting · Capital</p>
+      </div>
+    </div>
+    <div class="sectors">
+      <span>Real Estate</span> &nbsp;·&nbsp; <span>Commercial</span> &nbsp;·&nbsp; <span>Marine</span> &nbsp;·&nbsp; <span>Aviation</span>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('underwrite',this)">Underwrite</button>
+      <button class="tab" onclick="switchTab('velocity',this)">Velocity</button>
+      <button class="tab" onclick="switchTab('valueadd',this)">Value Add</button>
+      <button class="tab" onclick="switchTab('zeroout',this)">Zero Out</button>
+      <button class="tab" onclick="switchTab('checklist',this)">Checklist</button>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- ====== LEFT PANEL ====== -->
+    <div class="left-panel">
+
+      <!-- UNDERWRITE INPUTS -->
+      <div id="left-underwrite" class="tab-content active">
+        <div class="panel-label">Property Inputs</div>
+
+        <div class="field-label">Number of Units</div>
+        <div class="input-row">
+          <div class="input-prefix">#</div>
+          <input type="number" id="u-units" value="4" min="1" oninput="calcUnderwrite()">
+        </div>
+
+        <div class="field-label">Monthly Rent Per Unit</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="u-rent" value="1200" oninput="calcUnderwrite()">
+          <div class="input-suffix">USD</div>
+        </div>
+
+        <div class="field-label">Other Income</div>
+        <div class="input-row">
+          <div class="input-prefix">%</div>
+          <input type="number" id="u-other" value="0" min="0" max="30" oninput="calcUnderwrite()">
+          <div class="input-suffix">fees/parking</div>
+        </div>
+
+        <div class="slider-wrap" style="margin-top:12px">
+          <div class="slider-top">
+            <span class="slider-name">Occupancy Rate</span>
+            <span class="slider-val" id="u-occ-v">90%</span>
+          </div>
+          <input type="range" id="u-occ" min="50" max="100" value="90" oninput="document.getElementById('u-occ-v').textContent=this.value+'%';calcUnderwrite()">
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top">
+            <span class="slider-name">Expense Ratio</span>
+            <span class="slider-val" id="u-exp-v">40%</span>
+          </div>
+          <input type="range" id="u-exp" min="20" max="70" value="40" oninput="document.getElementById('u-exp-v').textContent=this.value+'%';calcUnderwrite()">
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top">
+            <span class="slider-name">Cap Rate</span>
+            <span class="slider-val" id="u-cap-v">6%</span>
+          </div>
+          <input type="range" id="u-cap" min="4" max="12" step="0.5" value="6" oninput="document.getElementById('u-cap-v').textContent=this.value+'%';calcUnderwrite()">
+        </div>
+
+        <div class="formula">
+          <div class="formula-dim">Cardone Formula</div>
+          <code>Gross = Units × Rent × 12</code>
+          <code>EGI = Gross × Occupancy%</code>
+          <code>NOI = EGI × (1 − Expense%)</code>
+          <code class="highlight">Offer Price = NOI ÷ Cap Rate</code>
+        </div>
+      </div>
+
+      <!-- VELOCITY INPUTS -->
+      <div id="left-velocity" class="tab-content">
+        <div class="panel-label">FlexTerm Inputs</div>
+
+        <div class="field-label">Appraised Value</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="v-value" value="575000" oninput="calcVelocity()">
+        </div>
+
+        <div class="field-label">Purchase Price (Negotiated)</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="v-price" value="525000" oninput="calcVelocity()">
+        </div>
+
+        <div class="field-label">FICO Tier</div>
+        <div class="input-row">
+          <div class="input-prefix">#</div>
+          <select id="v-fico" onchange="calcVelocity()">
+            <option value="8.365">Tier 1 — 750+ (8.365%)</option>
+            <option value="8.865" selected>Tier 2 — 700-749 (8.865%)</option>
+            <option value="9.615">Tier 3 — 650+ (9.615%)</option>
+          </select>
+        </div>
+
+        <div class="field-label">Monthly Rental Income</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="v-rent" value="4900" oninput="calcVelocity()">
+        </div>
+
+        <div class="field-label">Property Tax (Monthly)</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="v-tax" value="450" oninput="calcVelocity()">
+        </div>
+
+        <div class="field-label">Insurance (Monthly)</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="v-ins" value="175" oninput="calcVelocity()">
+        </div>
+
+        <div class="slider-wrap" style="margin-top:12px">
+          <div class="slider-top">
+            <span class="slider-name">LTV</span>
+            <span class="slider-val" id="v-ltv-v">75%</span>
+          </div>
+          <input type="range" id="v-ltv" min="50" max="75" value="75" oninput="document.getElementById('v-ltv-v').textContent=this.value+'%';calcVelocity()">
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top">
+            <span class="slider-name">Points</span>
+            <span class="slider-val" id="v-pts-v">2 pts</span>
+          </div>
+          <input type="range" id="v-pts" min="0" max="5" step="0.5" value="2" oninput="document.getElementById('v-pts-v').textContent=this.value+' pts';calcVelocity()">
+        </div>
+
+        <div class="formula">
+          <div class="formula-dim">Velocity FlexTerm — Rate Sheet 02.01.26</div>
+          <code>Loan = Appraised × LTV%</code>
+          <code>Rate = Tier Rate − (Points × 0.375%)</code>
+          <code class="highlight">DSCR = Rent ÷ (P&I + Tax + Ins) ≥ 1.20</code>
+        </div>
+      </div>
+
+      <!-- VALUE ADD INPUTS -->
+      <div id="left-valueadd" class="tab-content">
+        <div class="panel-label">Value Add Inputs</div>
+
+        <div class="field-label">Number of Units</div>
+        <div class="input-row">
+          <div class="input-prefix">#</div>
+          <input type="number" id="va-units" value="4" oninput="calcValueAdd()">
+        </div>
+
+        <div class="field-label">Current Rent Per Unit</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="va-curr" value="1200" oninput="calcValueAdd()">
+        </div>
+
+        <div class="field-label">Target Rent Per Unit</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="va-tgt" value="1400" oninput="calcValueAdd()">
+        </div>
+
+        <div class="field-label">Current Property Value</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="va-cv" value="550000" oninput="calcValueAdd()">
+        </div>
+
+        <div class="slider-wrap" style="margin-top:12px">
+          <div class="slider-top">
+            <span class="slider-name">Occupancy</span>
+            <span class="slider-val" id="va-occ-v">90%</span>
+          </div>
+          <input type="range" id="va-occ" min="50" max="100" value="90" oninput="document.getElementById('va-occ-v').textContent=this.value+'%';calcValueAdd()">
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top">
+            <span class="slider-name">Cap Rate</span>
+            <span class="slider-val" id="va-cap-v">6%</span>
+          </div>
+          <input type="range" id="va-cap" min="4" max="12" step="0.5" value="6" oninput="document.getElementById('va-cap-v').textContent=this.value+'%';calcValueAdd()">
+        </div>
+
+        <div class="formula">
+          <div class="formula-dim">Cardone Value-Add Formula</div>
+          <code>Uplift = Units × Rent Increase × 12</code>
+          <code>Adj Uplift = Uplift × Occupancy%</code>
+          <code class="highlight">Value Increase = Adj Uplift ÷ Cap Rate</code>
+        </div>
+      </div>
+
+      <!-- ZERO OUT INPUTS -->
+      <div id="left-zeroout" class="tab-content">
+        <div class="panel-label">Acquisition Inputs</div>
+
+        <div class="field-label">Asking Price</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="z-ask" value="595000" oninput="calcZero()">
+        </div>
+
+        <div class="field-label">Negotiated Purchase Price</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="z-price" value="525000" oninput="calcZero()">
+        </div>
+
+        <div class="field-label">Appraised Value</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="z-appraise" value="575000" oninput="calcZero()">
+        </div>
+
+        <div class="field-label">Repair Reserve</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="z-repair" value="10000" oninput="calcZero()">
+        </div>
+
+        <div class="field-label">Realtor Commission</div>
+        <div class="input-row">
+          <div class="input-prefix">$</div>
+          <input type="number" id="z-realtor" value="13125" oninput="calcZero()">
+        </div>
+
+        <div class="slider-wrap" style="margin-top:12px">
+          <div class="slider-top">
+            <span class="slider-name">LTV (Appraised)</span>
+            <span class="slider-val" id="z-ltv-v">75%</span>
+          </div>
+          <input type="range" id="z-ltv" min="50" max="80" value="75" oninput="document.getElementById('z-ltv-v').textContent=this.value+'%';calcZero()">
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top">
+            <span class="slider-name">Seller Concessions</span>
+            <span class="slider-val" id="z-conc-v">3%</span>
+          </div>
+          <input type="range" id="z-conc" min="0" max="6" step="0.5" value="3" oninput="document.getElementById('z-conc-v').textContent=this.value+'%';calcZero()">
+        </div>
+
+        <div class="formula">
+          <div class="formula-dim">Zero Out of Pocket Framework</div>
+          <code>Loan = Appraised × LTV%</code>
+          <code>Equity Gap = Appraised − Purchase</code>
+          <code class="highlight">Cash Needed = Costs − Gap − Concessions</code>
+        </div>
+      </div>
+
+      <!-- CHECKLIST INPUTS -->
+      <div id="left-checklist" class="tab-content">
+        <div class="panel-label">Deal Screen — Cardone 6 Points</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">01 — Purchased 3/5/7/10 Years Ago</div>
+            <div style="font-size:11px;color:#555">Owner has equity. Higher motivation to sell at discount.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">02 — Loan Maturity in 12 Months</div>
+            <div style="font-size:11px;color:#555">Owner must sell or refinance. Creates maximum urgency.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">03 — Delinquent Tax Activity</div>
+            <div style="font-size:11px;color:#555">Financial distress signals. Likely to accept below-market offer.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">04 — Free and Clear (Seller Finance)</div>
+            <div style="font-size:11px;color:#555">No existing mortgage. Seller can carry the note — zero down possible.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">05 — Below Replacement Cost</div>
+            <div style="font-size:11px;color:#555">Buy cheaper than it costs to build. Instant equity day one.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#E8C96A;margin-bottom:3px">06 — $1M+ Profit Potential</div>
+            <div style="font-size:11px;color:#555">Minimum threshold. Value-add + appreciation must hit $1M+.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /left-panel -->
+
+    <!-- ====== RIGHT PANEL ====== -->
+    <div class="right-panel">
+
+      <!-- UNDERWRITE RESULTS -->
+      <div id="right-underwrite" class="tab-content active">
+        <div class="hero">
+          <div class="hero-label">Price To Offer For The Deal</div>
+          <div class="hero-value" id="u-offer">$960,000</div>
+          <div class="hero-sub" id="u-per-unit">$240,000 per unit</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Gross Annual Income</div>
+            <div class="kpi-value" id="u-gross">$57,600</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Effective Gross</div>
+            <div class="kpi-value" id="u-egi">$51,840</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Annual Expenses</div>
+            <div class="kpi-value red" id="u-exp-out">$20,736</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Net Operating Income</div>
+            <div class="kpi-value green" id="u-noi">$31,104</div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-title">Deal Breakdown</div>
+          <div class="rrow"><span class="rl">Monthly Gross</span><span class="rv" id="u-mgross">$4,800</span></div>
+          <div class="rrow"><span class="rl">Vacancy Loss</span><span class="rv r" id="u-vac">-$480</span></div>
+          <div class="rrow"><span class="rl">Monthly NOI</span><span class="rv g" id="u-mnoi">$2,592</span></div>
+          <div class="rrow"><span class="rl">Price Per Unit</span><span class="rv" id="u-ppu">$240,000</span></div>
+          <div class="rrow"><span class="rl">Gross Rent Multiplier</span><span class="rv" id="u-grm">15.4x</span></div>
+        </div>
+      </div>
+
+      <!-- VELOCITY RESULTS -->
+      <div id="right-velocity" class="tab-content">
+        <div class="hero">
+          <div class="hero-label">Loan Amount — FlexTerm</div>
+          <div class="hero-value" id="v-loan">$431,250</div>
+          <div class="hero-sub" id="v-rate-display">Rate: 8.490% after 2pt buydown</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Down Payment</div>
+            <div class="kpi-value" id="v-down">$93,750</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Monthly P&amp;I</div>
+            <div class="kpi-value" id="v-pi">$3,382</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">DSCR Ratio</div>
+            <div class="kpi-value green" id="v-dscr">1.22</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Monthly Cash Flow</div>
+            <div class="kpi-value green" id="v-cf">$893</div>
+          </div>
+        </div>
+        <div id="v-verdict" class="verdict go">
+          <div class="verdict-icon">✅</div>
+          <div>
+            <div class="verdict-title" id="v-vtitle">DSCR PASS</div>
+            <div class="verdict-msg" id="v-vmsg">Property income covers debt service. FlexTerm eligible.</div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-title">FlexTerm Analysis</div>
+          <div class="rrow"><span class="rl">Total Monthly Payment</span><span class="rv" id="v-totalpmt">$4,007</span></div>
+          <div class="rrow"><span class="rl">Annual Cash Flow</span><span class="rv g" id="v-annualcf">$10,716</span></div>
+          <div class="rrow"><span class="rl">Points Cost</span><span class="rv r" id="v-ptscost">$8,625</span></div>
+          <div class="rrow"><span class="rl">Equity Gap</span><span class="rv g" id="v-egap">$50,000</span></div>
+          <div class="rrow"><span class="rl">Max Broker Fee (5%)</span><span class="rv" id="v-bfee">$21,563</span></div>
+        </div>
+      </div>
+
+      <!-- VALUE ADD RESULTS -->
+      <div id="right-valueadd" class="tab-content">
+        <div class="hero">
+          <div class="hero-label">Property Value Increase</div>
+          <div class="hero-value green" id="va-increase">$432,000</div>
+          <div class="hero-sub" id="va-newval">New Value: $982,000</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Rent Increase / Unit</div>
+            <div class="kpi-value" id="va-rdelta">$200/mo</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Annual Income Uplift</div>
+            <div class="kpi-value green" id="va-uplift">$8,640</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Equity Created</div>
+            <div class="kpi-value green" id="va-equity">$144,000</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">ROI on Value Add</div>
+            <div class="kpi-value blue" id="va-roi">26.2%</div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-title">Value Add Breakdown</div>
+          <div class="rrow"><span class="rl">Current Annual Income</span><span class="rv" id="va-curr-inc">$51,840</span></div>
+          <div class="rrow"><span class="rl">Target Annual Income</span><span class="rv g" id="va-tgt-inc">$60,480</span></div>
+          <div class="rrow"><span class="rl">Income Increase</span><span class="rv g" id="va-inc-delta">$8,640</span></div>
+          <div class="rrow"><span class="rl">Current Property Value</span><span class="rv" id="va-cv-out">$550,000</span></div>
+          <div class="rrow"><span class="rl">New Property Value</span><span class="rv" id="va-nv-out">$982,000</span></div>
+        </div>
+      </div>
+
+      <!-- ZERO OUT RESULTS -->
+      <div id="right-zeroout" class="tab-content">
+        <div class="hero">
+          <div class="hero-label">Cash Out of Pocket</div>
+          <div class="hero-value" id="z-pocket">$0</div>
+          <div class="hero-sub" id="z-pocket-sub">After equity gap and seller concessions</div>
+        </div>
+        <div id="z-verdict" class="verdict go">
+          <div class="verdict-icon">✅</div>
+          <div>
+            <div class="verdict-title" id="z-vtitle">ZERO OUT OF POCKET</div>
+            <div class="verdict-msg" id="z-vmsg">Equity and concessions cover all costs.</div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-title">Zero Out of Pocket Breakdown</div>
+          <div class="rrow"><span class="rl">Loan (75% Appraised)</span><span class="rv" id="z-loan">$431,250</span></div>
+          <div class="rrow"><span class="rl">Down Payment Gap</span><span class="rv r" id="z-down">$93,750</span></div>
+          <div class="rrow"><span class="rl">Equity Gap (Appraise−Price)</span><span class="rv g" id="z-egap">$50,000</span></div>
+          <div class="rrow"><span class="rl">Seller Concessions (3%)</span><span class="rv g" id="z-conc-out">$15,750</span></div>
+          <div class="rrow"><span class="rl">Title + Closing (3%)</span><span class="rv r" id="z-close">$15,750</span></div>
+          <div class="rrow"><span class="rl">Appraisal + Inspection</span><span class="rv r">$2,800</span></div>
+          <div class="rrow"><span class="rl">Repair Reserve</span><span class="rv r" id="z-rep">$10,000</span></div>
+          <div class="rrow"><span class="rl">Realtor Commission</span><span class="rv r" id="z-real">$13,125</span></div>
+          <div class="rrow"><span class="rl">Inter-Corporate Bridge Needed</span><span class="rv" id="z-bridge">$0</span></div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST RESULTS -->
+      <div id="right-checklist" class="tab-content">
+        <div class="hero">
+          <div class="hero-label">Cardone 9-Step Process</div>
+          <div class="hero-value" style="font-size:28px;padding-top:4px">Where Are You?</div>
+          <div class="hero-sub">Track your position in the deal cycle</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.2);border:1px solid #22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#22C55E;flex-shrink:0">✓</div>
+            <div><div style="font-size:12px;font-weight:600;color:#22C55E">01 Find The Deal</div><div style="font-size:11px;color:#555">CoStar · LoopNet · Off-market</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.2);border:1px solid #22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#22C55E;flex-shrink:0">✓</div>
+            <div><div style="font-size:12px;font-weight:600;color:#22C55E">02 Contact Broker</div><div style="font-size:11px;color:#555">John Neufer — Velocity Mortgage Capital</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.2);border:1px solid #22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#22C55E;flex-shrink:0">✓</div>
+            <div><div style="font-size:12px;font-weight:600;color:#22C55E">03 Underwrite The Deal</div><div style="font-size:11px;color:#555">This calculator — NOI ÷ Cap Rate</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.2);border:1px solid #22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#22C55E;flex-shrink:0">✓</div>
+            <div><div style="font-size:12px;font-weight:600;color:#22C55E">04 Write The LOI</div><div style="font-size:11px;color:#555">135 days total — 30 DD + 45 loan + close</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(201,168,76,0.2);border:1px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#C9A84C;flex-shrink:0">▶</div>
+            <div><div style="font-size:12px;font-weight:600;color:#E8C96A">05 Debt Quote — IN PROGRESS</div><div style="font-size:11px;color:#555">Loan 6723351921 — Special Review</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#444;flex-shrink:0">06</div>
+            <div><div style="font-size:12px;font-weight:600;color:#444">06 Raise Equity</div><div style="font-size:11px;color:#333">ARF bridge + seller concessions + equity gap</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#444;flex-shrink:0">07</div>
+            <div><div style="font-size:12px;font-weight:600;color:#444">07 Close The Deal</div><div style="font-size:11px;color:#333">Croshire Estates Corp + CrosMinX Corp guarantor</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#444;flex-shrink:0">08</div>
+            <div><div style="font-size:12px;font-weight:600;color:#444">08 Manage The Deal</div><div style="font-size:11px;color:#333">Croshire Estates Corp property management</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px">
+            <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#444;flex-shrink:0">09</div>
+            <div><div style="font-size:12px;font-weight:600;color:#444">09 Exit</div><div style="font-size:11px;color:#333">Blanket refi → cash out → fund next acquisition</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /right-panel -->
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">CROSHIRE ESTATES CORP &nbsp;·&nbsp; POTTSTOWN PA &nbsp;·&nbsp; +1 (215) 436-8268</div>
+    <div class="footer-right"><a href="https://croshireestates.com" target="_blank">croshireestates.com</a> &nbsp;·&nbsp; Cardone Method + Velocity FlexTerm 02.01.26</div>
+  </div>
+  <div class="gold-strip-bot"></div>
+</div>
+</div>
+
+<script>
+const fmt=n=>'$'+Math.round(n).toLocaleString();
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('left-'+name).classList.add('active');
+  document.getElementById('right-'+name).classList.add('active');
+}
+
+function calcUnderwrite(){
+  const units=+document.getElementById('u-units').value||0;
+  const rent=+document.getElementById('u-rent').value||0;
+  const other=(+document.getElementById('u-other').value||0)/100;
+  const occ=(+document.getElementById('u-occ').value||90)/100;
+  const exp=(+document.getElementById('u-exp').value||40)/100;
+  const cap=(+document.getElementById('u-cap').value||6)/100;
+  const gross=units*rent*12*(1+other);
+  const egi=gross*occ;
+  const expenses=egi*exp;
+  const noi=egi-expenses;
+  const offer=noi/cap;
+  const grm=offer/gross;
+  document.getElementById('u-offer').textContent=fmt(offer);
+  document.getElementById('u-per-unit').textContent=fmt(offer/Math.max(units,1))+' per unit';
+  document.getElementById('u-gross').textContent=fmt(gross);
+  document.getElementById('u-egi').textContent=fmt(egi);
+  document.getElementById('u-exp-out').textContent=fmt(expenses);
+  document.getElementById('u-noi').textContent=fmt(noi);
+  document.getElementById('u-mgross').textContent=fmt(units*rent);
+  document.getElementById('u-vac').textContent='-'+fmt(gross*(1-occ));
+  document.getElementById('u-mnoi').textContent=fmt(noi/12);
+  document.getElementById('u-ppu').textContent=fmt(offer/Math.max(units,1));
+  document.getElementById('u-grm').textContent=grm.toFixed(1)+'x';
+}
+
+function calcVelocity(){
+  const value=+document.getElementById('v-value').value||0;
+  const price=+document.getElementById('v-price').value||0;
+  const baseRate=+document.getElementById('v-fico').value||8.865;
+  const ltv=(+document.getElementById('v-ltv').value||75)/100;
+  const points=+document.getElementById('v-pts').value||0;
+  const rent=+document.getElementById('v-rent').value||0;
+  const tax=+document.getElementById('v-tax').value||0;
+  const ins=+document.getElementById('v-ins').value||0;
+  const loan=value*ltv;
+  const down=price-loan;
+  const finalRate=Math.max(baseRate-(points*0.375),7.115);
+  const mr=finalRate/100/12;
+  const pi=loan*mr/(1-Math.pow(1+mr,-360));
+  const totalpmt=pi+tax+ins;
+  const dscr=rent/totalpmt;
+  const cf=rent-totalpmt;
+  const ptsCost=loan*(points/100);
+  const egap=value-price;
+  const bfee=loan*0.05;
+  document.getElementById('v-loan').textContent=fmt(loan);
+  document.getElementById('v-rate-display').textContent='Rate: '+finalRate.toFixed(3)+'% after '+points+'pt buydown';
+  document.getElementById('v-down').textContent=fmt(Math.max(down,0));
+  document.getElementById('v-pi').textContent=fmt(pi);
+  document.getElementById('v-dscr').textContent=dscr.toFixed(2);
+  document.getElementById('v-dscr').className='kpi-value '+(dscr>=1.2?'green':dscr>=1?'':'red');
+  document.getElementById('v-cf').textContent=fmt(cf);
+  document.getElementById('v-cf').className='kpi-value '+(cf>=0?'green':'red');
+  document.getElementById('v-totalpmt').textContent=fmt(totalpmt);
+  document.getElementById('v-annualcf').textContent=fmt(cf*12);
+  document.getElementById('v-ptscost').textContent=fmt(ptsCost);
+  document.getElementById('v-egap').textContent=fmt(egap);
+  document.getElementById('v-bfee').textContent=fmt(bfee);
+  const vd=document.getElementById('v-verdict');
+  const vt=document.getElementById('v-vtitle');
+  const vm=document.getElementById('v-vmsg');
+  if(dscr>=1.2){vd.className='verdict go';vt.textContent='DSCR PASS — '+dscr.toFixed(2);vm.textContent='Property income covers debt service. FlexTerm eligible.'}
+  else if(dscr>=1){vd.className='verdict caution';vt.textContent='DSCR CAUTION — '+dscr.toFixed(2);vm.textContent='Below 1.20 minimum. Adjust rent or reduce loan amount.'}
+  else{vd.className='verdict stop';vt.textContent='DSCR FAIL — '+dscr.toFixed(2);vm.textContent='Property income does not cover debt. Restructure before submitting.'}
+}
+
+function calcValueAdd(){
+  const units=+document.getElementById('va-units').value||0;
+  const curr=+document.getElementById('va-curr').value||0;
+  const tgt=+document.getElementById('va-tgt').value||0;
+  const occ=(+document.getElementById('va-occ').value||90)/100;
+  const cap=(+document.getElementById('va-cap').value||6)/100;
+  const cv=+document.getElementById('va-cv').value||0;
+  const rdelta=tgt-curr;
+  const uplift=units*rdelta*12*occ;
+  const valueInc=uplift/cap;
+  const nv=cv+valueInc;
+  const currInc=units*curr*12*occ;
+  const tgtInc=units*tgt*12*occ;
+  const roi=cv>0?(valueInc/cv)*100:0;
+  document.getElementById('va-increase').textContent=fmt(valueInc);
+  document.getElementById('va-newval').textContent='New Value: '+fmt(nv);
+  document.getElementById('va-rdelta').textContent=fmt(rdelta)+'/mo';
+  document.getElementById('va-uplift').textContent=fmt(uplift);
+  document.getElementById('va-equity').textContent=fmt(valueInc);
+  document.getElementById('va-roi').textContent=roi.toFixed(1)+'%';
+  document.getElementById('va-curr-inc').textContent=fmt(currInc);
+  document.getElementById('va-tgt-inc').textContent=fmt(tgtInc);
+  document.getElementById('va-inc-delta').textContent=fmt(tgtInc-currInc);
+  document.getElementById('va-cv-out').textContent=fmt(cv);
+  document.getElementById('va-nv-out').textContent=fmt(nv);
+}
+
+function calcZero(){
+  const ask=+document.getElementById('z-ask').value||0;
+  const price=+document.getElementById('z-price').value||0;
+  const appraise=+document.getElementById('z-appraise').value||0;
+  const ltv=(+document.getElementById('z-ltv').value||75)/100;
+  const concPct=(+document.getElementById('z-conc').value||3)/100;
+  const repair=+document.getElementById('z-repair').value||0;
+  const realtor=+document.getElementById('z-realtor').value||0;
+  const loan=appraise*ltv;
+  const down=Math.max(price-loan,0);
+  const egap=appraise-price;
+  const conc=price*concPct;
+  const closing=price*0.03;
+  const totalCosts=down+closing+repair+realtor+2800;
+  const covered=egap+conc;
+  const bridge=Math.max(totalCosts-covered,0);
+  document.getElementById('z-loan').textContent=fmt(loan);
+  document.getElementById('z-down').textContent=fmt(down);
+  document.getElementById('z-egap').textContent=fmt(egap);
+  document.getElementById('z-conc-out').textContent=fmt(conc);
+  document.getElementById('z-close').textContent=fmt(closing);
+  document.getElementById('z-rep').textContent=fmt(repair);
+  document.getElementById('z-real').textContent=fmt(realtor);
+  document.getElementById('z-bridge').textContent=fmt(bridge);
+  document.getElementById('z-pocket').textContent=fmt(bridge);
+  const vd=document.getElementById('z-verdict');
+  const vt=document.getElementById('z-vtitle');
+  const vm=document.getElementById('z-vmsg');
+  const pv=document.getElementById('z-pocket');
+  if(bridge===0){vd.className='verdict go';vt.textContent='ZERO OUT OF POCKET';vm.textContent='Equity and concessions cover all costs. No personal capital needed.';pv.style.color='#22C55E'}
+  else if(bridge<75000){vd.className='verdict caution';vt.textContent='BRIDGE NEEDED — '+fmt(bridge);vm.textContent='Inter-corporate bridge from Crosbies Hot Sauce Corp covers gap.';pv.style.color='#E8C96A'}
+  else{vd.className='verdict stop';vt.textContent='RESTRUCTURE NEEDED';vm.textContent='Negotiate price lower or increase seller concessions.';pv.style.color='#EF4444'}
+}
+
+calcUnderwrite();calcVelocity();calcValueAdd();calcZero();
+</script>
+</body>
+</html>
