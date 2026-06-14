@@ -40,8 +40,10 @@
         }
 
         .screen {
-            width: 1100px;
-            height: 650px;
+            width: 100%;
+            max-width: 1100px;
+            min-height: 600px;
+            height: auto;
             background-color: var(--bg-base);
             /* Carbon fiber pseudo-texture using radial gradients */
             background-image: repeating-linear-gradient(45deg, #0A0A0A 25%, transparent 25%, transparent 75%, #0A0A0A 75%, #0A0A0A), repeating-linear-gradient(45deg, #0A0A0A 25%, #0d0d0d 25%, #0d0d0d 75%, #0A0A0A 75%, #0A0A0A);
@@ -335,7 +337,10 @@
     <div class="screen">
         
         <header class="top-bar">
-            <div class="logo-area">
+            <div class="logo-area" style="display:flex;align-items:center;gap:14px">
+                <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-purple-master.png"
+                    style="width:70px;height:70px;border-radius:8px;border:1px solid #C9A84C;box-shadow:0 0 20px rgba(201,168,76,0.5);object-fit:cover"
+                    onerror="this.style.display='none'">
                 <div class="logo-placeholder">
                     <span class="logo-title">CROSHIRE</span>
                     <span class="logo-sub">PRIVATE CAPITAL CONSULTING</span>
@@ -452,12 +457,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. Configure real-world constraints & default values for the sliders
     const config = [
-        { min: 100000, max: 25000000, default: 4500000, step: 50000 }, // Row 1: Purchase Price ($)
-        { min: 0, max: 100, default: 30, step: 1 },                    // Row 2: Down Payment %
-        { min: 1, max: 40, default: 25, step: 1 },                     // Row 3: Loan Term (Years)
-        { min: 1, max: 15, default: 6.5, step: 0.1 },                  // Row 4: Interest Rate %
-        { min: 0, max: 5000000, default: 650000, step: 5000 },         // Row 5: Gross Annual Income (/)
-        { min: 0, max: 2000000, default: 225000, step: 1000 }          // Row 6: Annual OpEx (#)
+        { min: 100000, max: 2000000, default: 550000, step: 5000 }, // Row 1: Purchase Price ($)
+        { min: 0, max: 100, default: 25, step: 1 },                    // Row 2: Down Payment %
+        { min: 1, max: 40, default: 30, step: 1 },                     // Row 3: Loan Term (Years)
+        { min: 1, max: 15, default: 8.865, step: 0.1 },                // Row 4: Interest Rate %
+        { min: 0, max: 500000, default: 58800, step: 1000 },           // Row 5: Gross Annual Income (/)
+        { min: 0, max: 200000, default: 23520, step: 500 }             // Row 6: Annual OpEx (#)
     ];
 
     // 5. Initialize Inputs & Sync Text with Sliders
