@@ -6,321 +6,328 @@
     <title>Croshire Estates Corp - Deal Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-/* Color Palette & Variables */
-:root {
-    --bg-base: #0A0A0A;
-    --card-surface: rgba(20, 20, 20, 0.85);
-    --gold-molten: #C9A84C;
-    --gold-glow: rgba(201, 168, 76, 0.4);
-    --green-noi: #22C55E;
-    --red-fail: #EF4444;
-    --font-serif: 'Cinzel', serif;
-    --font-sans: 'Inter', sans-serif;
-}
+        /* Color Palette & Variables */
+        :root {
+            --bg-base: #0A0A0A;
+            --card-surface: rgba(20, 20, 20, 0.85);
+            --gold-molten: #C9A84C;
+            --gold-glow: rgba(201, 168, 76, 0.4);
+            --green-noi: #22C55E;
+            --red-fail: #EF4444;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #050505;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: var(--font-sans);
-    color: var(--gold-molten);
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: var(--font-sans);
+            color: var(--gold-molten);
+        }
 
-.tablet-container {
-    background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-    padding: 10px;
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 
-                0 0 0 2px #333;
-    perspective: 1000px;
-}
+        /* Tablet / Screen Container */
+        .tablet-container {
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            padding: 10px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 2px #333;
+            perspective: 1000px;
+        }
 
-.screen {
-    width: 100%;
-    max-width: 1100px;
-    min-height: 650px;
-    background-color: var(--bg-base);
-    background-image: repeating-linear-gradient(45deg, #0A0A0A 25%, transparent 25%, transparent 75%, #0A0A0A 75%, #0A0A0A), repeating-linear-gradient(45deg, #0A0A0A 25%, #0d0d0d 25%, #0d0d0d 75%, #0A0A0A 75%, #0A0A0A);
-    background-position: 0 0, 2px 2px;
-    background-size: 4px 4px;
-    border-radius: 16px;
-    border: 2px solid var(--gold-molten);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.9),
-                0 0 15px var(--gold-glow);
-    padding: 20px 30px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-}
+        .screen {
+            width: 1100px;
+            height: 650px;
+            background-color: var(--bg-base);
+            /* Carbon fiber pseudo-texture using radial gradients */
+            background-image: repeating-linear-gradient(45deg, #0A0A0A 25%, transparent 25%, transparent 75%, #0A0A0A 75%, #0A0A0A), repeating-linear-gradient(45deg, #0A0A0A 25%, #0d0d0d 25%, #0d0d0d 75%, #0A0A0A 75%, #0A0A0A);
+            background-position: 0 0, 2px 2px;
+            background-size: 4px 4px;
+            border-radius: 16px;
+            border: 2px solid var(--gold-molten);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9), 0 0 15px var(--gold-glow);
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
 
-.screen::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    right: 20px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--gold-molten), transparent);
-    border-radius: 2px;
-}
+        /* Top & Bottom Accent Lines */
+        .screen::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            right: 20px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold-molten), transparent);
+            border-radius: 2px;
+        }
 
-.bottom-accent {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-    right: 20px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--gold-molten), transparent);
-    border-radius: 2px;
-}
+        .bottom-accent {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            right: 20px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold-molten), transparent);
+            border-radius: 2px;
+        }
 
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
+        /* Header & Navigation */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
 
-.logo-placeholder {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
+        .logo-placeholder {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
 
-.logo-title {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px var(--gold-glow);
-}
+        .logo-title {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--gold-glow);
+            line-height: 1;
+        }
 
-.logo-sub {
-    font-size: 10px;
-    letter-spacing: 1px;
-}
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #ccc;
+            margin-top: 2px;
+        }
 
-.logo-bottom {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 3px;
-}
+        .logo-bottom {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: 2px;
+        }
 
-.nav-tabs {
-    display: flex;
-    gap: 10px;
-}
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
 
-.tab {
-    background: var(--card-surface);
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    color: #888;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        .tab {
+            background: var(--card-surface);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: #aaa;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.tab:hover {
-    color: var(--gold-molten);
-    border-color: var(--gold-molten);
-}
+        .tab.active {
+            color: var(--gold-molten);
+            border-color: var(--gold-molten);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
 
-.tab.active {
-    color: var(--gold-molten);
-    border-color: var(--gold-molten);
-    box-shadow: 0 0 10px var(--gold-glow);
-}
+        .sub-nav {
+            text-align: right;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            padding-right: 10px;
+        }
 
-.sub-nav {
-    text-align: right;
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    opacity: 0.8;
-}
+        /* Main Dashboard Layout */
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
 
-.dashboard {
-    display: flex;
-    gap: 20px;
-    flex-grow: 1;
-}
+        /* Glass Card Styling */
+        .panel {
+            background: var(--card-surface);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.8);
+        }
 
-.panel {
-    background: var(--card-surface);
-    border: 1px solid rgba(201, 168, 76, 0.4);
-    border-radius: 12px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 
-                0 5px 15px rgba(0,0,0,0.8);
-}
+        /* Left Panel - Inputs */
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.left-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.input-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        .prefix {
+            background: var(--bg-base);
+            border: 1px solid var(--gold-molten);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            font-family: var(--font-serif);
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 0 8px var(--gold-glow);
+            color: var(--gold-molten);
+            flex-shrink: 0;
+        }
 
-.prefix {
-    background: var(--bg-base);
-    border: 1px solid var(--gold-molten);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
-    font-family: var(--font-serif);
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 8px var(--gold-glow);
-}
+        .text-input {
+            background: var(--bg-base);
+            border: 1px solid var(--gold-molten);
+            height: 43px;
+            width: 130px;
+            border-radius: 6px;
+            color: white;
+            padding: 0 10px;
+            outline: none;
+            font-size: 16px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+            box-sizing: border-box;
+        }
 
-.text-input {
-    background: var(--bg-base);
-    border: 1px solid var(--gold-molten);
-    height: 40px;
-    width: 120px;
-    border-radius: 6px;
-    color: white;
-    padding: 0 10px;
-    outline: none;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
-}
+        /* Custom Range Slider */
+        .gold-slider {
+            -webkit-appearance: none;
+            flex-grow: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            outline: none;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+        }
 
-.gold-slider {
-    -webkit-appearance: none;
-    flex-grow: 1;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    outline: none;
-}
+        .gold-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffe180, var(--gold-molten));
+            cursor: pointer;
+            box-shadow: 0 0 12px var(--gold-molten);
+        }
 
-.gold-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffe180, var(--gold-molten));
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--gold-molten);
-}
+        /* Right Panel - KPIs */
+        .right-panel {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+        }
 
-.right-panel {
-    flex: 1.2;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-}
+        .card {
+            background: var(--card-surface);
+            border: 1px solid var(--gold-molten);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(201, 168, 76, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.card {
-    background: var(--card-surface);
-    border: 1px solid var(--gold-molten);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(201, 168, 76, 0.1);
-}
+        .hero-card {
+            flex-grow: 1;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
 
-.hero-card {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 0 20px var(--gold-glow);
-}
+        .card-label {
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #eee;
+        }
 
-.card-label {
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    color: #eee;
-}
+        .hero-value {
+            font-family: var(--font-serif);
+            font-size: 56px;
+            font-weight: 700;
+            text-shadow: 0 0 15px var(--gold-glow);
+            margin: 0;
+        }
 
-.hero-value {
-    font-family: var(--font-serif);
-    font-size: 56px;
-    font-weight: 700;
-    text-shadow: 0 0 15px var(--gold-glow);
-}
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            height: 240px;
+        }
 
-.kpi-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+        .kpi-value {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            font-weight: 600;
+            text-shadow: 0 0 8px var(--gold-glow);
+        }
 
-.kpi-value {
-    font-family: var(--font-serif);
-    font-size: 32px;
-    font-weight: 600;
-    text-shadow: 0 0 8px var(--gold-glow);
-}
+        .noi-green {
+            color: var(--green-noi);
+            font-family: var(--font-sans);
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+            font-weight: 600;
+            font-size: 32px;
+        }
 
-.noi-green {
-    color: var(--green-noi);
-    font-family: var(--font-sans);
-    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
-}
+        /* DSCR Buttons */
+        .dscr-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.dscr-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+        .btn-pass, .btn-fail {
+            background: var(--bg-base);
+            border: 1px solid #555;
+            color: #888;
+            padding: 8px 24px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
 
-.btn-pass, .btn-fail {
-    background: var(--bg-base);
-    border: 1px solid #555;
-    color: #888;
-    padding: 8px 24px;
-    border-radius: 6px;
-    font-family: var(--font-sans);
-    font-size: 16px;
-}
-
-.btn-pass {
-    border-color: var(--green-noi);
-    color: var(--green-noi);
-    box-shadow: inset 0 0 10px rgba(34, 197, 94, 0.2);
-}
-
-.btn-fail {
-    border-color: var(--red-fail);
-    color: var(--red-fail);
-}
-
-.footer-text {
-    text-align: right;
-    font-size: 12px;
-    opacity: 0.6;
-    margin-top: -5px;
-}
-
-</style>
+        .footer-text {
+            text-align: right;
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: -5px;
+            padding-right: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -337,11 +344,11 @@ body {
             </div>
             
             <nav class="nav-tabs">
-                <button class="tab active" onclick="switchTab('underwrite',this)">Underwrite</button>
-                <button class="tab" onclick="switchTab('velocity',this)">Velocity</button>
-                <button class="tab" onclick="switchTab('valueadd',this)">Value Add</button>
-                <button class="tab" onclick="switchTab('zeroout',this)">Zero Out</button>
-                <button class="tab" onclick="switchTab('checklist',this)">Checklist</button>
+                <button class="tab active">Underwrite</button>
+                <button class="tab">Velocity</button>
+                <button class="tab">Value Add</button>
+                <button class="tab">Zero Out</button>
+                <button class="tab">Checklist</button>
             </nav>
         </header>
         
@@ -354,46 +361,46 @@ body {
             <section class="panel left-panel">
                 <div class="input-row">
                     <div class="prefix">$</div>
-                    <input type="number" class="text-input" id="input-1" value="1200" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-1" min="500" max="5000" value="1200" oninput="document.getElementById('input-1').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="Offer Price">
+                    <input type="range" class="gold-slider" id="slider-price">
                 </div>
                 <div class="input-row">
                     <div class="prefix">%</div>
-                    <input type="number" class="text-input" id="input-2" value="0" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-2" min="0" max="30" value="0" oninput="document.getElementById('input-2').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="Down Pmt">
+                    <input type="range" class="gold-slider" id="slider-down">
                 </div>
                 <div class="input-row">
                     <div class="prefix">#</div>
-                    <input type="number" class="text-input" id="input-3" value="4" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-3" min="1" max="50" value="4" oninput="document.getElementById('input-3').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="Loan Term">
+                    <input type="range" class="gold-slider" id="slider-term">
                 </div>
                 <div class="input-row">
                     <div class="prefix">%</div>
-                    <input type="number" class="text-input" id="input-4" value="90" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-4" min="50" max="100" value="90" oninput="document.getElementById('input-4').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="Interest">
+                    <input type="range" class="gold-slider" id="slider-rate">
                 </div>
                 <div class="input-row">
                     <div class="prefix">/</div>
-                    <input type="number" class="text-input" id="input-5" value="40" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-5" min="20" max="70" value="40" oninput="document.getElementById('input-5').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="Gross Inc">
+                    <input type="range" class="gold-slider" id="slider-income">
                 </div>
                 <div class="input-row">
                     <div class="prefix">#</div>
-                    <input type="number" class="text-input" id="input-6" value="6" step="0.5" oninput="calculate()">
-                    <input type="range" class="gold-slider" id="slider-6" min="4" max="12" step="0.5" value="6" oninput="document.getElementById('input-6').value=this.value;calculate()">
+                    <input type="text" class="text-input" placeholder="OpEx">
+                    <input type="range" class="gold-slider" id="slider-opex">
                 </div>
             </section>
 
-            <section class="panel right-panel">
+            <section class="right-panel">
                 <div class="card hero-card">
                     <div class="card-label">Offer Price</div>
-                    <div class="hero-value" id="out-offer">$960,000</div>
+                    <div class="hero-value" id="out-price">Offer Price</div>
                 </div>
                 
                 <div class="kpi-grid">
                     <div class="card">
                         <div class="card-label">NOI</div>
-                        <div class="kpi-value noi-green" id="out-noi">$31,104</div>
+                        <div class="noi-green" id="out-noi">#22C55E</div>
                     </div>
                     <div class="card">
                         <div class="card-label">DSCR</div>
@@ -404,11 +411,11 @@ body {
                     </div>
                     <div class="card">
                         <div class="card-label">Cap Rate</div>
-                        <div class="kpi-value" id="out-cap">6.00%</div>
+                        <div class="kpi-value" id="out-cap">0.67%</div>
                     </div>
                     <div class="card">
                         <div class="card-label">Cash-on-Cash Return</div>
-                        <div class="kpi-value" id="out-coc">5.6%</div>
+                        <div class="kpi-value" id="out-coc">17.50%</div>
                     </div>
                 </div>
                 <div class="footer-text">croshireestates.com</div>
@@ -421,40 +428,39 @@ body {
 </div>
 
 <script>
-function switchTab(name, btn) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-}
-</script>
-
-<script>
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Grab all input rows based on the existing structure
     const inputRows = document.querySelectorAll('.input-row');
+    
+    // Map the 6 anonymous input rows to specific financial metrics
     const inputs = Array.from(inputRows).map(row => ({
         text: row.querySelector('.text-input'),
         slider: row.querySelector('.gold-slider')
     }));
 
-    const offerPriceEl = document.querySelector('.hero-value');
-    const noiEl = document.querySelector('.noi-green');
-    const btnPass = document.querySelector('.btn-pass');
-    const btnFail = document.querySelector('.btn-fail');
-    const kpiValues = document.querySelectorAll('.kpi-value');
-    const capRateEl = kpiValues[1];
-    const cocEl = kpiValues[2];
+    // 2. Grab output target elements
+    const offerPriceEl = document.getElementById('out-price');
+    const noiEl = document.getElementById('out-noi');
+    const btnPass = document.getElementById('btn-pass');
+    const btnFail = document.getElementById('btn-fail');
+    const capRateEl = document.getElementById('out-cap');
+    const cocEl = document.getElementById('out-coc');
 
+    // 3. Formatting Utilities
     const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
     const formatPercent = (num) => (num).toFixed(2) + '%';
 
+    // 4. Configure real-world constraints & default values for the sliders
     const config = [
-        { min: 100000, max: 25000000, default: 4500000, step: 50000 },
-        { min: 0, max: 100, default: 30, step: 1 },
-        { min: 1, max: 40, default: 25, step: 1 },
-        { min: 1, max: 15, default: 6.5, step: 0.1 },
-        { min: 0, max: 5000000, default: 650000, step: 5000 },
-        { min: 0, max: 2000000, default: 225000, step: 1000 }
+        { min: 100000, max: 25000000, default: 4500000, step: 50000 }, // Row 1: Purchase Price ($)
+        { min: 0, max: 100, default: 30, step: 1 },                    // Row 2: Down Payment %
+        { min: 1, max: 40, default: 25, step: 1 },                     // Row 3: Loan Term (Years)
+        { min: 1, max: 15, default: 6.5, step: 0.1 },                  // Row 4: Interest Rate %
+        { min: 0, max: 5000000, default: 650000, step: 5000 },         // Row 5: Gross Annual Income (/)
+        { min: 0, max: 2000000, default: 225000, step: 1000 }          // Row 6: Annual OpEx (#)
     ];
 
+    // 5. Initialize Inputs & Sync Text with Sliders
     inputs.forEach((input, index) => {
         const conf = config[index];
         input.slider.min = conf.min;
@@ -462,50 +468,90 @@ document.addEventListener("DOMContentLoaded", () => {
         input.slider.step = conf.step;
         input.slider.value = conf.default;
         input.text.value = conf.default;
-        input.slider.addEventListener('input', (e) => { input.text.value = e.target.value; calculateDeal(); });
-        input.text.addEventListener('input', (e) => { let cleanVal = e.target.value.replace(/[^0-9.]/g, ''); input.slider.value = cleanVal || 0; calculateDeal(); });
+
+        // Two-way data binding for slider <-> text field
+        input.slider.addEventListener('input', (e) => {
+            input.text.value = e.target.value;
+            calculateDeal();
+        });
+        
+        input.text.addEventListener('input', (e) => {
+            // Strip out non-numeric chars if user types commas/letters
+            let cleanVal = e.target.value.replace(/[^0-9.]/g, '');
+            input.slider.value = cleanVal || 0;
+            calculateDeal();
+        });
     });
 
+    // 6. Core Underwriting Engine
     function calculateDeal() {
+        // Read current values
         const price = parseFloat(inputs[0].text.value) || 0;
         const downPmtPct = parseFloat(inputs[1].text.value) || 0;
         const termYrs = parseFloat(inputs[2].text.value) || 0;
         const ratePct = parseFloat(inputs[3].text.value) || 0;
         const grossInc = parseFloat(inputs[4].text.value) || 0;
         const opEx = parseFloat(inputs[5].text.value) || 0;
+
+        // Perform Calculations
         const downPayment = price * (downPmtPct / 100);
         const loanAmount = price - downPayment;
+        
+        // Mortgage Math (Monthly compounding)
         const r = (ratePct / 100) / 12;
         const n = termYrs * 12;
         let annualDebtService = 0;
+        
         if (loanAmount > 0 && r > 0 && n > 0) {
             const monthlyPmt = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
             annualDebtService = monthlyPmt * 12;
         } else if (loanAmount > 0 && r === 0 && n > 0) {
-            annualDebtService = (loanAmount / n) * 12;
+            annualDebtService = (loanAmount / n) * 12; // 0% interest fallback
         }
+
         const noi = grossInc - opEx;
         const capRate = price > 0 ? (noi / price) * 100 : 0;
         const cashFlow = noi - annualDebtService;
         const cashOnCash = downPayment > 0 ? (cashFlow / downPayment) * 100 : 0;
+        
+        // Debt Service Coverage Ratio (DSCR)
         const dscr = annualDebtService > 0 ? (noi / annualDebtService) : 0;
+
+        // 7. Inject Live Data into DOM target elements
         offerPriceEl.textContent = formatCurrency(price);
         noiEl.textContent = formatCurrency(noi);
         capRateEl.textContent = formatPercent(capRate);
         cocEl.textContent = formatPercent(cashOnCash);
+
+        // 8. DSCR Pass/Fail Logic (Institutional standard is usually 1.25x)
         const targetDSCR = 1.25;
+        
         if (annualDebtService === 0 || dscr >= targetDSCR) {
+            // PASS
             btnPass.style.opacity = '1';
-            btnPass.style.boxShadow = 'inset 0 0 10px rgba(34, 197, 94, 0.4)';
-            btnFail.style.opacity = '0.2';
+            btnPass.style.color = 'var(--green-noi)';
+            btnPass.style.borderColor = 'var(--green-noi)';
+            btnPass.style.boxShadow = 'inset 0 0 10px rgba(34, 197, 94, 0.3)';
+            
+            btnFail.style.opacity = '0.3';
+            btnFail.style.color = '#888';
+            btnFail.style.borderColor = '#555';
             btnFail.style.boxShadow = 'none';
         } else {
-            btnPass.style.opacity = '0.2';
+            // FAIL
+            btnPass.style.opacity = '0.3';
+            btnPass.style.color = '#888';
+            btnPass.style.borderColor = '#555';
             btnPass.style.boxShadow = 'none';
+
             btnFail.style.opacity = '1';
-            btnFail.style.boxShadow = 'inset 0 0 10px rgba(239, 68, 68, 0.4)';
+            btnFail.style.color = 'var(--red-fail)';
+            btnFail.style.borderColor = 'var(--red-fail)';
+            btnFail.style.boxShadow = 'inset 0 0 10px rgba(239, 68, 68, 0.3)';
         }
     }
+
+    // Run the initial calculation on page load
     calculateDeal();
 });
 </script>
