@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croshire Capital — Deal Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at 50% 60%,#1a1200 0%,#0a0800 50%,#000 100%);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+}
+
+/* DEVICE FRAME */
+.device{
+  width:100%;
+  max-width:1000px;
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,0.012) 0px,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 6px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,0.012) 0px,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 6px),
+    linear-gradient(160deg,#1c1c1c 0%,#0d0d0d 40%,#111 100%);
+  border-radius:28px;
+  border:2px solid #C9A84C;
+  box-shadow:
+    0 0 0 1px #5a3800,
+    0 0 50px rgba(201,168,76,0.5),
+    0 0 100px rgba(201,168,76,0.2),
+    inset 0 1px 0 rgba(255,215,0,0.2),
+    0 50px 100px rgba(0,0,0,0.9);
+  overflow:hidden;
+  position:relative;
+}
+
+/* GOLD STRIPS */
+.gstrip{height:3px;background:linear-gradient(90deg,#3a2000,#8B6500,#FFD700,#C9A84C,#FFD700,#8B6500,#3a2000)}
+
+/* HEADER */
+.hdr{
+  display:flex;
+  align-items:center;
+  padding:16px 24px 12px;
+  background:linear-gradient(180deg,rgba(201,168,76,0.06),transparent);
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  gap:0;
+}
+
+/* LOGO */
+.logo{display:flex;align-items:center;gap:12px;width:260px;flex-shrink:0}
+.logo-shield{
+  width:64px;height:64px;
+  background:radial-gradient(circle at 40% 35%,#8B6500,#3a2000);
+  border:2px solid #C9A84C;
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(201,168,76,0.4),inset 0 1px 0 rgba(255,215,0,0.3);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.logo-shield img{width:60px;height:60px;object-fit:cover}
+.logo-text{}
+.logo-text h1{
+  font-family:'Cinzel',serif;
+  font-size:24px;font-weight:900;
+  color:#E8C96A;
+  letter-spacing:3px;
+  line-height:1;
+  text-shadow:0 0 20px rgba(232,201,106,0.6);
+}
+.logo-text p{
+  font-size:9px;color:#6B4F00;
+  letter-spacing:2px;text-transform:uppercase;margin-top:2px;
+}
+.logo-text p span{color:#8B6500}
+
+/* LAURELS + SECTORS */
+.center-hdr{flex:1;text-align:center}
+.laurels{font-size:18px;color:#8B6500;margin-bottom:2px}
+.sectors{font-size:10px;color:#6B4F00;letter-spacing:3px;text-transform:uppercase}
+.sectors b{color:#9A7800}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:nowrap}
+.tab{
+  padding:7px 14px;
+  border:1px solid rgba(201,168,76,0.35);
+  border-radius:6px;
+  background:rgba(0,0,0,0.5);
+  color:#8B6500;
+  font-size:11px;font-weight:600;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  transition:all 0.15s;
+  white-space:nowrap;
+}
+.tab:hover{border-color:#C9A84C;color:#C9A84C;background:rgba(201,168,76,0.08)}
+.tab.active{
+  background:linear-gradient(135deg,#5a3800,#8B6500,#C9A84C);
+  color:#000;border-color:#FFD700;
+  box-shadow:0 0 12px rgba(201,168,76,0.5);
+}
+
+/* MAIN GRID — LEFT + RIGHT */
+.main{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
+
+/* LEFT PANEL */
+.left{
+  padding:24px 20px;
+  border-right:1px solid rgba(201,168,76,0.15);
+}
+
+/* INPUT ROW */
+.irow{
+  display:flex;align-items:center;
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:6px;
+  margin-bottom:8px;
+  overflow:hidden;
+}
+.irow:focus-within{border-color:#C9A84C;box-shadow:0 0 8px rgba(201,168,76,0.25)}
+.ipfx{
+  width:38px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#C9A84C;
+  background:linear-gradient(180deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));
+  border-right:1px solid rgba(201,168,76,0.15);
+  flex-shrink:0;font-family:'Cinzel',serif;
+}
+.irow input,.irow select{
+  flex:1;background:transparent;border:none;outline:none;
+  color:#E8C96A;font-size:15px;font-weight:400;
+  padding:0 12px;height:44px;font-family:'Inter',sans-serif;
+}
+.irow select option{background:#111;color:#E8C96A}
+.isfx{padding:0 10px;font-size:11px;color:#444;height:44px;display:flex;align-items:center}
+.flabel{font-size:9px;color:#4a3800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;margin-top:2px}
+
+/* GOLD SLIDER */
+.srow{margin-bottom:10px}
+.stop{display:flex;justify-content:space-between;margin-bottom:5px}
+.sname{font-size:9px;color:#4a3800;letter-spacing:1.5px;text-transform:uppercase}
+.sval{font-size:11px;color:#C9A84C;font-weight:700}
+input[type=range]{
+  width:100%;-webkit-appearance:none;
+  height:3px;
+  background:linear-gradient(90deg,#8B6500 var(--pct,50%),rgba(201,168,76,0.1) var(--pct,50%));
+  border-radius:2px;outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#FFD700,#C9A84C,#8B6500);
+  cursor:pointer;border:2px solid #000;
+  box-shadow:0 0 14px rgba(255,215,0,0.8),0 0 4px rgba(0,0,0,0.8);
+}
+
+/* RIGHT PANEL */
+.right{padding:20px;display:flex;flex-direction:column;gap:12px}
+
+/* OFFER PRICE BOX */
+.offer-box{
+  background:linear-gradient(135deg,#0c0900,#1a1200,#0c0900);
+  border:1px solid #C9A84C;
+  border-radius:8px;
+  padding:18px 20px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(201,168,76,0.2),inset 0 1px 0 rgba(255,215,0,0.15);
+  position:relative;
+}
+.offer-label{
+  font-size:11px;letter-spacing:2px;color:#8B6500;
+  text-transform:uppercase;margin-bottom:6px;
+}
+.offer-value{
+  font-family:'Cinzel',serif;
+  font-size:42px;font-weight:900;
+  color:#E8C96A;line-height:1;
+  text-shadow:0 0 30px rgba(232,201,106,0.6),0 0 60px rgba(201,168,76,0.3);
+}
+.offer-sub{font-size:11px;color:#4a3800;margin-top:4px}
+
+/* NOI + DSCR ROW */
+.mid-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.noi-box{
+  background:linear-gradient(135deg,#080d08,#0f150f);
+  border:1px solid rgba(34,197,94,0.3);
+  border-radius:8px;padding:14px 16px;
+  box-shadow:0 0 15px rgba(34,197,94,0.08);
+}
+.noi-label{font-size:10px;color:#555;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.noi-value{font-size:28px;font-weight:700;color:#22C55E;font-family:'Inter',sans-serif;
+  text-shadow:0 0 20px rgba(34,197,94,0.5)}
+
+.dscr-box{
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:8px;padding:14px 16px;
+}
+.dscr-label{font-size:10px;color:#555;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.dscr-row{display:flex;gap:8px;align-items:center;margin-top:4px}
+.dscr-val{font-size:18px;font-weight:700;color:#E8C96A;margin-bottom:4px}
+.badge-pass{
+  padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;
+  background:rgba(34,197,94,0.2);color:#22C55E;
+  border:1px solid rgba(34,197,94,0.5);
+  box-shadow:0 0 8px rgba(34,197,94,0.3);
+}
+.badge-fail{
+  padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;
+  background:rgba(239,68,68,0.15);color:#EF4444;
+  border:1px solid rgba(239,68,68,0.3);
+}
+
+/* CAP RATE + CASH ON CASH ROW */
+.bot-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.cap-box{
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:8px;padding:14px 16px;text-align:center;
+  position:relative;
+}
+.star-dec{position:absolute;color:#8B6500;font-size:14px}
+.star-tl{top:8px;left:10px}
+.star-tr{top:8px;right:10px}
+.star-bl{bottom:8px;left:10px}
+.cap-label{font-size:11px;color:#8B6500;letter-spacing:1px;margin-bottom:4px}
+.cap-value{font-size:26px;font-weight:700;color:#C9A84C;font-family:'Inter',sans-serif}
+
+.coc-box{
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:8px;padding:14px 16px;text-align:center;
+}
+.coc-label{font-size:11px;color:#8B6500;letter-spacing:1px;margin-bottom:4px}
+.coc-value{font-size:26px;font-weight:700;color:#C9A84C;font-family:'Inter',sans-serif}
+
+/* FOOTER */
+.ftr{
+  background:rgba(0,0,0,0.6);
+  border-top:1px solid rgba(201,168,76,0.12);
+  padding:8px 24px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.ftr-l{font-size:9px;color:#3a2800;letter-spacing:1px;text-transform:uppercase}
+.ftr-r{font-size:10px;color:#4a3800}
+.ftr-r a{color:#8B6500;text-decoration:none}
+
+/* TAB PANELS */
+.lpanel{display:none}
+.lpanel.active{display:block}
+.rpanel{display:none}
+.rpanel.active{display:flex;flex-direction:column;gap:12px}
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="gstrip"></div>
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="logo">
+      <div class="logo-shield">
+        <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-purple-master.png"
+          alt="Croshire"
+          onerror="this.parentElement.innerHTML='<span style=font-size:24px;color:#C9A84C;font-family:Cinzel,serif;font-weight:900>C</span>'">
+      </div>
+      <div class="logo-text">
+        <h1>CROSHIRE</h1>
+        <p>Private Capital Consulting · <span>Capital</span></p>
+      </div>
+    </div>
+
+    <div class="center-hdr">
+      <div class="laurels">❧ ✦ ❧</div>
+      <div class="sectors"><b>Real Estate</b> · <b>Commercial</b> · <b>Marine</b> · <b>Aviation</b></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="sw('underwrite',this)">Underwrite</button>
+      <button class="tab" onclick="sw('velocity',this)">Velocity</button>
+      <button class="tab" onclick="sw('valueadd',this)">Value Add</button>
+      <button class="tab" onclick="sw('zeroout',this)">Zero Out</button>
+      <button class="tab" onclick="sw('checklist',this)">Checklist</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT -->
+    <div class="left">
+
+      <!-- UNDERWRITE -->
+      <div class="lpanel active" id="lp-underwrite">
+        <div class="flabel">Monthly Rent / Unit</div>
+        <div class="irow">
+          <div class="ipfx">$</div>
+          <input type="number" id="u-rent" value="1200" oninput="cu()">
+        </div>
+
+        <div class="flabel">Other Income</div>
+        <div class="irow">
+          <div class="ipfx">%</div>
+          <input type="number" id="u-other" value="0" min="0" max="30" oninput="cu()">
+          <div class="isfx">fees/parking</div>
+        </div>
+
+        <div class="flabel">Number of Units</div>
+        <div class="irow">
+          <div class="ipfx">#</div>
+          <input type="number" id="u-units" value="4" min="1" oninput="cu()">
+        </div>
+
+        <div class="srow" style="margin-top:10px">
+          <div class="stop">
+            <span class="sname">Occupancy Rate</span>
+            <span class="sval" id="u-occ-v">90%</span>
+          </div>
+          <input type="range" id="u-occ" min="50" max="100" value="90"
+            oninput="document.getElementById('u-occ-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-50)/50*100+'%');cu()">
+        </div>
+
+        <div class="srow">
+          <div class="stop">
+            <span class="sname">Expense Ratio</span>
+            <span class="sval" id="u-exp-v">40%</span>
+          </div>
+          <input type="range" id="u-exp" min="20" max="70" value="40"
+            oninput="document.getElementById('u-exp-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-20)/50*100+'%');cu()">
+        </div>
+
+        <div class="srow">
+          <div class="stop">
+            <span class="sname">Cap Rate</span>
+            <span class="sval" id="u-cap-v">6%</span>
+          </div>
+          <input type="range" id="u-cap" min="4" max="12" step="0.5" value="6"
+            oninput="document.getElementById('u-cap-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-4)/8*100+'%');cu()">
+        </div>
+
+        <div class="flabel" style="margin-top:8px">Down Payment</div>
+        <div class="irow">
+          <div class="ipfx">$</div>
+          <input type="number" id="u-down" value="137500" oninput="cu()">
+        </div>
+      </div>
+
+      <!-- VELOCITY -->
+      <div class="lpanel" id="lp-velocity">
+        <div class="flabel">Appraised Value</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="v-val" value="575000" oninput="cv()"></div>
+
+        <div class="flabel">Purchase Price</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="v-price" value="525000" oninput="cv()"></div>
+
+        <div class="flabel">Monthly Rental Income</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="v-rent" value="4900" oninput="cv()"></div>
+
+        <div class="flabel">Property Tax (Monthly)</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="v-tax" value="450" oninput="cv()"></div>
+
+        <div class="flabel">Insurance (Monthly)</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="v-ins" value="175" oninput="cv()"></div>
+
+        <div class="flabel">FICO Tier</div>
+        <div class="irow">
+          <div class="ipfx">#</div>
+          <select id="v-fico" onchange="cv()">
+            <option value="8.365">750+ — 8.365%</option>
+            <option value="8.865" selected>700-749 — 8.865%</option>
+            <option value="9.615">650+ — 9.615%</option>
+          </select>
+        </div>
+
+        <div class="srow" style="margin-top:10px">
+          <div class="stop"><span class="sname">LTV</span><span class="sval" id="v-ltv-v">75%</span></div>
+          <input type="range" id="v-ltv" min="50" max="75" value="75"
+            oninput="document.getElementById('v-ltv-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-50)/25*100+'%');cv()">
+        </div>
+
+        <div class="srow">
+          <div class="stop"><span class="sname">Points</span><span class="sval" id="v-pts-v">2 pts</span></div>
+          <input type="range" id="v-pts" min="0" max="5" step="0.5" value="2"
+            oninput="document.getElementById('v-pts-v').textContent=this.value+' pts';this.style.setProperty('--pct',this.value/5*100+'%');cv()">
+        </div>
+      </div>
+
+      <!-- VALUE ADD -->
+      <div class="lpanel" id="lp-valueadd">
+        <div class="flabel">Number of Units</div>
+        <div class="irow"><div class="ipfx">#</div><input type="number" id="va-units" value="4" oninput="cva()"></div>
+
+        <div class="flabel">Current Rent / Unit</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="va-curr" value="1200" oninput="cva()"></div>
+
+        <div class="flabel">Target Rent / Unit</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="va-tgt" value="1400" oninput="cva()"></div>
+
+        <div class="flabel">Current Property Value</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="va-cv" value="550000" oninput="cva()"></div>
+
+        <div class="flabel">Down Payment</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="va-down" value="137500" oninput="cva()"></div>
+
+        <div class="srow" style="margin-top:10px">
+          <div class="stop"><span class="sname">Occupancy</span><span class="sval" id="va-occ-v">90%</span></div>
+          <input type="range" id="va-occ" min="50" max="100" value="90"
+            oninput="document.getElementById('va-occ-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-50)/50*100+'%');cva()">
+        </div>
+
+        <div class="srow">
+          <div class="stop"><span class="sname">Cap Rate</span><span class="sval" id="va-cap-v">6%</span></div>
+          <input type="range" id="va-cap" min="4" max="12" step="0.5" value="6"
+            oninput="document.getElementById('va-cap-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-4)/8*100+'%');cva()">
+        </div>
+      </div>
+
+      <!-- ZERO OUT -->
+      <div class="lpanel" id="lp-zeroout">
+        <div class="flabel">Asking Price</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="z-ask" value="595000" oninput="cz()"></div>
+
+        <div class="flabel">Negotiated Purchase Price</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="z-price" value="525000" oninput="cz()"></div>
+
+        <div class="flabel">Appraised Value</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="z-appr" value="575000" oninput="cz()"></div>
+
+        <div class="flabel">Repair Reserve</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="z-repair" value="10000" oninput="cz()"></div>
+
+        <div class="flabel">Down Payment</div>
+        <div class="irow"><div class="ipfx">$</div><input type="number" id="z-down-in" value="137500" oninput="cz()"></div>
+
+        <div class="srow" style="margin-top:10px">
+          <div class="stop"><span class="sname">LTV (Appraised)</span><span class="sval" id="z-ltv-v">75%</span></div>
+          <input type="range" id="z-ltv" min="50" max="80" value="75"
+            oninput="document.getElementById('z-ltv-v').textContent=this.value+'%';this.style.setProperty('--pct',(this.value-50)/30*100+'%');cz()">
+        </div>
+
+        <div class="srow">
+          <div class="stop"><span class="sname">Seller Concessions</span><span class="sval" id="z-conc-v">3%</span></div>
+          <input type="range" id="z-conc" min="0" max="6" step="0.5" value="3"
+            oninput="document.getElementById('z-conc-v').textContent=this.value+'%';this.style.setProperty('--pct',this.value/6*100+'%');cz()">
+        </div>
+      </div>
+
+      <!-- CHECKLIST -->
+      <div class="lpanel" id="lp-checklist">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">01 — Purchased 3/5/7/10 Years Ago</div>
+            <div style="font-size:10px;color:#4a3800">Owner has equity. Higher motivation to sell at discount.</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">02 — Loan Maturity in 12 Months</div>
+            <div style="font-size:10px;color:#4a3800">Owner must sell or refinance. Creates maximum urgency.</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">03 — Delinquent Tax Activity</div>
+            <div style="font-size:10px;color:#4a3800">Financial distress. Likely to accept below-market offer.</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">04 — Free and Clear (Seller Finance)</div>
+            <div style="font-size:10px;color:#4a3800">No mortgage. Seller can carry the note — zero down possible.</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">05 — Below Replacement Cost</div>
+            <div style="font-size:10px;color:#4a3800">Buy cheaper than it costs to build. Instant equity day one.</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px">
+            <div style="font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:2px">06 — $1M+ Profit Potential</div>
+            <div style="font-size:10px;color:#4a3800">Minimum threshold. Value-add + appreciation must hit $1M+.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /left -->
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <!-- UNDERWRITE RIGHT -->
+      <div class="rpanel active" id="rp-underwrite">
+        <div class="offer-box">
+          <div class="offer-label">Offer Price</div>
+          <div class="offer-value" id="u-offer">$960,000</div>
+          <div class="offer-sub" id="u-per-unit">$240,000 per unit &nbsp;·&nbsp; GRM: <span id="u-grm">15.4</span>x</div>
+        </div>
+
+        <div class="mid-row">
+          <div class="noi-box">
+            <div class="noi-label">NOI</div>
+            <div class="noi-value" id="u-noi">$31,104</div>
+            <div style="font-size:10px;color:#1a6b2a;margin-top:2px">Annual Net Operating Income</div>
+          </div>
+          <div class="dscr-box">
+            <div class="dscr-label">DSCR</div>
+            <div class="dscr-val" id="u-dscr-val">—</div>
+            <div class="dscr-row">
+              <span class="badge-pass" id="u-pass">Pass</span>
+              <span class="badge-fail" id="u-fail">Fail</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot-row">
+          <div class="cap-box">
+            <div class="star-dec star-tl">★</div>
+            <div class="star-dec star-tr">★</div>
+            <div class="star-dec star-bl">★</div>
+            <div class="cap-label">Cap Rate</div>
+            <div class="cap-value" id="u-cap-out">6.00%</div>
+          </div>
+          <div class="coc-box">
+            <div class="coc-label">Cash-on-Cash Return</div>
+            <div class="coc-value" id="u-coc">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VELOCITY RIGHT -->
+      <div class="rpanel" id="rp-velocity">
+        <div class="offer-box">
+          <div class="offer-label">Loan Amount — FlexTerm</div>
+          <div class="offer-value" id="v-loan">$431,250</div>
+          <div class="offer-sub" id="v-rate-sub">Rate: 8.490% · Down: $93,750</div>
+        </div>
+
+        <div class="mid-row">
+          <div class="noi-box">
+            <div class="noi-label">Monthly Cash Flow</div>
+            <div class="noi-value" id="v-cf">$893</div>
+            <div style="font-size:10px;color:#1a6b2a;margin-top:2px">Annual: <span id="v-ann-cf">$10,716</span></div>
+          </div>
+          <div class="dscr-box">
+            <div class="dscr-label">DSCR</div>
+            <div class="dscr-val" id="v-dscr">1.22</div>
+            <div class="dscr-row">
+              <span class="badge-pass" id="v-pass">Pass</span>
+              <span class="badge-fail" id="v-fail" style="opacity:0.3">Fail</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot-row">
+          <div class="cap-box">
+            <div class="star-dec star-tl">★</div>
+            <div class="star-dec star-tr">★</div>
+            <div class="cap-label">Monthly P&amp;I</div>
+            <div class="cap-value" id="v-pi">$3,382</div>
+          </div>
+          <div class="coc-box">
+            <div class="coc-label">Points Cost</div>
+            <div class="coc-value" id="v-ptsc">$8,625</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VALUE ADD RIGHT -->
+      <div class="rpanel" id="rp-valueadd">
+        <div class="offer-box">
+          <div class="offer-label">Property Value Increase</div>
+          <div class="offer-value" style="color:#22C55E;text-shadow:0 0 30px rgba(34,197,94,0.5)" id="va-inc">$432,000</div>
+          <div class="offer-sub" id="va-newval">New Value: $982,000</div>
+        </div>
+
+        <div class="mid-row">
+          <div class="noi-box">
+            <div class="noi-label">Annual Income Uplift</div>
+            <div class="noi-value" id="va-uplift">$8,640</div>
+            <div style="font-size:10px;color:#1a6b2a;margin-top:2px">From rent increase</div>
+          </div>
+          <div class="dscr-box">
+            <div class="dscr-label">DSCR</div>
+            <div class="dscr-val" id="va-dscr">—</div>
+            <div class="dscr-row">
+              <span class="badge-pass" id="va-pass">Pass</span>
+              <span class="badge-fail" id="va-fail">Fail</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot-row">
+          <div class="cap-box">
+            <div class="star-dec star-tl">★</div>
+            <div class="star-dec star-tr">★</div>
+            <div class="cap-label">Cap Rate</div>
+            <div class="cap-value" id="va-cap-out">6.00%</div>
+          </div>
+          <div class="coc-box">
+            <div class="coc-label">Cash-on-Cash Return</div>
+            <div class="coc-value" id="va-coc">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZERO OUT RIGHT -->
+      <div class="rpanel" id="rp-zeroout">
+        <div class="offer-box">
+          <div class="offer-label">Cash Out of Pocket</div>
+          <div class="offer-value" id="z-pocket">$0</div>
+          <div class="offer-sub" id="z-sub">Equity gap and seller concessions cover all costs</div>
+        </div>
+
+        <div class="mid-row">
+          <div class="noi-box">
+            <div class="noi-label">Equity Gap</div>
+            <div class="noi-value" id="z-egap">$50,000</div>
+            <div style="font-size:10px;color:#1a6b2a;margin-top:2px">Appraised − Purchase</div>
+          </div>
+          <div class="dscr-box">
+            <div class="dscr-label">Bridge Needed</div>
+            <div class="dscr-val" id="z-bridge">$0</div>
+            <div class="dscr-row">
+              <span class="badge-pass" id="z-pass">Zero Out</span>
+              <span class="badge-fail" id="z-fail" style="opacity:0.3">Bridge</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot-row">
+          <div class="cap-box">
+            <div class="star-dec star-tl">★</div>
+            <div class="star-dec star-tr">★</div>
+            <div class="cap-label">Seller Concessions</div>
+            <div class="cap-value" id="z-conc-out">$15,750</div>
+          </div>
+          <div class="coc-box">
+            <div class="coc-label">Loan Amount</div>
+            <div class="coc-value" id="z-loan">$431,250</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST RIGHT -->
+      <div class="rpanel" id="rp-checklist">
+        <div class="offer-box">
+          <div class="offer-label">Cardone 9-Step Process</div>
+          <div class="offer-value" style="font-size:28px;padding:8px 0">Current Stage</div>
+          <div class="offer-sub">103 Mercer Mill Rd — Loan 6723351921</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:6px">
+            <span style="color:#22C55E;font-size:13px">✓</span>
+            <div><div style="font-size:11px;font-weight:600;color:#22C55E">01 Find The Deal</div><div style="font-size:10px;color:#4a3800">CoStar · LoopNet · Off-market</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:6px">
+            <span style="color:#22C55E;font-size:13px">✓</span>
+            <div><div style="font-size:11px;font-weight:600;color:#22C55E">02 Contact Broker</div><div style="font-size:10px;color:#4a3800">John Neufer — Velocity Mortgage Capital</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:6px">
+            <span style="color:#22C55E;font-size:13px">✓</span>
+            <div><div style="font-size:11px;font-weight:600;color:#22C55E">03 Underwrite The Deal</div><div style="font-size:10px;color:#4a3800">This calculator — NOI ÷ Cap Rate</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:6px">
+            <span style="color:#22C55E;font-size:13px">✓</span>
+            <div><div style="font-size:11px;font-weight:600;color:#22C55E">04 Write The LOI</div><div style="font-size:10px;color:#4a3800">135 days — 30 DD + 45 loan + close</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:6px">
+            <span style="color:#C9A84C;font-size:13px">▶</span>
+            <div><div style="font-size:11px;font-weight:600;color:#C9A84C">05 Debt Quote — IN PROGRESS</div><div style="font-size:10px;color:#4a3800">Special Review — Call John Neufer</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:#333;font-size:13px">○</span>
+            <div><div style="font-size:11px;font-weight:600;color:#333">06 Raise Equity</div><div style="font-size:10px;color:#2a1a00">ARF bridge + seller concessions</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:#333;font-size:13px">○</span>
+            <div><div style="font-size:11px;font-weight:600;color:#333">07-09 Close · Manage · Exit</div><div style="font-size:10px;color:#2a1a00">Blanket refi → cash out → next deal</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /right -->
+  </div><!-- /main -->
+
+  <!-- FOOTER -->
+  <div class="ftr">
+    <div class="ftr-l">Croshire Estates Corp · Pottstown PA · +1 (215) 436-8268</div>
+    <div class="ftr-r"><a href="https://croshireestates.com" target="_blank">croshireestates.com</a></div>
+  </div>
+  <div class="gstrip"></div>
+</div>
+
+<script>
+const f=n=>'$'+Math.round(n).toLocaleString();
+const fp=n=>n.toFixed(2)+'%';
+
+function sw(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.lpanel').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.rpanel').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('lp-'+name).classList.add('active');
+  document.getElementById('rp-'+name).classList.add('active');
+}
+
+// UNDERWRITE
+function cu(){
+  const units=+document.getElementById('u-units').value||0;
+  const rent=+document.getElementById('u-rent').value||0;
+  const other=(+document.getElementById('u-other').value||0)/100;
+  const occ=(+document.getElementById('u-occ').value||90)/100;
+  const exp=(+document.getElementById('u-exp').value||40)/100;
+  const cap=(+document.getElementById('u-cap').value||6)/100;
+  const down=+document.getElementById('u-down').value||0;
+  const gross=units*rent*12*(1+other);
+  const egi=gross*occ;
+  const noi=egi*(1-exp);
+  const offer=noi/cap;
+  const grm=gross>0?offer/gross:0;
+  // DSCR estimate using offer price at 75% LTV, 8.865%, 30yr
+  const loan=offer*0.75;
+  const mr=8.865/100/12;
+  const pi=loan*mr/(1-Math.pow(1+mr,-360));
+  const totalPmt=pi+450+175;
+  const dscr=units*rent/totalPmt;
+  const annualCF=(units*rent*occ-totalPmt*12);
+  const coc=down>0?(annualCF/down)*100:0;
+  document.getElementById('u-offer').textContent=f(offer);
+  document.getElementById('u-per-unit').textContent=f(offer/Math.max(units,1))+' per unit · GRM: '+grm.toFixed(1)+'x';
+  document.getElementById('u-noi').textContent=f(noi);
+  document.getElementById('u-grm').textContent=grm.toFixed(1);
+  document.getElementById('u-cap-out').textContent=fp(cap*100);
+  document.getElementById('u-dscr-val').textContent=dscr.toFixed(2);
+  document.getElementById('u-coc').textContent=coc.toFixed(1)+'%';
+  const pass=dscr>=1.2;
+  document.getElementById('u-pass').style.opacity=pass?'1':'0.3';
+  document.getElementById('u-fail').style.opacity=pass?'0.3':'1';
+}
+
+// VELOCITY
+function cv(){
+  const val=+document.getElementById('v-val').value||0;
+  const price=+document.getElementById('v-price').value||0;
+  const rent=+document.getElementById('v-rent').value||0;
+  const tax=+document.getElementById('v-tax').value||0;
+  const ins=+document.getElementById('v-ins').value||0;
+  const baseRate=+document.getElementById('v-fico').value||8.865;
+  const ltv=(+document.getElementById('v-ltv').value||75)/100;
+  const pts=+document.getElementById('v-pts').value||0;
+  const loan=val*ltv;
+  const down=Math.max(price-loan,0);
+  const finalRate=Math.max(baseRate-(pts*0.375),7.115);
+  const mr=finalRate/100/12;
+  const pi=loan*mr/(1-Math.pow(1+mr,-360));
+  const totalpmt=pi+tax+ins;
+  const dscr=totalpmt>0?rent/totalpmt:0;
+  const cf=rent-totalpmt;
+  const ptsCost=loan*(pts/100);
+  document.getElementById('v-loan').textContent=f(loan);
+  document.getElementById('v-rate-sub').textContent='Rate: '+finalRate.toFixed(3)+'% · Down: '+f(down);
+  document.getElementById('v-pi').textContent=f(pi);
+  document.getElementById('v-dscr').textContent=dscr.toFixed(2);
+  document.getElementById('v-cf').textContent=f(cf);
+  document.getElementById('v-cf').style.color=cf>=0?'#22C55E':'#EF4444';
+  document.getElementById('v-ann-cf').textContent=f(cf*12);
+  document.getElementById('v-ptsc').textContent=f(ptsCost);
+  const pass=dscr>=1.2;
+  document.getElementById('v-pass').style.opacity=pass?'1':'0.3';
+  document.getElementById('v-fail').style.opacity=pass?'0.3':'1';
+  document.getElementById('v-dscr').style.color=pass?'#22C55E':'#EF4444';
+}
+
+// VALUE ADD
+function cva(){
+  const units=+document.getElementById('va-units').value||0;
+  const curr=+document.getElementById('va-curr').value||0;
+  const tgt=+document.getElementById('va-tgt').value||0;
+  const cv=+document.getElementById('va-cv').value||0;
+  const down=+document.getElementById('va-down').value||0;
+  const occ=(+document.getElementById('va-occ').value||90)/100;
+  const cap=(+document.getElementById('va-cap').value||6)/100;
+  const rdelta=tgt-curr;
+  const uplift=units*rdelta*12*occ;
+  const valueInc=uplift/cap;
+  const nv=cv+valueInc;
+  const tgtInc=units*tgt*12*occ;
+  // DSCR on new value
+  const loan=nv*0.75;
+  const mr=8.865/100/12;
+  const pi=loan*mr/(1-Math.pow(1+mr,-360));
+  const totalpmt=pi+450+175;
+  const dscr=units*tgt/totalpmt;
+  const annualCF=(units*tgt*occ-totalpmt*12);
+  const coc=down>0?(annualCF/down)*100:0;
+  document.getElementById('va-inc').textContent=f(valueInc);
+  document.getElementById('va-newval').textContent='New Value: '+f(nv);
+  document.getElementById('va-uplift').textContent=f(uplift);
+  document.getElementById('va-cap-out').textContent=fp(cap*100);
+  document.getElementById('va-dscr').textContent=dscr.toFixed(2);
+  document.getElementById('va-coc').textContent=coc.toFixed(1)+'%';
+  const pass=dscr>=1.2;
+  document.getElementById('va-pass').style.opacity=pass?'1':'0.3';
+  document.getElementById('va-fail').style.opacity=pass?'0.3':'1';
+  document.getElementById('va-dscr').style.color=pass?'#22C55E':'#EF4444';
+}
+
+// ZERO OUT
+function cz(){
+  const ask=+document.getElementById('z-ask').value||0;
+  const price=+document.getElementById('z-price').value||0;
+  const appr=+document.getElementById('z-appr').value||0;
+  const repair=+document.getElementById('z-repair').value||0;
+  const downIn=+document.getElementById('z-down-in').value||0;
+  const ltv=(+document.getElementById('z-ltv').value||75)/100;
+  const concPct=(+document.getElementById('z-conc').value||3)/100;
+  const loan=appr*ltv;
+  const down=Math.max(price-loan,0);
+  const egap=appr-price;
+  const conc=price*concPct;
+  const closing=price*0.03;
+  const totalCosts=down+closing+repair+2800;
+  const covered=egap+conc;
+  const bridge=Math.max(totalCosts-covered,0);
+  document.getElementById('z-pocket').textContent=f(bridge);
+  document.getElementById('z-pocket').style.color=bridge===0?'#22C55E':bridge<75000?'#E8C96A':'#EF4444';
+  document.getElementById('z-sub').textContent=bridge===0?'Equity gap and seller concessions cover all costs':'Inter-corporate bridge from Crosbies Hot Sauce Corp';
+  document.getElementById('z-egap').textContent=f(egap);
+  document.getElementById('z-bridge').textContent=f(bridge);
+  document.getElementById('z-bridge').style.color=bridge===0?'#22C55E':'#EF4444';
+  document.getElementById('z-conc-out').textContent=f(conc);
+  document.getElementById('z-loan').textContent=f(loan);
+  const pass=bridge===0;
+  document.getElementById('z-pass').style.opacity=pass?'1':'0.3';
+  document.getElementById('z-fail').style.opacity=pass?'0.3':'1';
+}
+
+// Init sliders visual
+document.querySelectorAll('input[type=range]').forEach(el=>{
+  const min=+el.min,max=+el.max,val=+el.value,step=+el.step||1;
+  el.style.setProperty('--pct',(val-min)/(max-min)*100+'%');
+});
+
+cu();cv();cva();cz();
+</script>
+</body>
+</html>
