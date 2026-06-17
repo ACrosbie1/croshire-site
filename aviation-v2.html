@@ -20,173 +20,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Aircraft consulting and aviation consultings for buyers denied by traditional advisors. Croshire Estates connects buyers with private aviation advisors.">
 <title>CroshireAviation.com | Aircraft Consulting</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{
+/* BASE RESET & TYPOGRAPHY */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
   background: linear-gradient(160deg, #F5DFA0 0%, #FAF0CC 30%, #FFFDF5 60%, #FFFFFF 100%);
   color: #8A7040;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 17px; line-height: 1.65; overflow-x: hidden;
+  font-family: 'Raleway', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+h1, h2, h3, .section-title, .st, .sn { color: #2A1F00; }
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 52px;height:72px;
+nav {
   background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #F5DFA0 100%);
-  border-bottom:1px solid #D4B96A;
+  padding: 0 2.5rem; height: 75px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
-.nav-left{display:flex;align-items:center;gap:14px}
-.nav-logo img{width:80px;height:80px;object-fit:contain;}
-.nav-brand-top{
-  font-family:'Cinzel',serif;font-size:12px;letter-spacing:.28em;
-  color: #2A1F00;
-  text-transform:uppercase;
-}
-.nav-brand-sub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.32em;color:#2A1F00;opacity:0.8;text-transform:uppercase}
-.nav-links{display:flex}
-.nav-links a{
-  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:#2A1F00;text-decoration:none;padding:0 20px;height:72px;
-  display:flex;align-items:center;border-left:1px solid rgba(42, 31, 0, 0.1);transition:color .2s;
-}
-.nav-links a:hover{color:#8A7040}
+.nav-left { display: flex; align-items: center; gap: 14px; }
+.nav-logo img { 
+  width: 55px; height: 55px; 
+  object-fit: cover; 
+  border-radius: 50%; /* Circular Logo */
+  border: 1px solid #2A1F00;
+} 
+.nav-brand-top { font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.25em; color: #2A1F00; text-transform: uppercase; line-height: 1.2; font-weight: 700; }
+.nav-brand-sub { display: block; font-size: 0.6rem; letter-spacing: 0.3em; color: #2A1F00; opacity: 0.8; text-transform: uppercase; font-weight: 600; }
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a.nav-link { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #2A1F00; text-decoration: none; transition: color 0.2s; font-weight: 600; }
+.nav-links a.nav-link:hover { color: #8A7040; }
 .nav-apply {
-  font-family: 'Cinzel', serif !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.2em !important;
-  color: #FFFDF5 !important;
-  background: linear-gradient(135deg, #8B6500, #B8860B) !important;
-  text-decoration: none !important;
-  padding: 0.5rem 1.3rem !important;
-  border: none !important;
-  border-radius: 2px !important;
-  transition: transform 0.3s !important;
-  display: inline-block !important;
+  font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.15em; color: #FFFDF5; text-decoration: none; font-weight: 700;
+  padding: 0.6rem 1.5rem; border-radius: 3px; background: linear-gradient(135deg, #8B6500, #B8860B); border: none; transition: all 0.3s ease;
 }
-.nav-apply:hover { transform: translateY(-2px) !important; box-shadow: 0 4px 15px rgba(139, 101, 0, 0.4) !important; }
+.nav-apply:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(139, 101, 0, 0.4); }
 
 /* HERO */
-.hero{
-  position:relative;min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:130px 40px 100px;overflow:hidden;
-  background: transparent;
+.hero {
+  position: relative; width: 100%; padding: 10rem 2rem 6rem; background: transparent; text-align: center;
 }
-.hero-logo{margin-bottom:20px;width:70%;max-width:900px;position:relative;}
-.heb{
-  position:relative;z-index:2;font-family:'Cinzel',serif;
-  font-size:10px;letter-spacing:.44em;color:#8A7040;text-transform:uppercase;
-  display:flex;align-items:center;gap:20px;margin-bottom:24px;
-}
-.heb::before,.heb::after{content:'';width:60px;height:1px;background:linear-gradient(to right,transparent,#D4B96A)}
-.heb::after{transform:scaleX(-1)}
-.ht{
-  position:relative;z-index:2;font-family:'Cinzel',serif;
-  font-size:clamp(42px,7.5vw,96px);font-weight:900;
-  line-height:.92;letter-spacing:.03em;margin-bottom:10px;
-  color: #2A1F00;
-}
-.ts{display:block;font-size:.18em;letter-spacing:.5em;font-weight:600;color:#8A7040;margin-top:22px}
-.htag{
-  position:relative;z-index:2;font-family:'Cormorant Garamond',serif;
-  font-size:clamp(17px,2vw,23px);font-style:italic;color:#8A7040;
-  max-width:560px;margin:22px auto 50px; font-weight:600;
-}
-.pills{position:relative;z-index:2;display:flex;gap:3px;justify-content:center;margin-bottom:52px;flex-wrap:wrap;}
-.pill{
-  padding:11px 30px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;
-  text-transform:uppercase;display:flex;align-items:center;gap:10px;
-  background:#FFFFFF;border:1px solid #D4B96A;color:#2A1F00;
-  box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3);
-}
+.hero-logo { margin: 0 auto 2rem; width: 100%; max-width: 300px; position: relative; }
+.hero-logo video { 
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; /* Ensures perfect circle */
+  display: block; border-radius: 50%; /* Circular Video */
+  box-shadow: 0 4px 20px rgba(212, 185, 106, 0.6); 
+  border: 4px solid #D4B96A; 
+} 
+.heb { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.4em; color: #8A7040; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+.ht { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; letter-spacing: 0.05em; color: #2A1F00; margin-bottom: 1rem; line-height: 1.2; }
+.ts { display: block; font-size: 0.35em; letter-spacing: 0.4em; font-weight: 600; color: #8A7040; margin-top: 1rem; }
+.htag { font-size: 1.1rem; color: #8A7040; max-width: 700px; margin: 0 auto 2rem; line-height: 1.6; letter-spacing: 0.05em; }
+.pills { display: flex; justify-content: center; margin-bottom: 3rem; }
+.pill { padding: 0.6rem 1.5rem; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; background: #FFFFFF; border: 1px solid #D4B96A; border-radius: 4px; color: #2A1F00; box-shadow: 0 2px 10px rgba(212, 185, 106, 0.2); font-weight: 600; }
 
-/* LOCKED AD CONTAINERS */
-.locked-ad-container {
-  width: 100%;
-  padding-top: 56.25%; 
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #FFFFFF;
-  border: 1px solid #D4B96A;
-  pointer-events: none; 
-  user-select: none;
-  transition: all 0.3s;
-}
-.partner-card {
-  width: 320px;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background: #FFFFFF;
-  padding: 1.5rem;
-  border: 1px solid #D4B96A;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3);
-  transition: transform 0.3s;
-}
-.partner-card h3 { color: #2A1F00; font-family:'Cinzel', serif; font-size:1rem; letter-spacing:0.1em; }
-.partner-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(212, 185, 106, 0.5);
-}
-.apply-btn {
-  display: inline-block; font-family: 'Cinzel', serif; font-size: 0.75rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: #FFFDF5;
-  background: linear-gradient(135deg, #8B6500, #B8860B); text-decoration: none;
-  padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 700; transition: all 0.3s; border: none;
-}
-.partner-card:hover .apply-btn {
-  box-shadow: 0 4px 15px rgba(139, 101, 0, 0.4);
-}
+/* PARALLAX DIVIDER (Light Theme) */
+.parallax { position: relative; overflow: hidden; height: 350px; }
+.parallax-bg { position: absolute; inset: -20%; background-size: cover; background-position: center; background-attachment: fixed; z-index: 0; }
+.parallax-overlay { position: absolute; inset: 0; background: rgba(255, 253, 245, 0.88); z-index: 1; }
+.parallax-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 2rem; }
+.parallax-content h3 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 700; color: #2A1F00; margin-bottom: 12px; letter-spacing: 0.05em; }
+.parallax-content p { font-size: 1.1rem; color: #8A7040; max-width: 600px; }
 
-/* SECTIONS & GRID */
-.sd { background: #FFF8E7; }
-.ss { background: #FFFDF5; }
-.si{max-width:1160px;margin:0 auto;padding:100px 44px}
-.ey{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;margin-bottom:18px; color: #2A1F00; display:inline-block}
-h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,52px);font-weight:700;line-height:1.06;margin-bottom:18px; color:#2A1F00;}
-.lead{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#8A7040;max-width:640px;margin-bottom:56px}
+/* SECTIONS */
+.sd { background: #FFF8E7; padding: 5rem 2rem; }
+.ss { background: #FFFDF5; padding: 5rem 2rem; }
+.si { max-width: 1200px; margin: 0 auto; text-align: center; }
+.ey { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8A7040; margin-bottom: 1rem; display: block; font-weight: 600;}
+h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; margin-bottom: 1rem; }
+.lead { font-size: 1.1rem; color: #8A7040; max-width: 700px; margin: 0 auto 3rem; line-height: 1.6; }
 
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:rgba(212, 185, 106, 0.3)}
-.sc{position:relative;overflow:hidden;padding:42px 36px;background:#FFFFFF; transition:background .3s; border: 1px solid #D4B96A; box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3);}
-.sc:hover{background:#FFFDF5}
-.sn{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:20px; color:#2A1F00; display:inline-block}
-.st{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:#2A1F00;margin-bottom:13px}
-.sb{font-size:14px;color:#8A7040;line-height:1.65}
+/* SERVICES GRID */
+.sg { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; background: transparent; }
+.sc { background: #FFFFFF; border: 1px solid #D4B96A; border-radius: 8px; padding: 2.5rem 2rem; box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3); text-align: left; transition: transform 0.3s, box-shadow 0.3s; }
+.sc:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(212, 185, 106, 0.5); }
+.sn { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8A7040; margin-bottom: 0.5rem; display: block; font-weight: 700;}
+.st { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #2A1F00; margin-bottom: 1rem; }
+.sb { font-size: 0.95rem; color: #8A7040; line-height: 1.6; }
 
-/* PARALLAX */
-.parallax { position: relative; overflow: hidden; height: 480px; }
-.parallax-bg { position: absolute; top: -30%; left: 0; right: 0; bottom: -30%; background-size: cover; background-position: center; background-attachment: fixed; z-index: 0; }
-.parallax-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,253,245,0.95) 0%, rgba(255,253,245,0.7) 100%); z-index: 1; }
-.parallax-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 52px; }
-.parallax-content h3 { font-family: 'Cinzel', serif; font-size: clamp(22px, 3.5vw, 42px); font-weight: 700; color: #2A1F00; margin-bottom: 12px; }
-.parallax-content p { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #8A7040; }
+/* APPLY NOW / PARTNERS */
+.partners-section { background: #FFFDF5; padding: 5rem 2rem; border-top: 1px solid rgba(212, 185, 106, 0.3); text-align: center; }
+.partner-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; max-width: 1000px; margin: 0 auto 2rem; }
+.partner-card { width: 320px; background: #FFFFFF; border: 1px solid #D4B96A; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(212, 185, 106, 0.3); text-decoration: none; display: flex; flex-direction: column; gap: 1rem; transition: transform 0.3s; }
+.partner-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(212, 185, 106, 0.5); }
+.partner-card h3 { color: #2A1F00; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.1em; }
+.locked-ad-container { width: 100%; padding-top: 56.25%; position: relative; border-radius: 4px; border: 1px solid rgba(212, 185, 106, 0.3); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #FFFFFF; pointer-events: none; user-select: none; }
+.apply-btn { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #FFFDF5; background: linear-gradient(135deg, #8B6500, #B8860B); padding: 0.8rem 1.5rem; border-radius: 3px; font-weight: 700; border: none; }
 
 /* TRUST/FOOTER */
-.trust-footer-wrap {
-  background: linear-gradient(160deg, #3a2800 0%, #1e1400 100%);
-  padding: 2rem 1rem 1.5rem;
-}
-.trust-footer-wrap .seal {
-  background: rgba(0,0,0,0.4); border: 1px solid #C9A84C; padding: 0.5rem 1rem; border-radius: 4px; color: #C9A84C; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em;
-}
+.trust-footer-wrap { background: linear-gradient(160deg, #3a2800 0%, #1e1400 100%); padding: 3rem 1rem 2rem; }
+.trust-seals { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+.seal { background: rgba(0,0,0,0.4); border: 1px solid #C9A84C; padding: 0.6rem 1.2rem; border-radius: 4px; color: #C9A84C; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; }
+footer { text-align: center; color: #C9A84C; font-size: 0.8rem; letter-spacing: 0.05em; padding-top: 2rem; border-top: 1px solid rgba(201, 168, 76, 0.2); }
 
-@media(max-width:768px){
-  nav{padding:0 18px}
-  .nav-links a:not(.nav-apply){display:none}
-  .parallax { height: 280px; }
-  .parallax-bg { background-attachment: scroll; }
+/* SHIELD POPUP */
+#arf-shield-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(255,253,245,0.85); backdrop-filter: blur(6px); justify-content: center; align-items: center; }
+#arf-shield-overlay.active { display: flex; }
+#arf-shield-box { background: #FFFFFF; border: 1px solid #D4B96A; border-radius: 12px; box-shadow: 0 8px 30px rgba(212,185,106,0.4); padding: 2.8rem 2.5rem; max-width: 420px; width: 90%; text-align: center; }
+#arf-shield-box .shield-img { width: 80px; height: auto; margin: 0 auto 1.2rem; display: block; }
+#arf-shield-box .shield-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #2A1F00; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; }
+#arf-shield-box .shield-body { font-size: 0.95rem; color: #8A7040; line-height: 1.6; margin-bottom: 1.5rem; }
+#arf-shield-close { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #FFFDF5; background: linear-gradient(135deg, #8B6500, #B8860B); border: none; border-radius: 3px; padding: 0.8rem 2rem; cursor: pointer; }
+
+@media(max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links .nav-link { display: none; }
 }
 </style>
 </head>
@@ -194,27 +136,25 @@ h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,52px);font-weight:700;lin
 
 <nav>
   <div class="nav-left">
-    <div class="nav-logo"><img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-nav-purple.png" alt="Croshire Aviation"></div>
+    <div class="nav-logo">
+      <img src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/logo-nav-purple.png" alt="Croshire Aviation">
+    </div>
     <div>
       <div class="nav-brand-top">Croshire Aviation</div>
       <div class="nav-brand-sub">Aircraft Consulting</div>
     </div>
   </div>
   <div class="nav-links">
-    <a href="#services">Services</a>
+    <a href="#services" class="nav-link">Services</a>
     <a href='https://buy.stripe.com/6oUaEW6dU6DMb71b2w57W02' target='_blank' class='nav-apply'>APPLY NOW</a>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-logo">
-    <div style="display:flex;justify-content:center;margin:6rem auto 0;">
-      <div style="position:relative;width:32%;max-width:340px;">
-        <video id="bannerVideo" autoplay loop muted playsinline style="width:100%;display:block;border-radius:12px;box-shadow:0 4px 15px rgba(212,185,106,0.5);">
-          <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-7.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
+    <video autoplay loop muted playsinline>
+      <source src="https://raw.githubusercontent.com/ACrosbie1/croshire-site/main/croshire-video-7.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="heb">Croshire Aviation</div>
@@ -241,22 +181,23 @@ h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,52px);font-weight:700;lin
 
 <div id="services" class="sd">
   <div class="si">
-    <div class="ey">What We Do</div>
+    <span class="ey">What We Do</span>
     <h2>Aircraft Consulting Services</h2>
     <p class="lead">Whether you are selling your aircraft or searching for your next one, we manage the entire transaction on your behalf.</p>
+    
     <div class="sg">
       <div class="sc">
-        <div class="sn">Sellers</div>
+        <span class="sn">Sellers</span>
         <div class="st">Sell Your Aircraft</div>
         <div class="sb">We list your aircraft, handle inquiries, qualify serious buyers, coordinate inspections, and negotiate on your behalf.</div>
       </div>
       <div class="sc">
-        <div class="sn">Buyers</div>
+        <span class="sn">Buyers</span>
         <div class="st">Find Your Aircraft</div>
         <div class="sb">Tell us what you need. We search active and off-market listings, review logbooks, and protect your interests.</div>
       </div>
       <div class="sc">
-        <div class="sn">Title</div>
+        <span class="sn">Title</span>
         <div class="st">FAA Title & Escrow</div>
         <div class="sb">We run clean FAA Registry title searches, verify no liens exist, and coordinate escrow through trusted specialists.</div>
       </div>
@@ -264,13 +205,11 @@ h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,52px);font-weight:700;lin
   </div>
 </div>
 
-<div style="text-align:center;padding:5rem 1rem 4rem;background:#FFFDF5;border-top:1px solid #D4B96A;border-bottom:1px solid #D4B96A;">
-
+<div class="partners-section">
   <p style="font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:0.25em;color:#2A1F00;text-transform:uppercase;margin-bottom:0.6rem;">Ready to Apply for Funding?</p>
-  <p style="font-family:Georgia,serif;font-size:0.9rem;color:#8A7040;margin-bottom:3rem;">Select your capital partner below to begin your secure application.</p>
+  <p style="font-family:'Raleway',sans-serif;font-size:1rem;color:#8A7040;margin-bottom:3rem;">Select your capital partner below to begin your secure application.</p>
 
-  <div style="display:flex;flex-wrap:wrap;gap:3rem;justify-content:center;margin-bottom:2rem;">
-    
+  <div class="partner-grid">
     <a href="https://velocitymortgage.com/apply/?broker=croshire" target="_blank" class="partner-card">
       <h3>Velocity Mortgage</h3>
       <div class="locked-ad-container" style="background-image: url('https://www.velocitymortgage.com/wp-content/uploads/2025/10/home-hero-collage.png');"></div>
@@ -282,32 +221,22 @@ h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,52px);font-weight:700;lin
       <div class="locked-ad-container" style="background-image: url('https://www.arffinancial.com/wp-content/uploads/thegem/logos/logo_9821eb555993295c62c062c2e7cfd56c_2x.png');"></div>
       <span class="apply-btn">Apply Now &rarr;</span>
     </a>
-
   </div>
 
   <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.18em;color:#8A7040;text-transform:uppercase;margin-top:2rem;">Confidential &bull; Secure &bull; Unmandated Broker</p>
 </div>
 
 <div class="trust-footer-wrap">
-  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem;">
+  <div class="trust-seals">
     <div class="seal">256-Bit SSL Secure</div>
     <div class="seal">D&B Verified</div>
     <div class="seal">PA Licensed</div>
   </div>
-  <p style="text-align:center; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:#C9A84C; text-transform:uppercase;">
-    Croshire Estates Corp &bull; Pottstown, Pennsylvania &bull; Est. 2023
-  </p>
+  <footer>
+    &copy; 2026 Croshire Estates Corp &bull; Pottstown, Pennsylvania &bull; Est. 2023<br>
+    <a href="tel:+12154368268" style="color:#C9A84C; text-decoration:none; display:inline-block; margin-top:0.5rem; font-family:'Cinzel', serif; letter-spacing: 0.15em;">+1 (215) 436-8268</a>
+  </footer>
 </div>
-
-<style>
-#arf-shield-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(255,253,245,0.85);backdrop-filter:blur(6px);justify-content:center;align-items:center;}
-#arf-shield-overlay.active{display:flex}
-#arf-shield-box{background:#FFFFFF;border:1px solid #D4B96A;border-radius:16px;box-shadow:0 8px 30px rgba(212,185,106,0.4);padding:2.8rem 2.5rem 2.2rem;max-width:420px;width:90%;text-align:center;position:relative;}
-#arf-shield-box .shield-img{width:88px;height:auto;margin:0 auto 1.2rem;display:block;}
-#arf-shield-box .shield-title{font-family:'Cinzel',serif;font-size:1.15rem;letter-spacing:0.18em;text-transform:uppercase;color:#2A1F00;margin-bottom:0.6rem}
-#arf-shield-box .shield-body{font-family:Georgia,serif;font-size:0.88rem;color:#8A7040;line-height:1.75;margin-bottom:1.5rem}
-#arf-shield-close{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:#FFFDF5;background:linear-gradient(135deg,#8B6500,#B8860B);border:none;border-radius:4px;padding:0.75rem 2.2rem;cursor:pointer;}
-</style>
 
 <div id="arf-shield-overlay">
   <div id="arf-shield-box">
