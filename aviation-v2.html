@@ -62,8 +62,11 @@ nav {
 
 /* HERO */
 .hero {
-  position: relative; width: 100%; padding: 10rem 2rem 6rem; background: transparent; text-align: center;
+  position: relative; width: 100%; padding: 10rem 2rem 6rem; text-align: center;
+  background-image: url('https://images.pexels.com/photos/1004409/pexels-photo-1004409.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;
 }
+.hero::before { content: ''; position: absolute; inset: 0; background: rgba(255,253,245,0.92); z-index: 0; }
+.hero > * { position: relative; z-index: 1; }
 .hero-logo { margin: 0 auto 2rem; width: 100%; max-width: 300px; position: relative; }
 .hero-logo video { 
   width: 100%; aspect-ratio: 1/1; object-fit: cover; /* Ensures perfect circle */
@@ -171,7 +174,7 @@ footer { text-align: center; color: #C9A84C; font-size: 0.8rem; letter-spacing: 
 </div>
 
 <div class="parallax">
-  <div class="parallax-bg" style="background-image:url('https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');"></div>
+  <div class="parallax-bg" style="background-image:url('https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');"></div>
   <div class="parallax-overlay"></div>
   <div class="parallax-content">
     <h3>Where Every Deal<br>Gets Off the Ground</h3>
