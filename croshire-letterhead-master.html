@@ -22,8 +22,8 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#F4F4F4;padding:20px 0;}
-.page{max-width:680px;margin:20px auto;background:#ffffff;font-family:'EB Garamond',Georgia,serif;color:#2A2A2A;box-shadow:0 8px 30px rgba(0,0,0,0.1);}
+html,body{margin:0;padding:0;height:100%;background:#ffffff;font-family:'EB Garamond',Georgia,serif;}
+.page{width:100%;min-height:100vh;background:#ffffff;color:#2A2A2A;display:flex;flex-direction:column;}
 .header{padding:40px 48px 25px;border-bottom:2px solid #C9A84C;}
 .header-inner{display:flex;align-items:center;justify-content:space-between;}
 .header-text{flex:1;text-align:left;}
@@ -43,7 +43,7 @@ body{background:#F4F4F4;padding:20px 0;}
 .sign-logo{width:85px;height:85px;margin-right:20px;border-radius:12px;box-shadow:0 0 10px 3px rgba(201,168,76,0.4);}
 .sign-corp{font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#1A1A1A;letter-spacing:1px;}
 .sign-detail{font-size:14px;color:#555555;margin-top:3px;}
-.footer{background:#231F20;padding:25px 48px;text-align:center;}
+.footer{background:#231F20;padding:20px 48px;text-align:center;position:fixed;bottom:0;left:0;right:0;}
 .footer-text{font-size:11px;color:#C9A84C;line-height:2.2;letter-spacing:0.5px;text-transform:uppercase;}
 </style>
 </head>
