@@ -95,9 +95,10 @@ nav {
 }
 .funnel-grid {
   display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+  justify-content: center;
 }
 @media (max-width: 768px) {
-  .funnel-grid { grid-template-columns: 1fr; }
+  .funnel-grid { grid-template-columns: 1fr; justify-items: center; }
   .wrap { margin-top: 2rem; }
 }
 
@@ -237,6 +238,15 @@ footer {
         <h2 class="funnel-title">Business Financing</h2>
         <p class="funnel-desc">Working capital, equipment financing, and bridge funding for established businesses banks have turned away.</p>
         <span class="funnel-btn">Access Business Capital &rarr;</span>
+      </div>
+    </a>
+
+    <a href="/calculator.html" class="funnel-card">
+      <div class="funnel-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80&fit=crop');"></div>
+      <div class="funnel-content">
+        <h2 class="funnel-title">Real Estate Calculator</h2>
+        <p class="funnel-desc">Run the numbers on a deal before you apply.</p>
+        <span class="funnel-btn">Open Calculator &rarr;</span>
       </div>
     </a>
 
