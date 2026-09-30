@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Loan Application | Croshire Estates Corp</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:linear-gradient(160deg,#F5DFA0,#FAF0CC,#FFFDF5,#FFFFFF);font-family:'EB Garamond',Georgia,serif;color:#2A1F00;padding:40px 16px;min-height:100vh;}
+.wrap{max-width:760px;margin:0 auto;}
+.page-layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start;}
+@media(max-width:900px){.page-layout{grid-template-columns:1fr;}}
+.form-column{position:relative;}
+.pay-column{position:sticky;top:24px;}
+.pay-card{background:linear-gradient(170deg,#FFF8E7,#FAF0CC,#FFF5D6,#FFFDF5);border:1px solid #D4B96A;border-radius:16px;padding:28px 24px;box-shadow:0 4px 20px rgba(184,134,11,0.15);}
+.pay-card h2{font-family:'Cinzel',serif;font-size:19px;color:#2A1F00;margin-bottom:12px;letter-spacing:0.5px;}
+.pay-card p{font-size:14px;color:#5A4A00;line-height:1.7;margin-bottom:16px;}
+.pay-amount{font-family:'Cinzel',serif;font-size:32px;color:#B8860B;margin-bottom:4px;}
+.pay-amount-label{font-size:12px;color:#8A7040;margin-bottom:20px;}
+.pay-btn{display:block;width:100%;text-align:center;background:linear-gradient(135deg,#8B6500,#B8860B);color:#FFF8DC;font-family:'Cinzel',serif;font-size:16px;letter-spacing:1px;padding:16px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;box-shadow:0 4px 16px rgba(184,134,11,0.3);}
+.pay-btn:hover{opacity:0.92;}
+.pay-note{font-size:12px;color:#8A7040;text-align:center;margin-top:16px;line-height:1.6;}
+.lock-sticky-wrap{position:sticky;top:20px;z-index:10;height:0;overflow:visible;}
+.lock-overlay{background:linear-gradient(160deg,#FFF8E7,#FAF0CC);border:1px solid #D4B96A;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.18);}
+.lock-icon{font-size:36px;color:#B8860B;margin-bottom:10px;}
+.lock-overlay h3{font-family:'Cinzel',serif;font-size:18px;color:#2A1F00;margin-bottom:8px;}
+.lock-overlay p{font-size:14px;color:#5A4A00;max-width:380px;line-height:1.5;}
+.form-blurred{filter:blur(3px);pointer-events:none;user-select:none;}
+.header{text-align:center;margin-bottom:32px;}
+.header h1{font-family:'Cinzel',serif;font-size:26px;color:#2A1F00;letter-spacing:1px;margin-bottom:8px;}
+.header p{color:#8A7040;font-size:15px;}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,transparent,#B8860B,transparent);margin:16px auto 24px;}
+.card{background:linear-gradient(170deg,#FFF8E7,#FAF0CC,#FFF5D6,#FFFDF5);border:1px solid #D4B96A;border-radius:16px;padding:0;margin-bottom:24px;overflow:hidden;box-shadow:0 4px 20px rgba(184,134,11,0.1);}
+.section-header{background:linear-gradient(135deg,#C9A84C,#E8C96A,#F5DFA0);padding:12px 20px;font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:#2A1F00;letter-spacing:0.5px;}
+.section-body{padding:20px;}
+.row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;}
+.field{flex:1;min-width:200px;}
+label{display:block;font-size:13px;color:#8A7040;margin-bottom:4px;font-weight:600;}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select{width:100%;padding:10px 12px;border:1px solid #D4B96A;border-radius:8px;background:#FFFDF5;font-family:'EB Garamond',Georgia,serif;font-size:15px;color:#2A1F00;}
+input:focus,select:focus{outline:2px solid #B8860B;}
+.radio-group{display:flex;gap:20px;flex-wrap:wrap;margin-top:4px;}
+.radio-option{display:flex;align-items:center;gap:6px;font-size:14px;}
+.radio-option input{width:auto;}
+.checkbox-group{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.checkbox-option{display:flex;align-items:center;gap:8px;font-size:14px;}
+.checkbox-option input{width:auto;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:640px){.two-col{grid-template-columns:1fr;}}
+.subhead{font-family:'Cinzel',serif;font-size:14px;color:#8A7040;margin-bottom:12px;letter-spacing:0.5px;}
+table.reowned{width:100%;border-collapse:collapse;font-size:14px;}
+table.reowned th{background:#F5DFA0;padding:8px;text-align:left;font-weight:600;color:#2A1F00;}
+table.reowned td{padding:6px 8px;border-bottom:1px solid #D4B96A;}
+table.reowned input{padding:6px 8px;font-size:13px;}
+.agreement-text{font-size:12px;line-height:1.6;color:#5A4A00;background:#FFFDF5;border:1px solid #D4B96A;border-radius:8px;padding:16px;margin-bottom:16px;max-height:220px;overflow-y:auto;}
+.sig-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px;}
+.sig-field{flex:1;min-width:220px;}
+.checkbox-consent{display:flex;align-items:flex-start;gap:10px;margin-top:16px;font-size:14px;}
+.checkbox-consent input{margin-top:3px;}
+.submit-btn{display:block;width:100%;background:linear-gradient(135deg,#8B6500,#B8860B);color:#FFF8DC;font-family:'Cinzel',serif;font-size:16px;letter-spacing:1px;padding:16px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 4px 16px rgba(184,134,11,0.3);margin-top:8px;}
+.submit-btn:hover{opacity:0.92;}
+.footer-note{text-align:center;font-size:12px;color:#8A7040;margin-top:24px;line-height:1.7;}
+.disclosure{font-size:12px;color:#8A7040;text-align:center;margin-bottom:24px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap" style="max-width:1180px;">
+  <div class="header">
+    <h1>Commercial Loan Application</h1>
+    <p>Croshire Estates Corp</p>
+    <div class="gold-rule"></div>
+  </div>
+
+  <div class="page-layout">
+    <div class="form-column" id="formColumn">
+      <div class="lock-sticky-wrap" id="lockStickyWrap">
+        <div class="lock-overlay" id="lockOverlay">
+          <div class="lock-icon">&#128274;</div>
+          <h3>Complete Payment to Unlock</h3>
+          <p>Your application is ready below. Complete the application fee on the right to unlock and submit it.</p>
+        </div>
+      </div>
+      <div id="formInner">
+
+  <p class="disclosure">Complete the form below to move your commercial financing application forward. Once submitted, our team will review and follow up within 24 hours by email (or phone, if needed).</p>
+
+  <form name="velocity-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="velocityForm">
+    <input type="hidden" name="form-name" value="velocity-application">
+    <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <!-- 1. FINANCING REQUEST -->
+    <div class="card">
+      <div class="section-header">1. Financing Request</div>
+      <div class="section-body">
+        <div class="row">
+          <div class="field"><label>Requested Loan Amount ($)</label><input type="number" name="loan_amount"></div>
+          <div class="field"><label>Property Value ($)</label><input type="number" name="property_value"></div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Purpose of Loan</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="loan_purpose" value="Purchase"> Purchase</span>
+              <span class="radio-option"><input type="radio" name="loan_purpose" value="Refinance"> Refinance</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Type of Loan</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="loan_type" value="FlexTerm"> FlexTerm</span>
+              <span class="radio-option"><input type="radio" name="loan_type" value="ARV Pro"> ARV Pro</span>
+              <span class="radio-option"><input type="radio" name="loan_type" value="Flex I/O"> Flex I/O</span>
+              <span class="radio-option"><input type="radio" name="loan_type" value="Fast50"> Fast50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PROPERTY INFORMATION -->
+    <div class="card">
+      <div class="section-header">2. Property Information</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <div class="subhead">Subject Property Address</div>
+            <div class="field" style="margin-bottom:12px;"><label>Street</label><input type="text" name="prop_street"></div>
+            <div class="row">
+              <div class="field"><label>City</label><input type="text" name="prop_city"></div>
+              <div class="field"><label>State</label><input type="text" name="prop_state"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label>Zip Code</label><input type="text" name="prop_zip"></div>
+              <div class="field"><label># of Units</label><input type="number" name="prop_units"></div>
+            </div>
+            <div class="field" style="margin-bottom:12px;">
+              <label>Will title be held in an entity?</label>
+              <div class="radio-group">
+                <span class="radio-option"><input type="radio" name="title_entity" value="Yes"> Yes</span>
+                <span class="radio-option"><input type="radio" name="title_entity" value="No"> No</span>
+              </div>
+            </div>
+            <div class="field"><label>If Yes, Entity Name</label><input type="text" name="title_entity_name"></div>
+          </div>
+          <div>
+            <div class="subhead">Property Type</div>
+            <div class="checkbox-group">
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="1-4 Residential Units"> 1&ndash;4 Residential Units</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="5+ Residential Units"> 5+ Residential Units</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="Mixed Use"> Mixed Use</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="Retail"> Retail</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="Warehouse"> Warehouse</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="Office"> Office</span>
+              <span class="checkbox-option"><input type="checkbox" name="prop_type" value="Auto Service"> Auto Service</span>
+            </div>
+            <div class="field" style="margin-top:12px;"><label>Other</label><input type="text" name="prop_type_other"></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:16px;">
+          <div class="field"><label>Refinance &mdash; Year Acquired</label><input type="text" name="refi_year"></div>
+          <div class="field"><label>Refinance &mdash; Cost ($)</label><input type="number" name="refi_cost"></div>
+          <div class="field"><label>Purchase Price ($)</label><input type="number" name="purchase_price"></div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Fix/Flip or Renovation?</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="flip_reno" value="Yes"> Yes</span>
+              <span class="radio-option"><input type="radio" name="flip_reno" value="No"> No</span>
+            </div>
+          </div>
+          <div class="field"><label>ARV ($)</label><input type="number" name="arv"></div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Improvements</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="improvements" value="Made"> Made</span>
+              <span class="radio-option"><input type="radio" name="improvements" value="To be made"> To be made</span>
+            </div>
+          </div>
+          <div class="field"><label>Improvements Amount ($)</label><input type="number" name="improvements_amt"></div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Applicant intend to live in subject property 14+ days/yr?</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="applicant_occupy" value="Yes"> Yes</span>
+              <span class="radio-option"><input type="radio" name="applicant_occupy" value="No"> No</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Co-Applicant intend to live in subject property 14+ days/yr?</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="coapplicant_occupy" value="Yes"> Yes</span>
+              <span class="radio-option"><input type="radio" name="coapplicant_occupy" value="No"> No</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. APPLICANT INFORMATION -->
+    <div class="card">
+      <div class="section-header">3. Applicant Information</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <div class="subhead">Applicant</div>
+            <div class="row"><div class="field"><label>Applicant's Name</label><input type="text" name="applicant_name"></div><div class="field"><label>FICO</label><input type="number" name="applicant_fico"></div></div>
+            <div class="field" style="margin-bottom:12px;"><label>Email Address</label><input type="email" name="applicant_email"></div>
+            <div class="row"><div class="field"><label>SSN</label><input type="text" name="applicant_ssn" placeholder="XXX-XX-XXXX"></div></div>
+            <div class="row"><div class="field"><label>Phone</label><input type="tel" name="applicant_phone"></div><div class="field"><label>DOB</label><input type="date" name="applicant_dob"></div></div>
+            <div class="field" style="margin-bottom:12px;">
+              <label>Marital Status</label>
+              <div class="radio-group">
+                <span class="radio-option"><input type="radio" name="applicant_marital" value="Married"> Married</span>
+                <span class="radio-option"><input type="radio" name="applicant_marital" value="Unmarried"> Unmarried</span>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:12px;">
+              <label>Residency Status</label>
+              <div class="radio-group">
+                <span class="radio-option"><input type="radio" name="applicant_residency" value="US Citizen"> US Citizen</span>
+                <span class="radio-option"><input type="radio" name="applicant_residency" value="Permanent Resident Alien"> Permanent Resident Alien</span>
+                <span class="radio-option"><input type="radio" name="applicant_residency" value="Non-permanent Resident Alien"> Non-permanent Resident Alien</span>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:12px;"><label>Primary Residence (Street, City, State, Zip)</label><input type="text" name="applicant_residence"></div>
+            <div class="row">
+              <div class="field">
+                <label>Own / Rent</label>
+                <div class="radio-group">
+                  <span class="radio-option"><input type="radio" name="applicant_own_rent" value="Own"> Own</span>
+                  <span class="radio-option"><input type="radio" name="applicant_own_rent" value="Rent"> Rent</span>
+                </div>
+              </div>
+              <div class="field"><label>Number of Years</label><input type="number" name="applicant_residence_years"></div>
+            </div>
+          </div>
+          <div>
+            <div class="subhead">Co-Applicant (if applicable)</div>
+            <div class="row"><div class="field"><label>Co-Applicant's Name</label><input type="text" name="coapplicant_name"></div><div class="field"><label>FICO</label><input type="number" name="coapplicant_fico"></div></div>
+            <div class="field" style="margin-bottom:12px;"><label>Email Address</label><input type="email" name="coapplicant_email"></div>
+            <div class="row"><div class="field"><label>SSN</label><input type="text" name="coapplicant_ssn" placeholder="XXX-XX-XXXX"></div></div>
+            <div class="row"><div class="field"><label>Phone</label><input type="tel" name="coapplicant_phone"></div><div class="field"><label>DOB</label><input type="date" name="coapplicant_dob"></div></div>
+            <div class="field" style="margin-bottom:12px;">
+              <label>Marital Status</label>
+              <div class="radio-group">
+                <span class="radio-option"><input type="radio" name="coapplicant_marital" value="Married"> Married</span>
+                <span class="radio-option"><input type="radio" name="coapplicant_marital" value="Unmarried"> Unmarried</span>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:12px;">
+              <label>Residency Status</label>
+              <div class="radio-group">
+                <span class="radio-option"><input type="radio" name="coapplicant_residency" value="US Citizen"> US Citizen</span>
+                <span class="radio-option"><input type="radio" name="coapplicant_residency" value="Permanent Resident Alien"> Permanent Resident Alien</span>
+                <span class="radio-option"><input type="radio" name="coapplicant_residency" value="Non-permanent Resident Alien"> Non-permanent Resident Alien</span>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:12px;"><label>Primary Residence (Street, City, State, Zip)</label><input type="text" name="coapplicant_residence"></div>
+            <div class="row">
+              <div class="field">
+                <label>Own / Rent</label>
+                <div class="radio-group">
+                  <span class="radio-option"><input type="radio" name="coapplicant_own_rent" value="Own"> Own</span>
+                  <span class="radio-option"><input type="radio" name="coapplicant_own_rent" value="Rent"> Rent</span>
+                </div>
+              </div>
+              <div class="field"><label>Number of Years</label><input type="number" name="coapplicant_residence_years"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. EMPLOYMENT INFORMATION -->
+    <div class="card">
+      <div class="section-header">4. Employment Information</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <div class="row"><div class="field"><label>Employer's Name</label><input type="text" name="applicant_employer"></div><div class="field"><label>Years on Job</label><input type="number" name="applicant_employer_years"></div></div>
+            <div class="row"><div class="field"><label>Address (Street, City, State, Zip)</label><input type="text" name="applicant_employer_address"></div><div class="field"><label>Monthly Income ($)</label><input type="number" name="applicant_monthly_income"></div></div>
+            <div class="row"><div class="field"><label>Business Phone</label><input type="tel" name="applicant_business_phone"></div></div>
+            <div class="field" style="margin-bottom:12px;"><span class="checkbox-option"><input type="checkbox" name="applicant_self_employed" value="Yes"> Self-Employed</span></div>
+            <div class="field"><label>Position / Title / Type of Work</label><input type="text" name="applicant_position"></div>
+          </div>
+          <div>
+            <div class="row"><div class="field"><label>Employer's Name</label><input type="text" name="coapplicant_employer"></div><div class="field"><label>Years on Job</label><input type="number" name="coapplicant_employer_years"></div></div>
+            <div class="row"><div class="field"><label>Address (Street, City, State, Zip)</label><input type="text" name="coapplicant_employer_address"></div><div class="field"><label>Monthly Income ($)</label><input type="number" name="coapplicant_monthly_income"></div></div>
+            <div class="row"><div class="field"><label>Business Phone</label><input type="tel" name="coapplicant_business_phone"></div></div>
+            <div class="field" style="margin-bottom:12px;"><span class="checkbox-option"><input type="checkbox" name="coapplicant_self_employed" value="Yes"> Self-Employed</span></div>
+            <div class="field"><label>Position / Title / Type of Work</label><input type="text" name="coapplicant_position"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. REAL ESTATE OWNED -->
+    <div class="card">
+      <div class="section-header">5. Real Estate Owned <span style="font-weight:400;font-size:12px;">(if more than 5, attach separate document)</span></div>
+      <div class="section-body">
+        <table class="reowned">
+          <tr><th>Property Address</th><th>Type of Property</th><th>Current Value ($)</th><th>Existing Mortgage ($)</th></tr>
+          <tr><td><input type="text" name="re1_address"></td><td><input type="text" name="re1_type"></td><td><input type="number" name="re1_value"></td><td><input type="number" name="re1_mortgage"></td></tr>
+          <tr><td><input type="text" name="re2_address"></td><td><input type="text" name="re2_type"></td><td><input type="number" name="re2_value"></td><td><input type="number" name="re2_mortgage"></td></tr>
+          <tr><td><input type="text" name="re3_address"></td><td><input type="text" name="re3_type"></td><td><input type="number" name="re3_value"></td><td><input type="number" name="re3_mortgage"></td></tr>
+          <tr><td><input type="text" name="re4_address"></td><td><input type="text" name="re4_type"></td><td><input type="number" name="re4_value"></td><td><input type="number" name="re4_mortgage"></td></tr>
+          <tr><td><input type="text" name="re5_address"></td><td><input type="text" name="re5_type"></td><td><input type="number" name="re5_value"></td><td><input type="number" name="re5_mortgage"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. EXPRESS PROCESSING INFORMATION -->
+    <div class="card">
+      <div class="section-header">6. Express Processing Information</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <div class="subhead">Settlement Agent</div>
+            <div class="field" style="margin-bottom:12px;"><label>Contact Name</label><input type="text" name="settlement_contact"></div>
+            <div class="field" style="margin-bottom:12px;"><label>Company Name & Address</label><input type="text" name="settlement_company"></div>
+            <div class="field" style="margin-bottom:12px;"><label>Phone</label><input type="tel" name="settlement_phone"></div>
+            <div class="field"><label>Email</label><input type="email" name="settlement_email"></div>
+          </div>
+          <div>
+            <div class="subhead">Insurance Agent</div>
+            <div class="field" style="margin-bottom:12px;"><label>Contact Name</label><input type="text" name="insurance_contact"></div>
+            <div class="field" style="margin-bottom:12px;"><label>Company Name</label><input type="text" name="insurance_company"></div>
+            <div class="field" style="margin-bottom:12px;"><label>Phone</label><input type="tel" name="insurance_phone"></div>
+            <div class="field"><label>Email</label><input type="email" name="insurance_email"></div>
+          </div>
+        </div>
+        <div class="subhead" style="margin-top:16px;">HOA</div>
+        <div class="row">
+          <div class="field"><label>Contact Name</label><input type="text" name="hoa_contact"></div>
+          <div class="field"><label>Company Name</label><input type="text" name="hoa_company"></div>
+          <div class="field"><label>Phone</label><input type="tel" name="hoa_phone"></div>
+          <div class="field"><label>Email</label><input type="email" name="hoa_email"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. AGREEMENT & ACKNOWLEDGEMENT -->
+    <div class="card">
+      <div class="section-header">7. Agreement &amp; Acknowledgement</div>
+      <div class="section-body">
+        <div class="agreement-text">
+          Each of the undersigned specifically represents to Lender and to Lender's actual or potential agents, brokers, processors, attorneys, insurers, servicers, successors and assigns and agrees and acknowledges that: (1) the information provided in this application is true and correct as of the date set forth opposite my signature and that any intentional or negligent misrepresentation of this information contained in this application may result in civil liability, including monetary damages to any person who may suffer any loss due to reliance upon any misrepresentation that I have made on this application, and/or in criminal penalties including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Sec. 1001, et seq.; (2) the loan requested pursuant to this application (the "Loan") will be secured by a mortgage or deed of trust on the property described in this application; (3) the property will not be used for any illegal or prohibited purpose or use; (4) all statements made in this application are made for the purpose of obtaining a business purpose mortgage loan; (5) the property will be occupied as indicated in this application; (6) the Lender, its servicers, successors or assigns may retain the original and/or an electronic record of this application, whether or not the Loan is approved; (7) the Lender and its agents, brokers, insurers, servicers, successors, and assigns may continuously rely on the information contained in the application, and I am obligated to amend and/or supplement the information provided in this application if any of the material facts that I have represented should change prior to closing of the Loan; (8) in the event that my payments on the Loan become delinquent, the Lender, its servicers, successors or assigns may, in addition to any other rights and remedies that it may have relating to such delinquency, report my name and account information to one or more consumer reporting agencies; (9) ownership of the Loan and/or administration of the Loan account may be transferred with such notice as may be required by law; (10) neither Lender nor its agents, brokers, insurers, servicers, successors or assigns has made any representation or warranty, express or implied, to me regarding the property or the condition or value of the property; and (11) my transmission of this application as an "electronic record" containing my "electronic signature," as those terms are defined in applicable federal and/or state laws (excluding audio and video recordings), or my facsimile transmission of this application containing a facsimile of my signature, shall be as effective, enforceable and valid as if a paper version of this application were delivered containing my original written signature.
+          <br><br>
+          <strong>Acknowledgement:</strong> Each of the undersigned hereby acknowledges that any owner of the Loan, its servicers, successors and assigns, may verify any information contained in this application or obtain any information or data relating to the Loan, for any legitimate business purpose through any source, including a source named in this application or a consumer reporting agency.
+        </div>
+        <div class="checkbox-consent">
+          <input type="checkbox" name="agreement_accepted" required id="agreeCheck">
+          <label for="agreeCheck" style="font-weight:400;">I have read and agree to the terms above, and I am submitting this as my electronic signature.</label>
+        </div>
+        <div class="sig-row">
+          <div class="sig-field"><label>Applicant's Typed Signature</label><input type="text" name="applicant_signature" placeholder="Type full legal name"></div>
+          <div class="sig-field"><label>Date</label><input type="date" name="applicant_sig_date"></div>
+        </div>
+        <div class="sig-row">
+          <div class="sig-field"><label>Co-Applicant's Typed Signature</label><input type="text" name="coapplicant_signature" placeholder="Type full legal name"></div>
+          <div class="sig-field"><label>Date</label><input type="date" name="coapplicant_sig_date"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. GOVERNMENT MONITORING INFORMATION -->
+    <div class="card">
+      <div class="section-header">8. Government Monitoring Information</div>
+      <div class="section-body">
+        <p style="font-size:12px;color:#8A7040;line-height:1.6;margin-bottom:16px;">The following information is requested by the Federal Government for certain types of loans related to a dwelling in order to monitor the lender's compliance with Equal Credit Opportunity, Fair Housing and Home Mortgage Disclosure laws. You are not required to furnish this information but are encouraged to do so.</p>
+        <div class="two-col">
+          <div>
+            <div class="subhead">Applicant</div>
+            <div class="field" style="margin-bottom:12px;"><span class="checkbox-option"><input type="checkbox" name="applicant_info_not_provided" value="Yes"> Information not provided by applicant</span></div>
+            <label>Ethnicity</label>
+            <div class="checkbox-group" style="margin-bottom:12px;">
+              <span class="checkbox-option"><input type="checkbox" name="applicant_ethnicity" value="Hispanic or Latino - Mexican"> Hispanic or Latino &ndash; Mexican</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_ethnicity" value="Hispanic or Latino - Puerto Rican"> Hispanic or Latino &ndash; Puerto Rican</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_ethnicity" value="Hispanic or Latino - Cuban"> Hispanic or Latino &ndash; Cuban</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_ethnicity" value="Other Hispanic or Latino"> Other Hispanic or Latino</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_ethnicity" value="Not Hispanic or Latino"> Not Hispanic or Latino</span>
+            </div>
+            <label>Race</label>
+            <div class="checkbox-group" style="margin-bottom:12px;">
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="American Indian or Alaska Native"> American Indian or Alaska Native</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Asian Indian"> Asian Indian</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Chinese"> Chinese</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Filipino"> Filipino</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Japanese"> Japanese</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Korean"> Korean</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Vietnamese"> Vietnamese</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Other Asian"> Other Asian</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Black or African American"> Black or African American</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Native Hawaiian"> Native Hawaiian</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Samoan"> Samoan</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Guamanian or Chamorro"> Guamanian or Chamorro</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="White"> White</span>
+              <span class="checkbox-option"><input type="checkbox" name="applicant_race" value="Other Pacific Islander"> Other Pacific Islander</span>
+            </div>
+            <label>Sex</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="applicant_sex" value="Female"> Female</span>
+              <span class="radio-option"><input type="radio" name="applicant_sex" value="Male"> Male</span>
+            </div>
+          </div>
+          <div>
+            <div class="subhead">Co-Applicant</div>
+            <div class="field" style="margin-bottom:12px;"><span class="checkbox-option"><input type="checkbox" name="coapplicant_info_not_provided" value="Yes"> Information not provided by co-applicant</span></div>
+            <label>Ethnicity</label>
+            <div class="checkbox-group" style="margin-bottom:12px;">
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_ethnicity" value="Hispanic or Latino - Mexican"> Hispanic or Latino &ndash; Mexican</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_ethnicity" value="Hispanic or Latino - Puerto Rican"> Hispanic or Latino &ndash; Puerto Rican</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_ethnicity" value="Hispanic or Latino - Cuban"> Hispanic or Latino &ndash; Cuban</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_ethnicity" value="Other Hispanic or Latino"> Other Hispanic or Latino</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_ethnicity" value="Not Hispanic or Latino"> Not Hispanic or Latino</span>
+            </div>
+            <label>Race</label>
+            <div class="checkbox-group" style="margin-bottom:12px;">
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="American Indian or Alaska Native"> American Indian or Alaska Native</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Asian Indian"> Asian Indian</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Chinese"> Chinese</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Filipino"> Filipino</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Japanese"> Japanese</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Korean"> Korean</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Vietnamese"> Vietnamese</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Other Asian"> Other Asian</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Black or African American"> Black or African American</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Native Hawaiian"> Native Hawaiian</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Samoan"> Samoan</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Guamanian or Chamorro"> Guamanian or Chamorro</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="White"> White</span>
+              <span class="checkbox-option"><input type="checkbox" name="coapplicant_race" value="Other Pacific Islander"> Other Pacific Islander</span>
+            </div>
+            <label>Sex</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="coapplicant_sex" value="Female"> Female</span>
+              <span class="radio-option"><input type="radio" name="coapplicant_sex" value="Male"> Male</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Application &rarr;</button>
+  </form>
+
+  <div id="successScreen" style="display:none;text-align:center;padding:60px 20px;">
+    <div style="font-size:56px;color:#B8860B;margin-bottom:16px;">&#10003;</div>
+    <h1 style="font-family:'Cinzel',serif;font-size:24px;color:#2A1F00;margin-bottom:12px;">Application Received</h1>
+    <p style="color:#5A4A00;font-size:16px;max-width:460px;margin:0 auto 8px;">Thank you. Your application has been submitted and is now with our team for review.</p>
+    <p style="color:#8A7040;font-size:14px;">We'll be in touch within 24 hours by email (or phone, if needed).</p>
+  </div>
+
+      </div>
+    </div>
+
+    <div class="pay-column">
+      <div class="pay-card">
+        <h2>Application Fee</h2>
+        <p>A one-time, non-refundable fee secures your application for review. Points and closing costs apply and will be disclosed during the application process.</p>
+        <div class="pay-amount">$399</div>
+        <div class="pay-amount-label">Business Consulting Engagement Fee</div>
+        <a href="https://buy.stripe.com/4gM14m59Qe6edf96Mg57W04" class="pay-btn">Pay &amp; Unlock Application &rarr;</a>
+        <p class="pay-note">Secured checkout via Stripe. After payment, you'll return here to complete and submit your application.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    Croshire Estates Corp &middot; Pottstown, PA 19464 &middot; +1 (215) 436-8268 &middot; info@croshireestates.com
+  </p>
+</div>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('unlocked') === '1') {
+    document.getElementById('lockStickyWrap').style.display = 'none';
+    document.getElementById('formInner').classList.remove('form-blurred');
+  } else {
+    document.getElementById('formInner').classList.add('form-blurred');
+  }
+})();
+
+document.getElementById('velocityForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  var data = new FormData(form);
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(data).toString()
+  })
+  .then(function(){
+    form.style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  })
+  .catch(function(){
+    btn.disabled = false;
+    btn.textContent = 'Submit Application \u2192';
+    alert('There was a problem submitting your application. Please check your connection and try again, or call us at +1 (215) 436-8268.');
+  });
+});
+</script>
+</body>
+</html>
