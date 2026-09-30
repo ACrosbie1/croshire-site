@@ -61,6 +61,14 @@ table.reowned input{padding:6px 8px;font-size:13px;}
 .submit-btn:hover{opacity:0.92;}
 .footer-note{text-align:center;font-size:12px;color:#8A7040;margin-top:24px;line-height:1.7;}
 .disclosure{font-size:12px;color:#8A7040;text-align:center;margin-bottom:24px;line-height:1.6;}
+.type-select{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+@media(max-width:640px){.type-select{grid-template-columns:1fr;}}
+.type-card{background:linear-gradient(170deg,#FFF8E7,#FAF0CC,#FFF5D6,#FFFDF5);border:2px solid #D4B96A;border-radius:14px;padding:22px 18px;text-align:center;cursor:pointer;transition:transform 0.15s, box-shadow 0.15s;}
+.type-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,134,11,0.2);}
+.type-card h3{font-family:'Cinzel',serif;font-size:16px;color:#2A1F00;margin-bottom:6px;}
+.type-card p{font-size:13px;color:#8A7040;line-height:1.5;}
+.type-back{display:inline-block;font-size:13px;color:#B8860B;text-decoration:none;margin-bottom:16px;cursor:pointer;}
+.type-back:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -83,6 +91,20 @@ table.reowned input{padding:6px 8px;font-size:13px;}
       <div id="formInner">
 
   <p class="disclosure">Complete the form below to move your commercial financing application forward. Once submitted, our team will review and follow up within 24 hours by email (or phone, if needed).</p>
+
+  <div id="typeSelect" class="type-select">
+    <div class="type-card" id="chooseRealEstate">
+      <h3>Real Estate / Commercial Financing</h3>
+      <p>Purchase, refinance, or fix-and-flip financing secured by real property.</p>
+    </div>
+    <div class="type-card" id="chooseBusiness">
+      <h3>Business Financing</h3>
+      <p>Working capital, equipment, or general business funding.</p>
+    </div>
+  </div>
+
+  <div id="realEstateFormWrap" style="display:none;">
+    <a class="type-back" id="backFromRealEstate">&larr; Choose a different application type</a>
 
   <form name="velocity-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="velocityForm">
     <input type="hidden" name="form-name" value="velocity-application">
@@ -447,6 +469,122 @@ table.reowned input{padding:6px 8px;font-size:13px;}
 
     <button type="submit" class="submit-btn" id="submitBtn">Submit Application &rarr;</button>
   </form>
+  </div>
+
+  <div id="businessFormWrap" style="display:none;">
+    <a class="type-back" id="backFromBusiness">&larr; Choose a different application type</a>
+
+  <form name="arf-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="arfForm">
+    <input type="hidden" name="form-name" value="arf-application">
+    <p style="display:none"><label>Don't fill this out: <input name="bot-field-arf"></label></p>
+
+    <div class="card">
+      <div class="section-header">1. Business Information</div>
+      <div class="section-body">
+        <div class="row">
+          <div class="field"><label>Legal Business Name</label><input type="text" name="biz_legal_name"></div>
+          <div class="field"><label>DBA (if different)</label><input type="text" name="biz_dba"></div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Entity Type</label>
+            <div class="radio-group">
+              <span class="radio-option"><input type="radio" name="biz_entity_type" value="C-Corp"> C-Corp</span>
+              <span class="radio-option"><input type="radio" name="biz_entity_type" value="S-Corp"> S-Corp</span>
+              <span class="radio-option"><input type="radio" name="biz_entity_type" value="LLC"> LLC</span>
+              <span class="radio-option"><input type="radio" name="biz_entity_type" value="Sole Proprietor"> Sole Proprietor</span>
+              <span class="radio-option"><input type="radio" name="biz_entity_type" value="Partnership"> Partnership</span>
+            </div>
+          </div>
+          <div class="field"><label>EIN</label><input type="text" name="biz_ein" placeholder="XX-XXXXXXX"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Industry</label><input type="text" name="biz_industry"></div>
+          <div class="field"><label>Years in Business</label><input type="number" name="biz_years"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Business Address (Street, City, State, Zip)</label><input type="text" name="biz_address"></div>
+          <div class="field"><label>Business Phone</label><input type="tel" name="biz_phone"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Business Website</label><input type="text" name="biz_website"></div>
+          <div class="field"><label>Average Monthly Revenue ($)</label><input type="number" name="biz_monthly_revenue"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-header">2. Financing Request</div>
+      <div class="section-body">
+        <div class="row">
+          <div class="field"><label>Requested Amount ($)</label><input type="number" name="biz_loan_amount"></div>
+          <div class="field">
+            <label>Use of Funds</label>
+            <div class="checkbox-group">
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Working Capital"> Working Capital</span>
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Equipment"> Equipment</span>
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Expansion"> Expansion</span>
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Inventory"> Inventory</span>
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Debt Refinance"> Debt Refinance</span>
+              <span class="checkbox-option"><input type="checkbox" name="biz_use_of_funds" value="Other"> Other</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Business Bank Name</label><input type="text" name="biz_bank_name"></div>
+          <div class="field"><label>Years with Current Bank</label><input type="number" name="biz_bank_years"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-header">3. Principal Owner / Guarantor Information</div>
+      <div class="section-body">
+        <div class="row">
+          <div class="field"><label>Full Legal Name</label><input type="text" name="guarantor_name"></div>
+          <div class="field"><label>Title</label><input type="text" name="guarantor_title"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Ownership Percentage (%)</label><input type="number" name="guarantor_ownership_pct"></div>
+          <div class="field"><label>DOB</label><input type="date" name="guarantor_dob"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>SSN</label><input type="text" name="guarantor_ssn" placeholder="XXX-XX-XXXX"></div>
+          <div class="field"><label>Driver's License Number</label><input type="text" name="guarantor_dl"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Home Address (Street, City, State, Zip)</label><input type="text" name="guarantor_address"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Phone</label><input type="tel" name="guarantor_phone"></div>
+          <div class="field"><label>Email</label><input type="email" name="guarantor_email"></div>
+        </div>
+        <div class="field">
+          <label>Personal FICO (if known)</label><input type="number" name="guarantor_fico">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-header">4. Agreement &amp; Acknowledgement</div>
+      <div class="section-body">
+        <div class="agreement-text">
+          The undersigned certifies that all information provided in this application is true, complete, and accurate to the best of their knowledge, and is submitted for the purpose of obtaining business financing. The undersigned authorizes the lender and its agents, brokers, processors, and assigns to verify any information contained in this application, including but not limited to credit history, bank records, and business financial statements, through any source deemed necessary. The undersigned understands that any intentional misrepresentation may result in denial of the application and may carry civil or criminal liability under applicable law. The undersigned's electronic signature below is intended to have the same legal effect as a handwritten signature.
+        </div>
+        <div class="checkbox-consent">
+          <input type="checkbox" name="biz_agreement_accepted" required id="arfAgreeCheck">
+          <label for="arfAgreeCheck" style="font-weight:400;">I have read and agree to the terms above, and I am submitting this as my electronic signature.</label>
+        </div>
+        <div class="sig-row">
+          <div class="sig-field"><label>Typed Signature</label><input type="text" name="guarantor_signature" placeholder="Type full legal name"></div>
+          <div class="sig-field"><label>Date</label><input type="date" name="guarantor_sig_date"></div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="arfSubmitBtn">Submit Application &rarr;</button>
+  </form>
+  </div>
 
   <div id="successScreen" style="display:none;text-align:center;padding:60px 20px;">
     <div style="font-size:56px;color:#B8860B;margin-bottom:16px;">&#10003;</div>
@@ -486,29 +624,55 @@ table.reowned input{padding:6px 8px;font-size:13px;}
   }
 })();
 
-document.getElementById('velocityForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  var form = e.target;
-  var btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-  var data = new FormData(form);
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: new URLSearchParams(data).toString()
-  })
-  .then(function(){
-    form.style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-    window.scrollTo({top:0, behavior:'smooth'});
-  })
-  .catch(function(){
-    btn.disabled = false;
-    btn.textContent = 'Submit Application \u2192';
-    alert('There was a problem submitting your application. Please check your connection and try again, or call us at +1 (215) 436-8268.');
+function showRealEstate(){
+  document.getElementById('typeSelect').style.display = 'none';
+  document.getElementById('realEstateFormWrap').style.display = 'block';
+  document.getElementById('businessFormWrap').style.display = 'none';
+}
+function showBusiness(){
+  document.getElementById('typeSelect').style.display = 'none';
+  document.getElementById('businessFormWrap').style.display = 'block';
+  document.getElementById('realEstateFormWrap').style.display = 'none';
+}
+function showSelector(){
+  document.getElementById('typeSelect').style.display = 'grid';
+  document.getElementById('realEstateFormWrap').style.display = 'none';
+  document.getElementById('businessFormWrap').style.display = 'none';
+}
+document.getElementById('chooseRealEstate').addEventListener('click', showRealEstate);
+document.getElementById('chooseBusiness').addEventListener('click', showBusiness);
+document.getElementById('backFromRealEstate').addEventListener('click', showSelector);
+document.getElementById('backFromBusiness').addEventListener('click', showSelector);
+
+function handleSubmit(formId, btnId){
+  document.getElementById(formId).addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    var data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(data).toString()
+    })
+    .then(function(){
+      document.getElementById('typeSelect').style.display = 'none';
+      document.getElementById('realEstateFormWrap').style.display = 'none';
+      document.getElementById('businessFormWrap').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Submit Application \u2192';
+      alert('There was a problem submitting your application. Please check your connection and try again, or call us at +1 (215) 436-8268.');
+    });
   });
-});
+}
+handleSubmit('velocityForm', 'submitBtn');
+handleSubmit('arfForm', 'arfSubmitBtn');
 </script>
 </body>
 </html>
