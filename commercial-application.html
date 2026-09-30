@@ -596,14 +596,19 @@ table.reowned input{padding:6px 8px;font-size:13px;}
       </div>
     </div>
 
-    <div class="pay-column">
-      <div class="pay-card">
+    <div class="pay-column" id="payColumn">
+      <div class="pay-card" id="payCardLocked">
         <h2>Application Fee</h2>
         <p>A one-time, non-refundable fee secures your application for review. Points and closing costs apply and will be disclosed during the application process.</p>
         <div class="pay-amount">$399</div>
         <div class="pay-amount-label">Business Consulting Engagement Fee</div>
         <a href="https://buy.stripe.com/4gM14m59Qe6edf96Mg57W04" class="pay-btn">Pay &amp; Unlock Application &rarr;</a>
         <p class="pay-note">Secured checkout via Stripe. After payment, you'll return here to complete and submit your application.</p>
+      </div>
+      <div class="pay-card" id="payCardConfirmed" style="display:none;text-align:center;">
+        <div style="font-size:32px;color:#B8860B;margin-bottom:8px;">&#10003;</div>
+        <h2>Payment Confirmed</h2>
+        <p style="margin-bottom:0;">Your $399 application fee has been received. Choose your application type on the left to continue.</p>
       </div>
     </div>
   </div>
@@ -619,6 +624,8 @@ table.reowned input{padding:6px 8px;font-size:13px;}
   if (params.get('unlocked') === '1') {
     document.getElementById('lockStickyWrap').style.display = 'none';
     document.getElementById('formInner').classList.remove('form-blurred');
+    document.getElementById('payCardLocked').style.display = 'none';
+    document.getElementById('payCardConfirmed').style.display = 'block';
   } else {
     document.getElementById('formInner').classList.add('form-blurred');
   }
