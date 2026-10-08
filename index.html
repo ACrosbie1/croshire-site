@@ -94,9 +94,13 @@ nav {
   padding: 0 2rem; position: relative; z-index: 5;
 }
 .funnel-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
   justify-content: center;
 }
+.funnel-video-embed {
+  height: 250px; width: 100%; background: #FFF8E7;
+}
+.funnel-video-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
 @media (max-width: 768px) {
   .funnel-grid { grid-template-columns: 1fr; justify-items: center; }
   .wrap { margin-top: 2rem; }
@@ -249,6 +253,17 @@ footer {
         <span class="funnel-btn">Open Calculator &rarr;</span>
       </div>
     </a>
+
+    <div class="funnel-card">
+      <div class="funnel-video-embed">
+        <iframe src="https://www.youtube.com/embed/W1nBTahzNvM" title="Dewayne Williams" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="funnel-content">
+        <h2 class="funnel-title">Shut Up and Sit Down</h2>
+        <p class="funnel-desc">Why an LLC quietly hurts business owners, and why a C-Corp doesn't — built on Dewayne Williams' entity-structure framework.</p>
+        <a href="https://www.amazon.com/dp/B0HJL2NWLB" target="_blank" class="funnel-btn">Get the Book &rarr;</a>
+      </div>
+    </div>
 
   </div>
 </div>
