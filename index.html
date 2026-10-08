@@ -94,9 +94,10 @@ nav {
   padding: 0 2rem; position: relative; z-index: 5;
 }
 .funnel-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
   justify-content: center;
 }
+.funnel-card--centered { grid-column: 2; }
 .funnel-video-embed {
   height: 250px; width: 100%; background: #FFF8E7;
 }
@@ -254,7 +255,7 @@ footer {
       </div>
     </a>
 
-    <div class="funnel-card">
+    <div class="funnel-card funnel-card--centered">
       <div class="funnel-video-embed">
         <iframe src="https://www.youtube.com/embed/W1nBTahzNvM" title="Dewayne Williams" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
